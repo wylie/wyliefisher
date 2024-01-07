@@ -1,0 +1,17 @@
+@import '../../styles/_index.css';
+
+.Anchor {
+  padding-bottom: 5px;
+  color: var(--Text-color);
+  font-weight: lighter;
+  text-decoration: none;
+  cursor: pointer;
+}
+.Anchor:focus,
+.Anchor:hover {
+  border-bottom: 5px solid var(--Link-border);
+}
+.Anchor:active {
+  position: relative;
+  top: 1px;
+}
