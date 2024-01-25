@@ -11,10 +11,8 @@ const App = () => (
     <Switch>
       <Route
         exact
-        path="/er"
         component={Wrapper}
       />
-      <Redirect from="/" to="/er" />
     </Switch>
   </Router>
 );
