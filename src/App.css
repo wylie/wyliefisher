@@ -24,9 +24,6 @@ html, body {
     width: 90%;
   }
 }
-section:not(:last-child) {
-  margin-bottom: 2rem;;
-}
 /* HEADER */
 header {
   width: 100%;
@@ -61,7 +58,7 @@ header .icon:active {
 main {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 5rem;
 }
 /* FOOTER */
 footer {

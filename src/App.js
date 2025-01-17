@@ -37,8 +37,8 @@ function App() {
       </header>
       <main>
         <About />
-        <h2>Projects</h2>
         <section className="projects">
+          <h2>Projects</h2>
           {projects.map((project, index) => (
             <Project
               key={index}
@@ -48,8 +48,8 @@ function App() {
             />
           ))}
         </section>
-        <h2>Connect</h2>
         <section className="connect">
+          <h2>Connect</h2>
           <Connect link="mailto:me@wyliefisher.com" title="Email me!" icon="email" />
           <Connect link="https://github.com/wylie" title="More work on GitHub!" icon="github" />
           <Connect link="https://www.linkedin.com/in/wyliefisher/" title="Let's connect on Linkedin!" icon="linkedin" />

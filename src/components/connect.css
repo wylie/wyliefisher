@@ -1,7 +1,10 @@
 .connect {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: .5rem;
+}
+.connect h2 {
+  flex: 1 1 100%;
 }
 .connect a {
   line-height: 0;

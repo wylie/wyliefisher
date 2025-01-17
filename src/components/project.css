@@ -2,6 +2,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  grid-template-areas:
+    "title title"
+    "project project"
+    "project project";
+  ;
+}
+.projects h2 {
+  grid-area: title;
 }
 @media (max-width: 600px) {
   .projects {
