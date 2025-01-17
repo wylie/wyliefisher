@@ -19,8 +19,9 @@ const About = () => {
 
   return (
     <section className="about">
-      <p><img src={isDarkMode ? DarkPortrait : Portrait} alt="portrait" />Ahoy! I’m a developer with extensive front-end experience, strong problem-solving skills, and a focus on clean, standards-based code. I try to stay current with web trends, am open to emerging technologies, and am committed to continuous learning.</p>
-      <p>Outside of work, I’m a dad, partner, artist, and animal lover (with a dog, two cats, and a state-fair goldfish—and hopes of having chickens someday!). I’m happiest outdoors—reading, hiking, kayaking, or enjoying a campfire—and love to play with Lego and create art. Grounded by values of social justice, generosity, honesty, curiosity, and adaptability, I thrive in collaborative environments, bringing strong communication skills and adaptability to every project.</p>
+      <p><img src={isDarkMode ? DarkPortrait : Portrait} alt="portrait" />Ahoy! I'm Wylie—a developer who loves creating things. Whether it's a digital experience or something tangible, I enjoy the process of bringing ideas to life with care and creativity. Staying curious keeps my work fresh, and I'm always excited to learn new tools and techniques to improve what I make.</p>
+      <p>When I'm not building things, I'm probably spending time with my family—my partner, my kid, and our little zoo of pets: a dog, two cats, and some sea monkeys (chickens are on my wish list!). I'm an artist and a big fan of Lego, campfires, and outdoor adventures—hiking, kayaking, or just getting lost in a good book.</p>
+      <p>I'm grounded by values like social justice, caring for the earth, curiosity, generosity, and honesty. These guide both my work and my life, shaping how I collaborate, create, and grow. If you want to know more about me or my work, let's connect!</p>
     </section>
   );
 };
