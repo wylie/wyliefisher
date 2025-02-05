@@ -47,6 +47,11 @@ em {
   font-size: var(--fontSize-body);
   line-height: 1.5;
 }
+h3 + ul,
+p + ul {
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+}
 ul {
   margin: 0;
   padding: 0;
