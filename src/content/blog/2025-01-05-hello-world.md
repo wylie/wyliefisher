@@ -1,7 +1,7 @@
 ---
 title: "Yearly Metrics"
 pubDate: 2025-01-05T00:00:00-05:00
-snippet: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lorem diam. Quisque vulputate nibh sodales eros pretium tincidunt. Aenean porttitor efficitur convallis. Nulla sagittis finibus convallis. Phasellus in fermentum quam, eu egestas tortor. Maecenas ac mollis leo. Integer maximus eu nisl vel sagittis."
+snippet: "You know how at the end of the year you get a bunch of emails from services you belong to, telling you how much you used their service"
 ---
 
 You know how at the end of the year you get a bunch of emails from services you belong to, telling you how much you used their service?
@@ -28,7 +28,7 @@ Reflecting on these metrics, it's fascinating to see how much time and effort I 
 
 ### Fitness and Health
 
-- **Workout Miles Walked**: Walking 581.26 miles is quite an achievement! I'm amazed that I logged this many miles, even with everything that happened in 2024. _These are only miles that I started a walking workout on my watch, this does not include just regular walking_
+- **Workout Miles Walked**: Walking 581.26 miles is quite an achievement! I'm amazed that I logged this many miles, even with everything that happened in 2024. *These are only miles that I started a walking workout on my watch, this does not include just regular walking*
 - **Workout Elevation Feet Climbed**: Climbing 47,079 feet is equivalent to climbing Mount Everest more than one and a half times!
 
 ### Mindfulness
