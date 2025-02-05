@@ -15,6 +15,12 @@
 .post-list-item {
   margin-bottom: 20px;
 }
+.post-list-item div {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 3px dashed var(--border-color);
+  justify-content: space-between;
+}
 .post-list .post-list-item .post-link {
   display: block;
 }
@@ -28,23 +34,27 @@
   color: var(--text-color);
 }
 .date {
-  text-align: "left";
+  text-align: left;
   margin-top: 5px;
   margin-bottom: 0;
   font-size: 1rem;
-  border-bottom: 3px dashed var(--border-color);
+  white-space: nowrap;
+  align-self: flex-end;
 }
 .continue-link {
   display: inline;
   text-decoration: underline;
 }
-@media (max-width: 720px) {
+@media (min-width: 720px) {
   .post-list {
     gap: 0.5em;
   }
   .post-list .post-list-item {
     width: 100%;
     margin-top: 20px;
+  }
+  .post-list-item div {
+    flex-direction: row;
   }
   .date {
     text-align: left;

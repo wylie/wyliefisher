@@ -16,18 +16,20 @@ const PostSection = (props) => {
       <ul className="post-list">
         {filteredPosts.map((post, postIndex) => (
           <li className="post-list-item" key={postIndex}>
-            {<a className="post-link" href={`/blog/${post.slug}/`}>
-              <h3 className="title">
-                {post.data.title}
-              </h3>
-            </a>}
-            {<p className="date">
-              {post.data.pubDate.toLocaleDateString("en-us", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </p>}
+            <div>
+              {<a className="post-link" href={`/blog/${post.slug}/`}>
+                <h3 className="title">
+                  {post.data.title}
+                </h3>
+              </a>}
+              {<p className="date">
+                {post.data.pubDate.toLocaleDateString("en-us", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </p>}
+            </div>
             {<p className="snippet">
               {post.data?.snippet}...&nbsp;
               <a
