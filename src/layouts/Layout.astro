@@ -1,0 +1,82 @@
+---
+import Meta from '../components/Meta.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const { title, pubDate, heroImage } =
+  Astro.props;
+
+import '../style/global.css';
+
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Wylie Fisher</title>
+		<Meta />
+	</head>
+	<body>
+		<div class="layout">
+			<Header />
+			{!title ? (
+				<slot />
+			) : (
+				<article>
+					{heroImage && (
+						<div class="hero-image">
+								<img src={heroImage} alt="" />
+						</div>
+					)}
+					{title || pubDate ? (
+						<header>
+							{title && (
+								<h2 class="title">
+									{title}
+								</h2>
+							)}
+							{pubDate && (
+								<div class="date">
+									{pubDate.toLocaleDateString("en-us", {
+										year: "numeric",
+										month: "short",
+										day: "numeric",
+									})}
+								</div>
+							)}
+						</header>
+					) : null}
+					<div class="prose">
+						<slot />
+					</div>
+				</article>
+			)}
+			<Footer />
+		</div>
+	</body>
+</html>
+
+<style>
+	.layout {
+		display: grid;
+		grid-template-rows: auto 1fr auto auto;
+		row-gap: var(--gap);
+		width: 75%;
+		max-width: 650px;
+		justify-self: center;
+		transition: width .2s;
+	}
+	@media (max-width: 600px) {
+		.layout {
+			width: 90%;
+		}
+	}
+	article {
+		border-bottom: 3px dashed var(--border-color);
+    padding-bottom: 1rem;
+	}
+	header {
+		padding-bottom: 1rem;
+		margin: 1rem 0;
+		border-bottom: 3px dashed var(--border-color);
+	}
+</style>

@@ -1,0 +1,42 @@
+---
+const { title, url, icon } = Astro.props;
+import emailIcon from '../assets/images/email.png';
+import githubIcon from '../assets/images/github.png';
+import goodreadsIcon from '../assets/images/goodreads.png';
+import linkedinIcon from '../assets/images/linkedin.png';
+
+import '../style/global.css';
+
+let iconSrc;
+switch (icon) {
+  case 'email':
+    iconSrc = emailIcon.src;
+    break;
+  case 'github':
+    iconSrc = githubIcon.src;
+    break;
+  case 'goodreads':
+    iconSrc = goodreadsIcon.src;
+    break;
+  case 'linkedin':
+    iconSrc = linkedinIcon.src;
+    break;
+}
+---
+
+<a class="connect-link" href={url} target="_blank" rel="noopener noreferrer" title={title}>
+  <img src={iconSrc} class="icon" alt={title} />
+</a>
+
+<style>
+  .connect-link {
+    line-height: 0;
+  }
+  .connect-link .icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    fill: var(--fill-color);
+    transition: all .1s;
+    filter: invert(23%) sepia(11%) saturate(749%) hue-rotate(145deg) brightness(92%) contrast(92%);
+  }
+</style>

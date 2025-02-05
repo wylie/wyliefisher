@@ -1,0 +1,74 @@
+@import url(./variables.css);
+
+* {
+  font-size: 16px;
+}
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+body {
+  display: grid;
+  background-color: var(--theme-color-1);
+  margin: 0;
+  font-family: Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
+  font-size: var(--fontSize-primary);
+}
+body.transition {
+  transition: all .2s;
+}
+body.dark {
+  color: var(--text-dark-color);
+  background-color: var(--theme-dark-color-1);
+}
+h1, h2, h3, p {
+  margin: 0;
+}
+h1 {
+  font-size: var(--fontSize-h1);
+  text-wrap: nowrap;
+}
+h2 {
+  font-size: var(--fontSize-h2);
+}
+h3 {
+  font-size: var(--fontSize-h3);
+}
+p {
+  font-size: var(--fontSize-body);
+  line-height: 1.5;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: var(--text-color-link);
+  font-size: inherit;
+}
+a:hover {
+  color: var(--text-color-link-hoverhover);
+}
+
+* {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+/* BLOG POSTS */
+.hero-image img {
+  max-width: 650px;
+}
+/* #blog-post h2 {
+  display: none;
+} */

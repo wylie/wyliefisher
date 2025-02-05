@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import { getCollection } from "astro:content";
+import PostSection from "../../components/PostSection";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+);
+---
+
+<Layout>
+  <main>
+    <section>
+      <PostSection posts={posts} client:only="react" />
+    </section>
+  </main>
+</Layout>

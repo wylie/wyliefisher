@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Project from '../components/Projects.astro';
+import projects from '../assets/data/projects.js';
+---
+<Layout>
+  <main>
+    <section class="projects">
+      <h2>Projects</h2>
+      {projects.map((data) => 
+        <Project
+          title={data.title},
+          description={data.description},
+          link={data.link},
+          skills={data.skills}
+        />
+      )}
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .projects {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    grid-template-areas:
+      "title"
+      "project"
+      "project"
+      "project"
+      "project";
+    ;
+  }
+  .projects h2 {
+    grid-area: title;
+  }
+  @media (min-width: 600px) {
+    .projects {
+      grid-template-areas:
+        "title title"
+        "project project"
+        "project project";
+      ;
+    }
+  }
+</style>

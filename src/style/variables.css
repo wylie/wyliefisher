@@ -1,0 +1,21 @@
+:root {
+  --theme-color-1: #EED595;
+  --theme-color-2: #F6B179;
+  --theme-color-3: #264653;
+  
+  --background-color: var(--theme-color-1);
+  --background-contrast-color: var(--theme-color-2);
+  --border-color: var(--theme-color-2);
+  --text-color: var(--theme-color-3);
+  --text-color-link: var(--theme-color-3);
+  --text-color-link-hover: var(--theme-color-3);
+  --fill-color: var(--theme-color-3);
+  
+  --fontSize-h1: 3rem;
+  --fontSize-h2: 1.75rem;
+  --fontSize-h3: 1.25rem;
+  --fontSize-primary: 1rem;
+  --fontSize-secondary: .875rem;
+  --fontSize-body: 1.25rem;
+  --gap: 1rem;
+}

@@ -1,0 +1,54 @@
+---
+import Nav from '../components/Nav.astro';
+---
+<header>
+	<div>
+		<a href="/" aria-label="Home">
+			<h1>Wylie Fisher</h1>
+			<h3>
+				Front-End Web Developer
+			</h3>
+		</a>
+	</div>
+  <Nav />
+</header>
+
+<style>
+	header {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 100%;
+		border-bottom: 3px solid var(--border-color);
+		padding-bottom: 1rem;
+	}
+	header a {
+		text-decoration: none;
+	}
+	header h2 {
+		display: flex;
+		justify-content: space-between;
+	}
+	header button {
+		display: flex;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+	}
+	header .icon {
+		filter: invert(23%) sepia(11%) saturate(749%) hue-rotate(145deg) brightness(92%) contrast(92%);
+		height: 1.5rem;
+	}
+	header .icon:hover {
+		transform: scale(1.02);
+	}
+	header .icon:active {
+		transform: scale(0.98);
+	}
+  @media screen and (min-width: 768px) {
+		header {
+      flex-direction: initial;
+    }
+  }
+</style>

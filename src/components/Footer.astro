@@ -1,0 +1,37 @@
+---
+import Connect from '../components/Connect.astro';
+import clones from '../assets/data/clones.js';
+
+function getRandomClone() {
+  const randomIndex = Math.floor(Math.random() * clones.clonesList.length);
+  return clones.clonesList[randomIndex];
+}
+---
+<footer>
+  <section class="connect">
+    <h2>Connect</h2>
+    <Connect url="mailto:me@wyliefisher.com" title="Email me!" icon="email" />
+    <Connect url="https://github.com/wylie" title="More work on GitHub!" icon="github" />
+    <Connect url="https://www.linkedin.com/in/wyliefisher/" title="Let's connect on Linkedin!" icon="linkedin" />
+    <Connect url="https://www.goodreads.com/wyliefisher" title="Read with me on Goodreads!" icon="goodreads" />
+  </section>
+  <p class="quote">{getRandomClone()}</p>
+</footer>
+
+<style>
+  .connect {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    padding-bottom: var(--gap);
+  }
+  .connect h2 {
+    flex: 1 1 100%;
+  }
+	.quote {
+		padding-top: var(--gap);
+		border-top: 3px solid var(--border-color);
+		font-size: var(--fontSize-secondary);
+		font-style: italic;
+	}
+</style>
