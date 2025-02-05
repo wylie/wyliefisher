@@ -75,8 +75,24 @@ import '../style/global.css';
     padding-bottom: 1rem;
 	}
 	header {
+		display: flex;
+		flex-direction: column;
 		padding-bottom: 1rem;
 		margin: 1rem 0;
 		border-bottom: 3px dashed var(--border-color);
+	}
+	header .date {
+		margin-top: .5rem;
+		align-self: flex-end;
+    justify-self: flex-end;
+		white-space: nowrap;
+	}
+	@media screen and (min-width: 768px) {
+		header {
+			flex-direction: row;
+		}
+		header .date {
+			margin-top: 0;
+		}
 	}
 </style>
