@@ -92,4 +92,7 @@ html, body {
   border: 1px solid black;
   padding: .25rem .75rem;
 }
+.hero-image img {
+  width: 100%;
+}
 
