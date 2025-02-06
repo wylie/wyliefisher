@@ -30,13 +30,9 @@
   text-align: left;
 }
 .date {
-  margin: 0;
+  margin: 5px 0 0;
   color: var(--text-color);
-}
-.date {
   text-align: left;
-  margin-top: 5px;
-  margin-bottom: 0;
   font-size: 1rem;
   white-space: nowrap;
   align-self: flex-end;
@@ -55,10 +51,5 @@
   }
   .post-list-item div {
     flex-direction: row;
-  }
-  .date {
-    text-align: left;
-    margin-top: 5px;
-    margin-bottom: 0;
   }
 }

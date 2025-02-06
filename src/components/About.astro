@@ -4,23 +4,30 @@ import face from '../assets/images/portrait-no-bg-color.png';
 ---
 
 <section class="about">
-  <p><img src={face.src} alt="portrait" />Ahoy! I'm Wylie&mdash;a developer who loves creating things. Whether it's a digital experience or something tangible, I enjoy the process of bringing ideas to life with care and creativity. Staying curious keeps my work fresh, and I'm always excited to learn new tools and techniques to improve what I make.</p>
-  <p>When I'm not building things, I'm probably spending time with my family&mdash;my partner, my kid, and our little zoo of pets: a dog, two cats, and some sea monkeys (chickens are on my wish list!). I'm an artist and a big fan of Lego, campfires, and outdoor adventures&mdash;hiking, kayaking, or just getting lost in a good book.</p>
-  <p>I'm grounded by values like social justice, caring for the earth, curiosity, generosity, and honesty. These guide both my work and my life, shaping how I collaborate, create, and grow. If you want to know more about me or my work, let's connect!</p>
+  <p>
+    <img src={face.src} alt="portrait" />
+    Ahoy! I'm Wylie&mdash;a developer who loves creating things. Whether it's a digital experience or something tangible, I enjoy the process of bringing ideas to life with care and creativity. Staying curious keeps my work fresh, and I'm always excited to learn new tools and techniques to improve what I make.
+  </p>
+  <p>
+    When I'm not building things, I'm probably spending time with my family&mdash;my partner, my kid, and our little zoo of pets: a dog, two cats, and some sea monkeys (chickens are on my wish list!). I'm an artist and a big fan of Lego, campfires, and outdoor adventures&mdash;hiking, kayaking, or just getting lost in a good book.
+  </p>
+  <p>
+    I'm grounded by values like social justice, caring for the earth, curiosity, generosity, and honesty. These guide both my work and my life, shaping how I collaborate, create, and grow. If you want to know more about me or my work, let's connect!
+  </p>
 </section>
 
 <style>
   .about p img {
     width: 100px;
     float: left;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
+  }
+  .about p:not(:first-child) {
+    margin-top: 1rem;
   }
   @media screen and (min-width: 768px) {
     .about p img {
       width: 125px;
     }
-  }
-  .about p:not(:first-child) {
-    margin-top: 1rem;
   }
 </style>
