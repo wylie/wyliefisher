@@ -1,4 +1,4 @@
-# Astro Starter Kit: Basics
+# Wylie Fisher's Astro Project
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/efca99b5-9324-444a-a072-7c0a87e104e1/deploy-status)](https://app.netlify.com/sites/ohmahgahd/deploys)
 
@@ -16,7 +16,7 @@ npm create astro@latest -- --template basics
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+Inside of this Astro project, you'll see the following folders and files:
 
 ```text
 /
@@ -30,7 +30,7 @@ Inside of your Astro project, you'll see the following folders and files:
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+To learn more about the folder structure of an Astro project, refer to [the guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
 ## 🧞 Commands
 
@@ -47,4 +47,4 @@ All commands are run from the root of the project, from a terminal:
 
 ## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Feel free to check [the documentation](https://docs.astro.build) or jump into the [Discord server](https://astro.build/chat).
