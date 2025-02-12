@@ -9,7 +9,7 @@ I have been thinking a lot lately about whether a laptop or a desktop is the bet
 
 ### The Case for My M1 Mac Mini
 
-The M1 Mac Mini has been rock-solid. It is compact, powerful, and runs macOS smoothly without any issues. Paired with my dual-monitor setup, it gives me plenty of screen space, which is invaluable for coding, debugging, design work, or just doing online household tasks.
+The Mini has been rock-solid. It's compact, powerful, and runs macOS smoothly without any issues. Paired with my dual-monitor setup, it gives me plenty of screen space, which is invaluable for coding, debugging, design work, or just doing online household tasks.
 
 But then there is the obvious downside: mobility. I'm locked to my desk. If I want a change of scenery, my only option is to step away entirely rather than taking my work with me. But maybe that's not such a bad thing. Without a laptop tethered to me, I have a clear boundary between work and everything else. When I step away, I'm actually taking a break rather than just relocating my work to another spot. Maybe having a fixed workspace helps me stay more focused and intentional about when and how I work.
 
@@ -21,9 +21,9 @@ However, I would lose my dual-screen workflow, which has been a major advantage 
 
 ### Which is Best?
 
-Ultimately, it comes down to how I work best. My Mac Mini keeps me grounded and efficient, while a MacBook Pro would give me more flexibility.
+Ultimately, it comes down to how I work best. My Mini keeps me grounded and efficient, while a MacBook Pro would give me more flexibility.
 
-Maybe the best solution is both: keep my M1 Mac Mini for desk-based work and use a MacBook Pro when I need to work elsewhere. But for now, I'll keep dreaming of a setup where I can have the best of both worlds.
+Maybe the best solution is both: keep my Mini for desk-based work and use a MacBook Pro when I need to work elsewhere. But for now, I'll keep dreaming of a setup where I can have the best of both worlds.
 
 And honestly, sticking with what I already have is probably the best choice for my wallet. A new laptop might sound tempting, but avoiding a big purchase and making the most of my current setup is a win in itself.
 
