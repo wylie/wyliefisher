@@ -9,23 +9,7 @@ You know how at the end of the year you get a bunch of emails from services you 
 
 I get this information from PlayStation, Goodreads, Apple, and Twitch. I’ve also been keeping track of a couple of other real-life metrics, which I find just as interesting. Looking at the numbers gives me a tangible way to reflect on how I spent my time over the past year.
 
-Here are the metrics I got from 2024
-
-| Service                        | Metric  |
-| ------------------------------ | ------- |
-| Workout Miles Walked           | 581.26  |
-| Workout Elevation Feet Climbed | 47,079  |
-| Mindfulness Minutes            | 2,853   |
-| Books Read                     | 102     |
-| Pages Read                     | 28,564  |
-| Video Games Played             | 97      |
-| Hours Played Video Games       | 436     |
-| PS Trophies Earned             | 378     |
-| Twitch Hours Watched           | 3,563   |
-| Transfer Station Pounds        | 2,700   |
-| Transfer Station Cost          | $107.01 |
-
-Reflecting on these metrics, it's fascinating to see how much time and effort I have invested in various activities throughout the year. Here are some highlights and thoughts on each category:
+Here are the metrics I got from 2024:
 
 ### Fitness and Health
 
@@ -38,7 +22,7 @@ Reflecting on these metrics, it's fascinating to see how much time and effort I 
 
 ### Reading
 
-- **Books Read**: Reading 102 books in a year a lot. The previous year I did not read quite so many, but one year I read 110, so this is not the most that I've read. For 2025 I am going to try for 110.
+- **Books Read**: Reading 102 books in a year a lot. The previous year I did not read quite so many, but one year I read 110, so this is not the most that I've read. For 2025 I'm going to try for 110.
 - **Pages Read**: With 28,564 pages read, I have immersed myself in countless stories and gained a wealth of knowledge.
 
 ### Gaming
