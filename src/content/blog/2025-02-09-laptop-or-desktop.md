@@ -27,4 +27,4 @@ Maybe the best solution is both: keep my Mini for desk-based work and use a MacB
 
 And honestly, sticking with what I already have is probably the best choice for my wallet. A new laptop might sound tempting, but avoiding a big purchase and making the most of my current setup is a win in itself.
 
-Did I just talk myself out of doing anything?
+Wait, did I just talk myself out of doing anything?
