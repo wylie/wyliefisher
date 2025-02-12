@@ -4,22 +4,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   list-style-type: none;
   margin: 0;
   padding: 0;
+  transition: all .25s;
+
 }
 .post-list .post-link {
   text-decoration: none;
 }
-.post-list-item {
-  margin-bottom: 20px;
-}
 .post-list-item div {
   display: flex;
-  flex-direction: column;
   border-bottom: 3px dashed var(--border-color);
   justify-content: space-between;
+  column-gap: .5rem;
 }
 .post-list .post-list-item .post-link {
   display: block;
@@ -40,16 +39,18 @@
 .continue-link {
   display: inline;
   text-decoration: underline;
+  opacity: .75;
+  transition: all .125s;
+  font-style: italic;
+}
+.continue-link:hover {
+  opacity: 1;
 }
 @media (min-width: 720px) {
   .post-list {
-    gap: 0.5em;
+    gap: 3em;
   }
   .post-list .post-list-item {
     width: 100%;
-    margin-top: 20px;
-  }
-  .post-list-item div {
-    flex-direction: row;
   }
 }

@@ -9,7 +9,6 @@ function getRandomClone() {
 ---
 <footer>
   <section class="connect">
-    <h2>Connect</h2>
     <Connect url="mailto:me@wyliefisher.com" title="Email me!" icon="email" />
     <Connect url="https://github.com/wylie" title="More work on GitHub!" icon="github" />
     <Connect url="https://www.linkedin.com/in/wyliefisher/" title="Let's connect on Linkedin!" icon="linkedin" />
@@ -19,17 +18,20 @@ function getRandomClone() {
 </footer>
 
 <style>
+  footer {
+    margin-top: 2rem;
+  }
   .connect {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    padding-bottom: var(--gap);
+    padding-bottom: 1rem;
   }
   .connect h2 {
     flex: 1 1 100%;
   }
   .quote {
-    padding-top: var(--gap);
+    padding: 1rem 0;
     border-top: 3px solid var(--border-color);
     font-size: var(--fontSize-secondary);
     font-style: italic;
