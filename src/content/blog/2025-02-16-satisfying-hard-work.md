@@ -2,7 +2,7 @@
 title: "The Satisfaction of Hard Work"
 pubDate: 2025-02-16T00:00:00-05:00
 snippet: "This week I’ve been helping my dad tear down sheetrock, studs, flooring, and whatever else needs to go as he and my mom remodel their kitchen. It’s been a full-on demolition job, and I love it."
-heroImage: "/images/2025-02-16-satisfying-hard-work.md"
+heroImage: "/images/2025-02-16-satisfying-hard-work.png"
 ---
 This week I’ve been helping my dad tear down sheetrock, studs, flooring, and whatever else needs to go as he and my mom remodel their kitchen. It’s been a full-on demolition job, and I love it.
 
