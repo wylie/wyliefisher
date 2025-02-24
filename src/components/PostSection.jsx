@@ -16,7 +16,7 @@ const PostSection = (props) => {
       <ul className="post-list">
         {filteredPosts.map((post, postIndex) => (
           <li className="post-list-item" key={postIndex}>
-            <div>
+            <div className="title-wrap">
               {<a className="post-link" href={`/blog/${post.slug}/`}>
                 <h3 className="title">
                   {post.data.title}
@@ -30,16 +30,18 @@ const PostSection = (props) => {
                 })}
               </p>}
             </div>
-            {<p className="snippet">
-              {post.data?.snippet}...&nbsp;
-              <a
-                href={`/blog/${post.slug}/`}
-                className="continue-link"
-              >
-                continue reading
-              </a>
-            </p>}
-
+            {<div className="snippet-wrap">
+              <img className="img" src={post.data.heroImage} />
+              <p className="snippet">
+                {post.data?.snippet}...&nbsp;
+                <a
+                  href={`/blog/${post.slug}/`}
+                  className="continue-link"
+                >
+                  continue reading
+                </a>
+              </p>
+            </div>}
           </li>
         ))}
       </ul>
