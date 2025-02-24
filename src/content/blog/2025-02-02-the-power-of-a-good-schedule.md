@@ -1,7 +1,7 @@
 ---
 title: "The Power of a Good Schedule"
 pubDate: 2025-02-02T00:00:00-05:00
-snippet: "Balancing work, family, and personal projects requires a system. Here's how I use multiple calendars, a big whiteboard, and digital notes to stay on top of things."
+snippet: "Balancing work, family, and personal projects requires a system. Here's how I use multiple calendars, a big whiteboard, and digital notes to stay on top of things"
 heroImage: "/images/2025-02-02-the-power-of-a-good-schedule.png"
 ---
 

@@ -5,9 +5,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx(), sitemap(), react({      
-    // https://www.kevinzunigacuellar.com/blog/google-analytics-in-astro/
-    // Adds dataLayer.push as a forwarding-event.
+  integrations: [mdx(), sitemap(), react({
     config: {
       forward: ["dataLayer.push"],
     },})]

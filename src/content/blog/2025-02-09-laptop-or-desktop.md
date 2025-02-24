@@ -1,7 +1,7 @@
 ---
 title: "Laptop or Desktop"
 pubDate: 2025-02-09T00:00:00-05:00
-snippet: "Is a laptop or desktop the better choice? I love my dual-monitor desktop setup, but I can't help but imagine the freedom of working from the couch or a coffee shop. Mobility vs. power—let's weigh the pros and cons."
+snippet: "Is a laptop or desktop the better choice? I love my dual-monitor desktop setup, but I can't help but imagine the freedom of working from the couch or a coffee shop. Mobility vs. power—let's weigh the pros and cons"
 heroImage: "/images/2025-02-09-laptop-or-desktop.png"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "NerdsTimeline: A Complete Star Wars Canon Timeline"
 pubDate: 2025-01-12T00:00:00-05:00
-snippet: "NerdsTimeline.com is a project dedicated to cataloging all Star Wars canon books, movies, TV shows, comics, and video games in a structured timeline format."
+snippet: "NerdsTimeline.com is a project dedicated to cataloging all Star Wars canon books, movies, TV shows, comics, and video games in a structured timeline format"
 heroImage: "/images/2025-01-12-nerds-timeline.png"
 ---
 
