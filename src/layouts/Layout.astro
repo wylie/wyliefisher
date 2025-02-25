@@ -5,9 +5,6 @@ import Footer from '../components/Footer.astro';
 
 const { title, pubDate, heroImage } =
   Astro.props;
-
-import '../style/global.css';
-
 ---
 <!doctype html>
 <html lang="en">
@@ -55,6 +52,184 @@ import '../style/global.css';
 	</body>
 </html>
 
+<style is:global>
+	:root {
+		--theme-color-1: #EED595;
+		--theme-color-2: #F6B179;
+		--theme-color-3: #264653;
+		
+		--background-color: var(--theme-color-1);
+		--background-contrast-color: var(--theme-color-2);
+		--border-color: var(--theme-color-2);
+		--text-color: var(--theme-color-3);
+		--text-color-link: var(--theme-color-3);
+		--text-color-link-hover: var(--theme-color-3);
+		--fill-color: var(--theme-color-3);
+		
+		--fontSize-h1: 3rem;
+		--fontSize-h2: 1.75rem;
+		--fontSize-h3: 1.25rem;
+		--fontSize-primary: 1rem;
+		--fontSize-secondary: .875rem;
+		--fontSize-body: 1.25rem;
+		--gap: 2rem;
+	}
+	* {
+		box-sizing: border-box;
+		font-size: 16px;
+	}
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+	body {
+		display: grid;
+		background-color: var(--theme-color-1);
+		margin: 0;
+		font-family: Helvetica, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		color: var(--text-color);
+		font-size: var(--fontSize-primary);
+	}
+	h1, h2, h3, p {
+		margin: 0;
+	}
+	h1 {
+		font-size: var(--fontSize-h1);
+		white-space: nowrap;
+	}
+	h2 {
+		font-size: var(--fontSize-h2);
+	}
+	h3 {
+		font-size: var(--fontSize-h3);
+	}
+	p,
+	li,
+	strong,
+	em {
+		font-size: var(--fontSize-body);
+		line-height: 1.5;
+	}
+	h3 + ul,
+	p + ul {
+		margin-top: 1rem;
+		margin-left: 1.5rem;
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+	a {
+		color: var(--text-color-link);
+		font-size: inherit;
+	}
+	a:hover {
+		color: var(--text-color-link-hoverhover);
+	}
+	html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		overflow: auto;
+	}
+
+	/* BLOG POSTS */
+	#blog-post h3 {
+		border-bottom: 1px solid var(--border-color);
+		margin-top: 1.5rem;
+	}
+	#blog-post p:not(:first-child) {
+		margin-top: 1.5rem;
+	}
+	#blog-post .hero-image img {
+		max-width: 650px;
+	}
+	#blog-post table {
+		border: 1px solid black;
+		padding: 0;
+		border-collapse: collapse;
+		margin-top: 1rem;
+	}
+	#blog-post td,
+	#blog-post th {
+		border: 1px solid black;
+		padding: .25rem .75rem;
+	}
+	.hero-image img {
+		width: 100%;
+	}
+	.post-list {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 2rem;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		transition: all .25s;
+
+	}
+	.post-list .post-link {
+		text-decoration: none;
+	}
+	.post-list-item .title-wrap {
+		display: flex;
+		border-bottom: 3px dashed var(--border-color);
+		justify-content: space-between;
+		column-gap: .5rem;
+	}
+	.post-list .post-list-item .post-link {
+		display: block;
+	}
+	.title {
+		margin: 0;
+		color: var(--text-color);
+		text-align: left;
+	}
+	.date {
+		margin: 5px 0 0;
+		color: var(--text-color);
+		text-align: left;
+		font-size: 1rem;
+		white-space: nowrap;
+		align-self: flex-end;
+	}
+	.continue-link {
+		display: inline;
+		text-decoration: underline;
+		opacity: .75;
+		transition: all .125s;
+		font-style: italic;
+	}
+	.continue-link:hover {
+		opacity: 1;
+	}
+	@media (min-width: 720px) {
+		.post-list {
+			gap: 3em;
+		}
+		.post-list .post-list-item {
+			width: 100%;
+		}
+	}
+
+	.snippet-wrap {
+		display: flex;
+	}
+	.img {
+		width: 100px;
+		border-radius: 100%;
+		height: 100px;
+		float: left;
+		margin: 1rem 1rem 0 0;
+	}	
+</style>
 <style>
 	.layout {
 		display: grid;

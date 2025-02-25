@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import "../style/global.css";
-import "../style/posts.css";
 
 const PostSection = (props) => {
   const { posts } = props;
