@@ -1,0 +1,73 @@
+---
+const { title, url, description, skills } = Astro.props;
+---
+
+  <article class="project-card">
+    <a href={url} class="link" target="_blank" rel="noreferrer" title={title}>
+      <h3 class="title">
+        {title}
+        <p class="url">{url}</p>
+      </h3>
+      <p class="description">{description}</p>
+      <p class="skills">
+        {
+          skills.map((skill) => {
+            return (
+              <span class="skill">{skill}</span>
+            )
+          })
+        }
+      </p>
+    </a>
+  </article>
+
+<style>
+  .project-card {
+    display: grid;
+    padding: 1rem;
+    background: var(--background-contrast-color);
+    transition: all .1s;
+  }
+  .project-card .link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card .title {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 5px solid var(--background-color);
+    width: 100%;
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    transition: all 1s;
+    position: relative;
+  }
+  .project-card .url {
+    font-weight: normal;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: .5rem;
+  }
+  .project-card .link:hover .url {
+    text-decoration: underline;
+  }
+  .description {
+    font-size: var(--fontSize-secondary);
+    flex: 1 1 100%;
+  }
+  .project-card .skills {
+    font-weight: normal;
+    font-size: 12px;
+    margin-top: 1rem;
+  }
+  .project-card .skill {
+    background-color: var(--background-color);
+    padding: .25rem .5rem;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+  .project-card .skill:not(:first-child) {
+    margin-left: .3rem;
+  }
+</style>

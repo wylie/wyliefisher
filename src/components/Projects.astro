@@ -1,33 +1,20 @@
 ---
-const { title } = Astro.props;
+import ProjectCard from './Project-card.astro';
 import projects from '../assets/data/projects.js';
 ---
-
-<section class="projects">
+<section class="project-grid">
   {projects.map((data) => 
-    <article class="project">
-      <a href={data.link} class="link" target="_blank" rel="noreferrer" title={title}>
-        <h3 class="title">
-          {data.title}
-          <p class="url">{data.link}</p>
-        </h3>
-        <p class="description">{data.description}</p>
-        <p class="skills">
-          {
-            data.skills.map((skill) => {
-              return (
-                <span class="skill">{skill}</span>
-              )
-            })
-          }
-        </p>
-      </a>
-    </article>
-    )}
+    <ProjectCard
+      title={data.title}
+      url={data.link}
+      description={data.description}
+      skills={data.skills}
+    />
+  )}
 </section>
 
 <style>
-  .projects {
+  .project-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -39,11 +26,11 @@ import projects from '../assets/data/projects.js';
       "project";
     ;
   }
-  .projects h2 {
+  .project-grid h2 {
     grid-area: title;
   }
   @media (min-width: 600px) {
-    .projects {
+    .project-grid {
       grid-template-columns: 1fr 1fr;
       grid-template-areas:
         "title title"
@@ -51,53 +38,5 @@ import projects from '../assets/data/projects.js';
         "project project";
       ;
     }
-  }
-  .project {
-    display: grid;
-    padding: 1rem;
-    background: var(--background-contrast-color);
-    transition: all .1s;
-  }
-  .project .link {
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-  }
-  .project .title {
-    display: flex;
-    flex-direction: column;
-    border-bottom: 5px solid var(--background-color);
-    width: 100%;
-    margin-bottom: 1rem;
-    padding-bottom: .5rem;
-    transition: all 1s;
-    position: relative;
-  }
-  .project .url {
-    font-weight: normal;
-    font-size: 12px;
-    font-style: italic;
-    margin-top: .5rem;
-  }
-  .project .link:hover .url {
-    text-decoration: underline;
-  }
-  .description {
-    font-size: var(--fontSize-secondary);
-    flex: 1 1 100%;
-  }
-  .project .skills {
-    font-weight: normal;
-    font-size: 12px;
-    margin-top: 1rem;
-  }
-  .project .skill {
-    background-color: var(--background-color);
-    padding: .25rem .5rem;
-    border-radius: 10px;
-    font-size: 12px;
-  }
-  .project .skill:not(:first-child) {
-    margin-left: .3rem;
   }
 </style>
