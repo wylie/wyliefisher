@@ -1,0 +1,109 @@
+---
+import { getImage } from 'astro:assets';
+const { posts } = Astro.props;
+---
+<section>
+  <ul class="post-list">
+    {posts.map(async (post) => {
+      const heroImage = await getImage({ src: post.data.heroImage, width: 100, height: 100 });
+      return (
+        <li class="post-list-item">
+          <div class="post-title-wrap">
+            <a class="post-title-link" href={`/blog/${post.slug}/`}>
+              <h3 class="post-title">
+                {post.data.title}
+              </h3>
+            </a>
+            <p class="post-date">
+              {new Date(post.data.pubDate).toLocaleDateString("en-us", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </p>
+          </div>
+          <div class="post-snippet-wrap">
+            <img class="post-img" src={heroImage.src} alt="" />
+            <p class="post-snippet">
+              {post.data?.snippet}...&nbsp;
+              <a
+                href={`/blog/${post.slug}/`}
+                class="post-continue"
+              >
+                continue reading
+              </a>
+            </p>
+          </div>
+        </li>
+      );
+    })}
+  </ul>
+</section>
+
+<style>
+  .post-snippet-wrap {
+		display: flex;
+	}
+	.post-img {
+		border-radius: 100%;
+		height: 100px;
+		float: left;
+		margin: 1rem 1rem 0 0;
+	}	
+	.post-list {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 2rem;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		transition: all .25s;
+	}
+	.post-title-link {
+		text-decoration: none;
+	}
+	.post-title-wrap {
+		display: flex;
+		border-bottom: 3px dashed var(--border-color);
+		justify-content: space-between;
+		column-gap: .5rem;
+	}
+	.post-title-link {
+		display: block;
+	}
+	.post-title {
+		margin: 0;
+		color: var(--text-color);
+		text-align: left;
+		text-decoration: none;
+	}
+	.post-date {
+		margin: 5px 0 0;
+		color: var(--text-color);
+		text-align: left;
+		font-size: 1rem;
+		white-space: nowrap;
+		align-self: flex-end;
+	}
+	.post-continue {
+		display: inline;
+		text-decoration: underline;
+		opacity: .75;
+		transition: all .125s;
+		font-style: italic;
+	}
+	.post-continue:hover {
+		opacity: 1;
+	}
+	@media (min-width: 720px) {
+		.post-list {
+			gap: 3em;
+		}
+		.post-list-item {
+			width: 100%;
+		}
+	}
+</style>
