@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 const { title, url, icon } = Astro.props;
 import emailIcon from '../assets/images/email.png';
 import githubIcon from '../assets/images/github.png';
@@ -8,22 +9,22 @@ import linkedinIcon from '../assets/images/linkedin.png';
 let iconSrc;
 switch (icon) {
   case 'email':
-    iconSrc = emailIcon.src;
+    iconSrc = emailIcon;
     break;
   case 'github':
-    iconSrc = githubIcon.src;
+    iconSrc = githubIcon;
     break;
   case 'goodreads':
-    iconSrc = goodreadsIcon.src;
+    iconSrc = goodreadsIcon;
     break;
   case 'linkedin':
-    iconSrc = linkedinIcon.src;
+    iconSrc = linkedinIcon;
     break;
 }
 ---
 
 <a class="connect-link" href={url} target="_blank" rel="noopener noreferrer" title={title}>
-  <img src={iconSrc} class="icon" alt={title} />
+  <Image src={iconSrc} class="icon" alt={title} />
 </a>
 
 <style>
