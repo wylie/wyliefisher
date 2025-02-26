@@ -5,7 +5,7 @@ import face from '../assets/images/portrait.png';
 
 <section class="about">
   <p>
-    <Image src={face} alt="portrait" width="125" />
+    <Image src={face} alt="portrait" width={100} class="portrait" />
     Ahoy! I'm Wylie&mdash;a developer who loves creating things. Whether it's a digital experience or something tangible, I enjoy the process of bringing ideas to life with care and creativity. Staying curious keeps my work fresh, and I'm always excited to learn new tools and techniques to improve what I make.
   </p>
   <p>
@@ -17,17 +17,11 @@ import face from '../assets/images/portrait.png';
 </section>
 
 <style>
-  .about p img {
-    width: 100px;
+  .portrait {
     float: left;
     margin-right: 0.5rem;
   }
   .about p:not(:first-child) {
     margin-top: 1rem;
-  }
-  @media screen and (min-width: 768px) {
-    .about p img {
-      width: 125px;
-    }
   }
 </style>
