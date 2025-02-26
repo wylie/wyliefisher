@@ -1,10 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import face from '../assets/images/portrait-no-bg-color.png';
 ---
 
 <section class="about">
   <p>
-    <img src={face.src} alt="portrait" />
+    <Image src={face} alt="portrait" width="125" />
     Ahoy! I'm Wylie&mdash;a developer who loves creating things. Whether it's a digital experience or something tangible, I enjoy the process of bringing ideas to life with care and creativity. Staying curious keeps my work fresh, and I'm always excited to learn new tools and techniques to improve what I make.
   </p>
   <p>
