@@ -4,49 +4,54 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { getImage } from 'astro:assets';
 
+import { ClientRouter } from 'astro:transitions';
+
 const { title, pubDate, heroImage } = Astro.props;
 const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, height: 650 }) : null;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:name="root" transition:animate="none">
 	<head>
 		<Meta />
+		<ClientRouter />
 	</head>
 	<body>
 		<div class="layout">
 			<Header />
-			{!title ? (
-				<slot />
-			) : (
-				<article>
-					{heroImageData && (
-						<div class="hero-image">
-								<img src={heroImageData.src} alt="" />
+			<main transition:animate="fade">
+				{!title ? (
+					<slot />
+				) : (
+					<article>
+						{heroImageData && (
+							<div class="hero-image">
+									<img src={heroImageData.src} alt="" />
+							</div>
+						)}
+						{title || pubDate ? (
+							<header>
+								{title && (
+									<h2 class="title">
+										{title}
+									</h2>
+								)}
+								{pubDate && (
+									<div class="date">
+										{pubDate.toLocaleDateString("en-us", {
+											year: "numeric",
+											month: "short",
+											day: "numeric",
+										})}
+									</div>
+								)}
+							</header>
+						) : null}
+						<div class="prose">
+							<slot />
 						</div>
-					)}
-					{title || pubDate ? (
-						<header>
-							{title && (
-								<h2 class="title">
-									{title}
-								</h2>
-							)}
-							{pubDate && (
-								<div class="date">
-									{pubDate.toLocaleDateString("en-us", {
-										year: "numeric",
-										month: "short",
-										day: "numeric",
-									})}
-								</div>
-							)}
-						</header>
-					) : null}
-					<div class="prose">
-						<slot />
-					</div>
-				</article>
-			)}
+					</article>
+				)}
+			</main>
 			<Footer />
 		</div>
 	</body>
@@ -135,6 +140,11 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 		margin: 0;
 		padding: 0;
 		overflow: auto;
+	}
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: 5rem;
 	}
 
 	/* BLOG POSTS */
