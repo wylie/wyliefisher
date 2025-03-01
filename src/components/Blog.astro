@@ -3,9 +3,11 @@ import Card from './Card.astro';
 const { posts } = Astro.props;
 ---
 <section class="blog-grid">
-  <p>I've always toyed around with keeping a blog, but it's never stuck. This year, I've set a personal goal to write one post every week, posting on Sunday.</p>
-  <p>I'm hoping to improve my writing skills while sharing some of my thoughts and experiences from the past week.</p>
-  <p>Let's see if I can stick to it...</p>
+  <div class="copy">
+    <p>I've always toyed around with keeping a blog, but it's never stuck. This year, I've set a personal goal to write one post every week, posting on Sunday.</p>
+    <p>I'm hoping to improve my writing skills while sharing some of my thoughts and experiences from the past week.</p>
+    <p>Let's see if I can stick to it...</p>
+  </div>
   <div class="post-list">
     {await Promise.all(posts.map(async (post) => {
       return (
@@ -30,9 +32,13 @@ const { posts } = Astro.props;
 <style>
   .blog-grid {
     display: grid;
+    gap: 2rem;
+  }
+  .copy {
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
   }
-
   .post-snippet-wrap {
     display: flex;
   }

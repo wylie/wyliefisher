@@ -2,6 +2,7 @@
 import Meta from '../components/Meta.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
 import { getImage } from 'astro:assets';
 
 import { ClientRouter } from 'astro:transitions';
@@ -17,7 +18,10 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 	</head>
 	<body>
 		<div class="layout">
-			<Header />
+			<div>
+				<Header />
+				<Nav />
+			</div>
 			<main transition:animate="fade">
 				{!title ? (
 					<slot />
@@ -145,7 +149,7 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 	main {
 		display: flex;
 		flex-direction: column;
-		gap: 5rem;
+		gap: 2rem;
 	}
 
 	/* BLOG POSTS */

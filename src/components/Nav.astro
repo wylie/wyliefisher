@@ -1,25 +1,20 @@
 ---
 const { title } = Astro.props;
 ---
-
-<div>
-  <a href="/" rel="noopener noreferrer" title={title}>
-    home
-  </a>
-  <a href="/blog/" rel="noopener noreferrer" title={title}>
-    blog
-  </a>
-</div>
+<nav>
+  <a href="/" rel="noopener noreferrer" title={title}>Home</a>
+  <a href="/projects/" rel="noopener noreferrer" title={title}>Projects</a>
+  <a href="/blog/" rel="noopener noreferrer" title={title}>Blog</a>
+</nav>
 
 <style>
-  div {
+  nav {
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
     gap: .5rem;
-    margin-top: .75rem;
+		border-bottom: 3px solid var(--border-color);
   }
   a {
+    padding: .5rem;
     text-decoration: none;
   }
   a:hover {
