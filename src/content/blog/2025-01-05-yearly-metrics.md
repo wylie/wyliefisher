@@ -3,6 +3,7 @@ title: "Yearly Metrics"
 pubDate: 2025-01-05T00:00:00-05:00
 snippet: "You know how at the end of the year you get a bunch of emails from services you belong to, telling you how much you used their service"
 heroImage: "/src/assets/images/blog/2025-01-05-yearly-metrics.png"
+tags: ["life", "metrics"]
 ---
 
 You know how at the end of the year you get a bunch of emails from services you belong to, telling you how much you used their service?

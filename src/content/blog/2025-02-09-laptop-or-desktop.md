@@ -3,6 +3,7 @@ title: "Laptop or Desktop"
 pubDate: 2025-02-09T00:00:00-05:00
 snippet: "Is a laptop or desktop the better choice? I love my dual-monitor desktop setup, but I can't help but imagine the freedom of working from the couch or a coffee shop. Mobility vs. power—let's weigh the pros and cons"
 heroImage: "/src/assets/images/blog/2025-02-09-laptop-or-desktop.png"
+tags: ["work", "tech"]
 ---
 
 I have been thinking a lot lately about whether a laptop or a desktop is the better choice for my workflow. Right now, I use an **M1 Mac Mini**, and it has been a great machine. It's silent, efficient, and powerful enough for my development work. But I can't help but fantasize about the flexibility of an **M4 MacBook Pro**. The idea of working from the dining room table, the couch, or even a coffee shop sounds appealing. But is that trade-off worth it?

@@ -3,6 +3,7 @@ title: "The Power of a Good Schedule"
 pubDate: 2025-02-02T00:00:00-05:00
 snippet: "Balancing work, family, and personal projects requires a system. Here's how I use multiple calendars, a big whiteboard, and digital notes to stay on top of things"
 heroImage: "/src/assets/images/blog/2025-02-02-the-power-of-a-good-schedule.png"
+tags: ["life", "schedule"]
 ---
 
 Balancing work, family, and personal projects means keeping track of **a lot** of moving pieces. Appointments, deadlines, activities, and reminders—if I tried to remember it all without a system, **I'd be lost in no time**.  

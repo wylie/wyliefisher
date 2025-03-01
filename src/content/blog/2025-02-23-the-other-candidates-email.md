@@ -3,6 +3,7 @@ title: "When You Get the \"We've Decided to Move Forward with Other Candidates\"
 pubDate: 2025-02-23T00:00:00-05:00
 snippet: "It's never a great feeling. You check your inbox, see the email, and even before opening it, you know what it says. \"After careful consideration, we've decided to move forward with other candidates\""
 heroImage: "/src/assets/images/blog/2025-02-23-the-other-candidates-email.png"
+tags: ["work", "job applications"]
 ---
 It's never a great feeling. You check your inbox, see the email, and even before opening it, you know what it says.
 

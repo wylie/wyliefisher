@@ -3,6 +3,7 @@ title: "The Ongoing Job Hunt: A Daily Grind"
 pubDate: 2025-01-26T00:00:00-05:00
 snippet: "Applying for jobs has become a routine part of my day—tracking applications, responding to rejections, and pushing forward"
 heroImage: "/src/assets/images/blog/2025-01-26-the-ongoing-job-hunt.png"
+tags: ["work", "job applications"]
 ---
 
 Lately, applying for jobs has felt like a full-time job in itself. Almost every day, I find myself **scanning job boards, updating applications, and tracking responses** (which, more often than not, are rejections).  

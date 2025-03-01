@@ -1,14 +1,14 @@
 ---
-import ProjectCard from './ProjectCard.astro';
+import Card from './Card.astro';
 import projects from '../assets/data/projects.js';
 ---
 <section class="project-grid">
   {projects.map((data) => 
-    <ProjectCard
+    <Card
       title={data.title}
       url={data.link}
       description={data.description}
-      skills={data.skills}
+      tags={data.tags}
     />
   )}
 </section>
