@@ -21,7 +21,7 @@ const { title, url, blog, description, date, tags } = Astro.props;
       </a>
     ) : (
       <h3 class="title">
-        <a href={url} class="title-link">{title}</a>
+        <a href={url} class="link">{title}</a>
         <p class="date">{date}</p>
       </h3>
       <p class="description">
@@ -52,64 +52,54 @@ const { title, url, blog, description, date, tags } = Astro.props;
     content: "";
     position: absolute;
     right: 0;
-    top: 0;
-    border-bottom: 20px solid var(--theme-color-2a);
-    border-top: 20px solid var(--theme-color-1);
-    border-left: 20px solid var(--theme-color-2a);
-    border-right: 20px solid var(--theme-color-1);
-  }
-  .link {
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
+    border-style: solid;
+    border-width: 20px;
+    border-bottom-color: var(--theme-color-2a);
+    border-top-color: var(--theme-color-1);
+    border-left-color: var(--theme-color-2a);
+    border-right-color: var(--theme-color-1);
   }
   .title {
     display: flex;
     flex-direction: column;
-    border-bottom: 5px solid var(--background-color);
     width: calc(100% - 30px);
     margin-bottom: 1rem;
     padding-bottom: .5rem;
-    transition: all 1s;
-    position: relative;
-  }
-  .title-link {
-    text-decoration: none;
-  }
-  .title-link:hover {
-    text-decoration: underline;
+    border-bottom: 5px solid var(--background-color);
   }
   .url,
   .date {
+    margin-top: .5rem;
     font-weight: normal;
     font-size: 12px;
     font-style: italic;
-    margin-top: .5rem;
+  }
+  .link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
   }
   .link:hover .url {
     text-decoration: underline;
   }
   .description {
-    font-size: var(--fontSize-secondary);
     flex: 1 1 100%;
+    font-size: 1rem;
   }
   .tags {
     display: flex;
-    align-items: flex-end;
     flex-wrap: wrap;
+    align-items: flex-end;
     gap: .5rem;
+    margin-top: 1rem;
     font-weight: normal;
     font-size: 12px;
-    margin-top: 1rem;
   }
   .tag {
-    white-space: nowrap;
-    background-color: var(--background-color);
     padding: .25rem .5rem;
     border-radius: 10px;
+    background-color: var(--background-color);
     font-size: 12px;
+    white-space: nowrap;
   }
-  /* .tag:not(:first-child) {
-    margin-left: .3rem;
-  } */
 </style>
