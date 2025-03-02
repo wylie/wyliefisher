@@ -1,24 +1,24 @@
 ---
-const { title, url, blog, description, date, tags } = Astro.props;
+const { title, url, link, blog, description, date, tags } = Astro.props;
 ---
 
 <!-- TODO: come up with a better way to do this that has way less repitition -->
   <article class="card">
     {!blog ? (
-      <a href={url} class="link" target="_blank" rel="noreferrer" title={title}>
+      <div class="banana">
         <h3 class="title">
-          {title}
-          <p class="url">{url}</p>
+          <a href={link}>{title}</a>
         </h3>
-        <p class="description">{description}</p>
-        <p class="tags">
-          {tags.map((tag) => {
-            return (
-              <span class="tag">{tag}</span>
-            )
-          })}
-        </p>
-      </a>
+        <p class="url"><a href={url} class="link" target="_blank" rel="noreferrer" title={title}>{url}</a></p>
+      </div>
+      <p class="description">{description}</p>
+      <p class="tags">
+        {tags.map((tag) => {
+          return (
+            <span class="tag">{tag}</span>
+          )
+        })}
+      </p>
     ) : (
       <h3 class="title">
         <a href={url} class="link">{title}</a>
@@ -43,6 +43,7 @@ const { title, url, blog, description, date, tags } = Astro.props;
 <style>
   .card {
     display: grid;
+    grid-template-rows: auto 1fr auto;
     padding: 1rem;
     background: var(--background-contrast-color);
     transition: all .1s;
@@ -63,9 +64,12 @@ const { title, url, blog, description, date, tags } = Astro.props;
     display: flex;
     flex-direction: column;
     width: calc(100% - 30px);
+  }
+  .banana {
     margin-bottom: 1rem;
     padding-bottom: .5rem;
     border-bottom: 5px solid var(--background-color);
+
   }
   .url,
   .date {
