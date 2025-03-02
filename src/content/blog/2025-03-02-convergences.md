@@ -3,7 +3,7 @@ title: "Convergences"
 pubDate: 2025-03-2T00:00:00-05:00
 snippet: "You're walking down the sidewalk alone. It's quiet, the stretch ahead of you is empty, and for a while, it feels like you have the whole world to yourself. Then, out of nowhere, it happens"
 heroImage: "/src/assets/images/blog/2025-03-2-convergences.png"
-tags: [life]
+tags: [pets, outdoors]
 ---
 
 Lately, the weather around here has been getting nicer. It’s still a little chilly in the shade, but when the sun is out, it feels great. It’s warm enough to be comfortable but not so hot that you instantly overheat. It’s that perfect in-between weather where you can wear pants or shorts, a long-sleeve or a short-sleeve, and either choice feels just right. Days like these are some of my favorites.
