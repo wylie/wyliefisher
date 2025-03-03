@@ -1,7 +1,7 @@
 ---
 title: "Laptop or Desktop"
 pubDate: 2025-02-09T00:00:00-05:00
-snippet: "Is a laptop or desktop the better choice? I love my dual-monitor desktop setup, but I can't help but imagine the freedom of working from the couch or a coffee shop. Mobility vs. power—let's weigh the pros and cons"
+snippet: "Debating between the power and dual-monitor setup of my M1 Mac Mini and the flexibility and mobility of an M4 MacBook Pro, I find myself weighing the pros and cons of each to determine the best fit for my workflow"
 heroImage: "/src/assets/images/blog/2025-02-09-laptop-or-desktop.png"
 tags: ["work", "tech"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "When You Get the \"We've Decided to Move Forward with Other Candidates\" Email"
 pubDate: 2025-02-23T00:00:00-05:00
-snippet: "It's never a great feeling. You check your inbox, see the email, and even before opening it, you know what it says. \"After careful consideration, we've decided to move forward with other candidates\""
+snippet: "Receiving a rejection email after a job application is never easy, but it's important to view it as part of the process, learn from it, and keep moving forward toward the right opportunity"
 heroImage: "/src/assets/images/blog/2025-02-23-the-other-candidates-email.png"
 tags: ["work", "job applications"]
 ---
