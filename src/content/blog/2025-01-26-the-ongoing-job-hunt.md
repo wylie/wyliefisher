@@ -1,7 +1,7 @@
 ---
 title: "The Ongoing Job Hunt: A Daily Grind"
 pubDate: 2025-01-26T00:00:00-05:00
-snippet: "Applying for jobs has become a routine part of my day—tracking applications, responding to rejections, and pushing forward"
+snippet: "Applying for jobs has become a routine part of my day—tracking applications, responding to rejections, and pushing forward while staying consistent and working on personal projects"
 heroImage: "/src/assets/images/blog/2025-01-26-the-ongoing-job-hunt.png"
 tags: ["work", "job applications"]
 ---

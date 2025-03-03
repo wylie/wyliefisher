@@ -1,7 +1,7 @@
 ---
 title: "The Satisfaction of Hard Work"
 pubDate: 2025-02-16T00:00:00-05:00
-snippet: "This week I’ve been helping my dad tear down sheetrock, studs, flooring, and whatever else needs to go as he and my mom remodel their kitchen. It’s been a full-on demolition job, and I love it"
+snippet: "Helping my parents with their kitchen remodel has been a satisfying break from my usual screen-based work, offering the physical exhaustion and tangible progress of demolition, and the joy of contributing to a family project"
 heroImage: "/src/assets/images/blog/2025-02-16-satisfaction-of-hard-work.png"
 tags: ["family", "work"]
 ---

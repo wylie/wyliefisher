@@ -1,7 +1,7 @@
 ---
 title: "The Great Bedtime Experiment"
 pubDate: 2025-01-19T00:00:00-05:00
-snippet: "Our kiddo wants a later bedtime, so we're running a weekend trial. It's funny how kids fight sleep even when they clearly need it"
+snippet: "Our kiddo wants a later bedtime, so we're running a weekend trial to see if they can handle the extra hour without becoming overtired or grumpy"
 heroImage: "/src/assets/images/blog/2025-01-19-the-great-bedtime-experiment.png"
 tags: ["kiddo", "family", sleep]
 ---

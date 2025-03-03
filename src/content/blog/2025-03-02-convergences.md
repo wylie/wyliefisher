@@ -1,7 +1,7 @@
 ---
 title: "Convergences"
 pubDate: 2025-03-2T00:00:00-05:00
-snippet: "Lately, the weather around here has been getting nicer. It’s still a little chilly in the shade, but when the sun is out, it feels great. It’s warm enough to be comfortable but not so hot that you instantly overheat"
+snippet: "With the arrival of nicer weather, I've been enjoying longer walks with my dog, Meatball, and have noticed a peculiar pattern of cars appearing at choke points during our walks, prompting me to consider tracking these encounters to see if there's an actual pattern"
 heroImage: "/src/assets/images/blog/2025-03-2-convergences.png"
 tags: [pets, outdoors]
 ---
