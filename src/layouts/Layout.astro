@@ -27,6 +27,7 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 					<slot />
 				) : (
 					<article>
+						{heroImageData && <a href="javascript:history.back()" class="back">&larr; back</a>}
 						{heroImageData && (
 							<div class="hero-image">
 									<img src={heroImageData.src} alt="" />
@@ -153,6 +154,10 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 	}
 
 	/* BLOG POSTS */
+	.back {
+		margin: -.5rem 0 0.5rem;
+    display: block;
+	}
 	#blog-post h3 {
 		border-bottom: 1px solid var(--border-color);
 		margin-top: 1.5rem;

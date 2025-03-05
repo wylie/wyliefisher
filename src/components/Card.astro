@@ -2,45 +2,37 @@
 const { title, url, link, blog, description, date, tags } = Astro.props;
 ---
 
-<!-- TODO: come up with a better way to do this that has way less repitition -->
-  <article class="card">
-    {!blog ? (
-      <div class="banana">
-        <h3 class="title">
-          <a href={link} class="link">{title}</a>
-        </h3>
-        <p class="url"><a href={url} class="link" target="_blank" rel="noreferrer" title={title}>{url}</a></p>
-      </div>
-      <p class="description">{description}</p>
-      <p class="tags">
-        {tags.map((tag) => {
-          return (
-            <span class="tag">{tag}</span>
-          )
-        })}
-      </p>
-    ) : (
-      <div class="banana">
-        <h3 class="title">
-          <a href={url} class="link">{title}</a>
-        </h3>
-        <p class="date">{date}</p>
-      </div>
-      <p class="description">
-        {description}...&nbsp;
-        <a href={url}>
+<article class="card">
+  <div class="header">
+    <h3 class="title">
+      <a href={blog ? url : link} class="link">{title}</a>
+    </h3>
+    {blog ?
+      <p class="date">{date}</p>
+      :
+      <p class="url"><a href={url} class="link" target="_blank" rel="noreferrer" title={title}>{url}</a><span class="material-symbols-outlined">open_in_new</span></p>
+    }
+  </div>
+  <p class="description">
+    {blog ?
+      <>
+        {description}... &nbsp;
+        <a class="readon" href={url}>
           read on &rarr;
         </a>
-      </p>
-      <p class="tags">
-        {tags.map((tag) => {
-          return (
-            <span class="tag">{tag}</span>
-          )
-        })}
-      </p>
-    )}
-  </article>
+      </>
+    :
+      description
+    }
+  </p>
+  <p class="tags">
+    {tags.map((tag) => {
+      return (
+        <span class="tag">{tag}</span>
+      )
+    })}
+  </p>
+</article>
 
 <style>
   .card {
@@ -62,16 +54,15 @@ const { title, url, link, blog, description, date, tags } = Astro.props;
     border-left-color: var(--theme-color-2a);
     border-right-color: var(--theme-color-1);
   }
+  .header {
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 5px solid var(--background-color);
+  }
   .title {
     display: flex;
     flex-direction: column;
     width: calc(100% - 30px);
-  }
-  .banana {
-    margin-bottom: 1rem;
-    padding-bottom: .5rem;
-    border-bottom: 5px solid var(--background-color);
-
   }
   .url,
   .date {
@@ -79,10 +70,16 @@ const { title, url, link, blog, description, date, tags } = Astro.props;
     font-weight: normal;
     font-size: 12px;
     font-style: italic;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+  }
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-size: 1rem;
   }
   .link {
-    display: flex;
-    flex-direction: column;
     text-decoration: none;
   }
   .link:hover,
@@ -107,6 +104,9 @@ const { title, url, link, blog, description, date, tags } = Astro.props;
     border-radius: 10px;
     background-color: var(--background-color);
     font-size: 12px;
+    white-space: nowrap;
+  }
+  .readon {
     white-space: nowrap;
   }
 </style>
