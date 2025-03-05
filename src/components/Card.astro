@@ -7,7 +7,7 @@ const { title, url, link, blog, description, date, tags } = Astro.props;
     {!blog ? (
       <div class="banana">
         <h3 class="title">
-          <a href={link}>{title}</a>
+          <a href={link} class="link">{title}</a>
         </h3>
         <p class="url"><a href={url} class="link" target="_blank" rel="noreferrer" title={title}>{url}</a></p>
       </div>
@@ -20,10 +20,12 @@ const { title, url, link, blog, description, date, tags } = Astro.props;
         })}
       </p>
     ) : (
-      <h3 class="title">
-        <a href={url} class="link">{title}</a>
+      <div class="banana">
+        <h3 class="title">
+          <a href={url} class="link">{title}</a>
+        </h3>
         <p class="date">{date}</p>
-      </h3>
+      </div>
       <p class="description">
         {description}...&nbsp;
         <a href={url}>
@@ -83,6 +85,7 @@ const { title, url, link, blog, description, date, tags } = Astro.props;
     flex-direction: column;
     text-decoration: none;
   }
+  .link:hover,
   .link:hover .url {
     text-decoration: underline;
   }
