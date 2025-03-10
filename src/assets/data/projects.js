@@ -1,9 +1,9 @@
 const projects = [
   {
-    title: "How Do You Feel Today?",
-    description: "\"How Do You Feel Today?\" is a React app where users can anonymously share their current mood, contributing to a collective mosaic of emotions. Each submission adds to an evolving 'mood board,' offering a real-time snapshot of the community's shared feelings.",
-    link: "https://howdoyoufeelto.day",
-    tags: ["HTML", "CSS", "JavaScript", "React"]
+    title: "Milkweed Mental Health",
+    description: "Milkweed Mental Health is my wife's private practice. I'm building this website to help her connect with clients and provide information about her services. The site is designed to be welcoming, informative, and easy to navigate, offering a glimpse into her practice and the support she provides.",
+    link: "https://wylie.github.io/teresafisherphd/",
+    tags: ["Astro", "HTML", "CSS", "JavaScript"]
   },
   {
     title: "Nerds (Star Wars) Timeline",
@@ -18,10 +18,10 @@ const projects = [
     tags: ["Lua", "Pico-8"]
   },
   {
-    title: "Milkweed Mental Health",
-    description: "Milkweed Mental Health is my wife's private practice. I'm building this website to help her connect with clients and provide information about her services. The site is designed to be welcoming, informative, and easy to navigate, offering a glimpse into her practice and the support she provides.",
-    link: "https://wylie.github.io/teresafisherphd/",
-    tags: ["Astro", "HTML", "CSS", "JavaScript"]
+    title: "How Do You Feel Today?",
+    description: "\"How Do You Feel Today?\" is a React app where users can anonymously share their current mood, contributing to a collective mosaic of emotions. Each submission adds to an evolving 'mood board,' offering a real-time snapshot of the community's shared feelings.",
+    link: "https://howdoyoufeelto.day",
+    tags: ["HTML", "CSS", "JavaScript", "React"]
   },
   {
     title: "Santa Commands It!",
