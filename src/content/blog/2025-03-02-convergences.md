@@ -1,8 +1,8 @@
 ---
 title: "Convergences"
-pubDate: 2025-03-2T00:00:00-05:00
+pubDate: 2025-03-02T00:00:00-05:00
 snippet: "With the arrival of nicer weather, I've been enjoying longer walks with my dog, Meatball, and have noticed a peculiar pattern of cars appearing at choke points during our walks, prompting me to consider tracking these encounters to see if there's an actual pattern"
-heroImage: "/src/assets/images/blog/2025-03-2-convergences.png"
+heroImage: "/src/assets/images/blog/2025-03-02-convergences.png"
 tags: [pets, outdoors]
 ---
 
