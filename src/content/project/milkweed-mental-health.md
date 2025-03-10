@@ -1,6 +1,6 @@
 ---
 title: "Milkweed Mental Health"
-order: 4
+order: 1
 heroImage: "/src/assets/images/projects/milkweed-mental-health.png"
 tags: ["Astro", "HTML", "CSS", "JavaScript"]
 url: "https://wylie.github.io/teresafisherphd/"
