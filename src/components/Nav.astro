@@ -1,22 +1,39 @@
 ---
+const currentPath = Astro.url.pathname;
 const { title } = Astro.props;
 ---
 <nav>
-  <a href="/" rel="noopener noreferrer" title={title}>Home</a>
-  <a href="/projects/" rel="noopener noreferrer" title={title}>Projects</a>
-  <a href="/blog/" rel="noopener noreferrer" title={title}>Blog</a>
+  {currentPath === '/' ? (
+    <span class="link inactive">Home</span>
+  ) : (
+    <a href="/" class="link active" rel="noopener noreferrer" title={title}>Home</a>
+  )}
+  {currentPath.startsWith('/projects/') ? (
+    <span class="link inactive">Projects</span>
+  ) : (
+    <a href="/projects/" class="link active" rel="noopener noreferrer" title={title}>Projects</a>
+  )}
+  {currentPath.startsWith('/blog/') ? (
+    <span class="link inactive">Blog</span>
+  ) : (
+    <a href="/blog/" class="link active" rel="noopener noreferrer" title={title}>Blog</a>
+  )}
 </nav>
-
+  
 <style>
   nav {
     display: flex;
     gap: .5rem;
-		border-bottom: 3px solid var(--border-color);
+    border-bottom: 3px solid var(--border-color);
+    align-items: center;
   }
-  a {
+  .link {
     padding: .5rem;
+  }
+  .inactive {
     text-decoration: none;
   }
+  a.active,
   a:hover {
     text-decoration: underline;
   }
