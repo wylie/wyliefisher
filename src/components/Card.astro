@@ -14,12 +14,10 @@ const { title, url, link, blog, description, date, tags } = Astro.props;
     }
   </div>
   <p class="description">
-    <>
-      {description}... &nbsp;
-      <a class="readon" href={link}>
-        read more &rarr;
-      </a>
-    </>
+    {description}... &nbsp;
+    <a class="readon" href={link}>
+      read more &rarr;
+    </a>
   </p>
   <p class="tags">
     {tags.map((tag) => {
