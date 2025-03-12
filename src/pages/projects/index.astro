@@ -9,6 +9,7 @@ const posts = (await getCollection("project")).sort(
 );
 ---
 <Layout>
-  <p>This is a collection of my recent work as well as personal projects. Not all of these are complete, but they do showcase skills in various languages and formats.  </p>
+  <h2>Work and Projects</h2>
+  <p>A collection of my recent work and personal projects, showcasing skills across various technologies.</p>
   <Project posts={posts} />
 </Layout>
