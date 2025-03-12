@@ -1,48 +1,37 @@
 ---
-const { title, url, blog, description, date, tags } = Astro.props;
+const { title, url, link, blog, description, date, tags } = Astro.props;
 ---
 
-<!-- TODO: come up with a better way to do this that has way less repitition -->
-  <article class="card">
-    {!blog ? (
-      <a href={url} class="link" target="_blank" rel="noreferrer" title={title}>
-        <h3 class="title">
-          {title}
-          <p class="url">{url}</p>
-        </h3>
-        <p class="description">{description}</p>
-        <p class="tags">
-          {tags.map((tag) => {
-            return (
-              <span class="tag">{tag}</span>
-            )
-          })}
-        </p>
-      </a>
-    ) : (
-      <h3 class="title">
-        <a href={url} class="link">{title}</a>
-        <p class="date">{date}</p>
-      </h3>
-      <p class="description">
-        {description}...&nbsp;
-        <a href={url}>
-          read on &rarr;
-        </a>
-      </p>
-      <p class="tags">
-        {tags.map((tag) => {
-          return (
-            <span class="tag">{tag}</span>
-          )
-        })}
-      </p>
-    )}
-  </article>
+<article class="card">
+  <div class="header">
+    <h3 class="title">
+      <a href={blog ? url : link} class="link">{title}</a>
+    </h3>
+    {blog ?
+      <p class="date">{date}</p>
+      :
+      <p class="url"><a href={url} class="link" target="_blank" rel="noreferrer" title={title}>{url}</a><span class="material-symbols-outlined">open_in_new</span></p>
+    }
+  </div>
+  <p class="description">
+    {description}... &nbsp;
+    <a class="readon" href={link}>
+      read more &rarr;
+    </a>
+  </p>
+  <p class="tags">
+    {tags.map((tag) => {
+      return (
+        <span class="tag">{tag}</span>
+      )
+    })}
+  </p>
+</article>
 
 <style>
   .card {
     display: grid;
+    grid-template-rows: auto 1fr auto;
     padding: 1rem;
     background: var(--background-contrast-color);
     transition: all .1s;
@@ -59,13 +48,15 @@ const { title, url, blog, description, date, tags } = Astro.props;
     border-left-color: var(--theme-color-2a);
     border-right-color: var(--theme-color-1);
   }
+  .header {
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 5px solid var(--background-color);
+  }
   .title {
     display: flex;
     flex-direction: column;
     width: calc(100% - 30px);
-    margin-bottom: 1rem;
-    padding-bottom: .5rem;
-    border-bottom: 5px solid var(--background-color);
   }
   .url,
   .date {
@@ -73,12 +64,19 @@ const { title, url, blog, description, date, tags } = Astro.props;
     font-weight: normal;
     font-size: 12px;
     font-style: italic;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+  }
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-size: 1rem;
   }
   .link {
-    display: flex;
-    flex-direction: column;
     text-decoration: none;
   }
+  .link:hover,
   .link:hover .url {
     text-decoration: underline;
   }
@@ -100,6 +98,9 @@ const { title, url, blog, description, date, tags } = Astro.props;
     border-radius: 10px;
     background-color: var(--background-color);
     font-size: 12px;
+    white-space: nowrap;
+  }
+  .readon {
     white-space: nowrap;
   }
 </style>

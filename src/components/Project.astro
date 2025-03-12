@@ -7,17 +7,11 @@ const { posts } = Astro.props;
     {await Promise.all(posts.map(async (post) => {
       return (
         <Card
-          blog={true}
-          newTab={false}
           title={post.data.title}
           description={post.data.snippet}
-          url={`/blog/${post.slug}/`}
-          date={new Date(post.data.pubDate).toLocaleDateString("en-us", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-            tags={post.data.tags}
+          url={post.data.url}
+          link={`/projects/${post.slug}/`}
+          tags={post.data.tags}
         />
       );
     }))}
@@ -28,6 +22,11 @@ const { posts } = Astro.props;
   .blog-grid {
     display: grid;
     gap: 2rem;
+  }
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
   .post-snippet-wrap {
     display: flex;

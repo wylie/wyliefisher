@@ -27,6 +27,7 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 					<slot />
 				) : (
 					<article>
+						{heroImageData && <a href="javascript:history.back()" class="back">&larr; back</a>}
 						{heroImageData && (
 							<div class="hero-image">
 									<img src={heroImageData.src} alt="" />
@@ -152,27 +153,38 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 		gap: 2rem;
 	}
 
-	/* BLOG POSTS */
-	#blog-post h3 {
+	/* CONTENT POSTS */
+	.back {
+		margin: -.5rem 0 0.5rem;
+    display: block;
+	}
+	.prose h3 {
 		border-bottom: 1px solid var(--border-color);
 		margin-top: 1.5rem;
 	}
-	#blog-post p:not(:first-child) {
+	.prose p:not(:first-child) {
 		margin-top: 1.5rem;
 	}
-	#blog-post .hero-image img {
+	.hero-image img {
 		max-width: 650px;
+		border-radius: 10px;
 	}
-	#blog-post table {
+	.prose table {
 		border: 1px solid black;
 		padding: 0;
 		border-collapse: collapse;
 		margin-top: 1rem;
 	}
-	#blog-post td,
-	#blog-post th {
+	.prose td,
+	.prose th {
 		border: 1px solid black;
 		padding: .25rem .75rem;
+	}
+	.prose pre {
+		width: 90vw;
+    max-width: 650px;
+		padding: 1rem;
+    border-radius: 10px;
 	}
 	.hero-image img {
 		width: 100%;
