@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Project from '../../components/Project.astro';
+import DataGrid from '../../components/DataGrid.astro';
 
 import { getCollection } from "astro:content";
 
@@ -11,5 +11,5 @@ const posts = (await getCollection("project")).sort(
 <Layout>
   <h2>Work and Projects</h2>
   <p>A collection of my recent work and personal projects, showcasing skills across various technologies.</p>
-  <Project posts={posts} />
+  <DataGrid posts={posts} blog={false} />
 </Layout>

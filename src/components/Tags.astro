@@ -1,0 +1,29 @@
+---
+const { tags } = Astro.props;
+---
+<p class="tags">
+  {tags.map((tag) => {
+    return (
+      <span class="tag">{tag}</span>
+    )
+  })}
+</p>
+
+<style>
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: .5rem;
+    margin-top: 1rem;
+    font-weight: normal;
+    font-size: 12px;
+  }
+  .tag {
+    padding: .25rem .5rem;
+    border-radius: 10px;
+    background-color: var(--background-color);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+</style>

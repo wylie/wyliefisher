@@ -1,0 +1,47 @@
+---
+import Card from './Card.astro';
+const { posts } = Astro.props;
+---
+<section>
+  <div class="grid">
+    {await Promise.all(posts.map(async (post) => {
+      return (
+        <Card
+          title={post.data.title}
+          description={post.data.snippet}
+          tags={post.data.tags}
+          blog = true ? (
+            blog={true}
+            newTab={false}
+            url={`/blog/${post.slug}/`}
+            date={new Date(post.data.pubDate).toLocaleDateString("en-us", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          ) : (
+            url={post.data.url}
+            link={`/projects/${post.slug}/`}
+          )
+        />
+      );
+    }))}
+  </div>
+</section>
+
+<style>
+  section {
+    display: grid;
+    gap: 2rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 600px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

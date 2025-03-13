@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 
 import { getCollection } from "astro:content";
-import Blog from "../../components/Blog.astro";
+import DataGrid from '../../components/DataGrid.astro';
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
@@ -14,7 +14,7 @@ const posts = (await getCollection("blog")).sort(
   <div class="copy">
     <p>Hey there! I'm challenging myself to write weekly blog posts every Sunday, sharing thoughts and experiences from my journey in life and tech. Join me as I embark on this adventure!</p>
   </div>
-  <Blog posts={posts} />
+  <DataGrid posts={posts} />
 </Layout>
 
 <style>
