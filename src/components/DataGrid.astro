@@ -10,19 +10,9 @@ const { posts } = Astro.props;
           title={post.data.title}
           description={post.data.snippet}
           tags={post.data.tags}
-          blog = true ? (
-            blog={true}
-            newTab={false}
-            url={`/blog/${post.slug}/`}
-            date={new Date(post.data.pubDate).toLocaleDateString("en-us", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          ) : (
-            url={post.data.url}
-            link={`/projects/${post.slug}/`}
-          )
+          url={post.data.url}
+          link={`${post.slug}/`}
+          date={post.data.pubDate}
         />
       );
     }))}

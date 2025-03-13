@@ -1,18 +1,27 @@
 ---
 import Tags from './Tags.astro';
-const { title, url, link, blog, description, date, tags } = Astro.props;
+const { title, url, link, description, date, tags } = Astro.props;
 ---
 
 <article class="card">
   <div class="header">
     <h3 class="title">
-      <a href={blog ? url : link} class="link">{title}</a>
+      <a href={link} class="link">{title}</a>
     </h3>
-    {blog ?
-      <p class="date">{date}</p>
+    <p class="subheader">
+      {date ?
+        new Date(date).toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
       :
-      <p class="url"><a href={url} class="link" target="_blank" rel="noreferrer" title={title}>{url}</a><span class="material-symbols-outlined">open_in_new</span></p>
-    }
+        <a href={url} class="link" target="_blank" rel="noreferrer" title={title}>
+          {url}
+        </a>
+        <span class="material-symbols-outlined">open_in_new</span>
+      }
+    </p>
   </div>
   <p class="description">
     {description}... &nbsp;
@@ -53,8 +62,7 @@ const { title, url, link, blog, description, date, tags } = Astro.props;
     flex-direction: column;
     width: calc(100% - 30px);
   }
-  .url,
-  .date {
+  .subheader {
     margin-top: .5rem;
     font-weight: normal;
     font-size: 12px;
