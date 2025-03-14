@@ -5,6 +5,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://wyliefisher.com',
   integrations: [mdx(), sitemap(), react({
     config: {
       forward: ["dataLayer.push"],
