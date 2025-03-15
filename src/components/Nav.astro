@@ -29,14 +29,12 @@ const { title } = Astro.props;
 <style>
   nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0 .125rem;
     border-bottom: 3px solid var(--border-color);
     align-items: center;
+    justify-content: space-between;
   }
   .link {
     padding: .5rem .25rem;
-    transition: all .3s;
   }
   .inactive {
     text-decoration: none;
@@ -64,15 +62,12 @@ const { title } = Astro.props;
   .gh-icon {
     font-size: 14px;
   }
-  @media (min-width: 600px) {
+  @media (min-width: 450px) {
     nav {
-      gap: 0 .5rem;
+      justify-content: left;
     }
     .link {
       padding: .5rem;
-    }
-    .link.gh::after {
-      left: 8px;
     }
   }
 </style>
