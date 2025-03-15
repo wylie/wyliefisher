@@ -18,12 +18,19 @@ const { title } = Astro.props;
   ) : (
     <a href="/blog/" class="link active" rel="noopener noreferrer" title={title}>Blog</a>
   )}
+  {currentPath.startsWith('/resume/') ? (
+    <span class="link inactive">Resume</span>
+  ) : (
+    <a href="/resume/" class="link active" rel="noopener noreferrer" title={title}>Resume</a>
+  )}
+  <a href="https://github.com/wylie" class="link active gh" target="_blank" rel="noopener noreferrer" title={title}>GitHub<span class="material-symbols-outlined gh-icon">open_in_new</span></a>
 </nav>
   
 <style>
   nav {
     display: flex;
-    gap: .5rem;
+    flex-wrap: wrap;
+    gap: 0 .5rem;
     border-bottom: 3px solid var(--border-color);
     align-items: center;
   }
@@ -36,5 +43,24 @@ const { title } = Astro.props;
   a.active,
   a:hover {
     text-decoration: underline;
+  }
+  .link.gh {
+    display: flex;
+    gap: .25rem;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+  }
+  .link.gh::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 8px;
+    width: 50px;
+    height: 1px;
+    background-color: var(--text-color);
+  }
+  .gh-icon {
+    font-size: 14px;
   }
 </style>

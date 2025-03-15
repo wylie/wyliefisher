@@ -10,5 +10,8 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), react({
     config: {
       forward: ["dataLayer.push"],
-    },}), partytown()]
+    },}), partytown()],
+  vite: {
+    assetsInclude: ['**/*.docx']
+  }
 });

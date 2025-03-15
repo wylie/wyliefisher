@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <h2>Download My Resume</h2>
+  <div class="wrapper">
+    <span class="one">
+      <a href="/resume/Wylie_Fisher_resume.pdf" download>
+        <span class="material-symbols-outlined" style={{fontSize: "4rem"}}>description</span>
+        PDF
+      </a>
+      <span class="material-symbols-outlined download">download</span>
+    </span>
+    <span class="one">
+      <a href="/resume/Wylie_Fisher_resume.docx" download>
+        <span class="material-symbols-outlined" style={{fontSize: "4rem"}}>description</span>
+        Word
+      </a>
+      <span class="material-symbols-outlined download">download</span>
+    </span>
+  </div>
+</Layout>
+
+<style>
+  .wrapper {
+    display: flex;
+    gap: 1rem;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-direction: column;
+  }
+  .one {
+    display: flex;
+    align-items: center;
+    position: relative
+  }
+  .download {
+    position: absolute;
+    top: 3rem;
+    opacity: 0;
+    transition: all .3s;
+  }
+  .one:hover .download {
+    opacity: 1;
+    top: 5rem;
+  }
+  .material-symbols-outlined {
+    font-size: 4rem;
+  }
+</style>
