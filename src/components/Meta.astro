@@ -1,8 +1,21 @@
 ---
+const currentPath = Astro.url.pathname;
 import Favicon from '../components/Favicon.astro';
 import ShareImage from '../assets/images/share-image.png'
+const { pageTitle } = Astro.props;
 ---
-<title>Wylie Fisher</title>
+{currentPath === '/' && (
+  <title>Wylie Fisher</title>
+)}
+{currentPath.startsWith('/projects/') && (
+  <title>Wylie Fisher / Projects{pageTitle ? ` / ${pageTitle}` : ''}</title>
+)}
+{currentPath.startsWith('/blog/') && (
+  <title>Wylie Fisher / Blog{pageTitle ? ` / ${pageTitle}` : ''}</title>
+)}
+{currentPath.startsWith('/resume/') && (
+  <title>Wylie Fisher / Resume</title>
+)}
 <meta charset="utf-8" />
 <meta name="description" content="Ahoy! I'm Wylie Fisher, a dad, developer, and outdoor enthusiast.">
 <meta name="viewport" content="width=device-width, initial-scale=1" />

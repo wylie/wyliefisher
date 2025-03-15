@@ -7,13 +7,13 @@ import { getImage } from 'astro:assets';
 
 import { ClientRouter } from 'astro:transitions';
 
-const { title, pubDate, heroImage } = Astro.props;
+const { title, pubDate, heroImage, pageTitle } = Astro.props;
 const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, height: 650 }) : null;
 ---
 <!doctype html>
 <html lang="en" transition:name="root" transition:animate="none">
 	<head>
-		<Meta />
+		<Meta pageTitle={pageTitle} />
 		<ClientRouter />
 	</head>
 	<body>
