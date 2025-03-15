@@ -4,9 +4,9 @@ const { title } = Astro.props;
 ---
 <nav>
   {currentPath === '/' ? (
-    <span class="link inactive">Home</span>
+    <span class="link inactive">Ahoy</span>
   ) : (
-    <a href="/" class="link active" rel="noopener noreferrer" title={title}>Home</a>
+    <a href="/" class="link active" rel="noopener noreferrer" title={title}>Ahoy</a>
   )}
   {currentPath.startsWith('/projects/') ? (
     <span class="link inactive">Projects</span>
