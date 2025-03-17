@@ -1,7 +1,7 @@
 ---
 title: "A Swift Kick in the Pants"
 pubDate: 2025-03-16T00:00:00-05:00
-snippet: "After experimenting with both Astro and Hugo, I found Astro to be more intuitive and enjoyable for building a quick site, while Hugo presented more challenges that I plan to revisit"
+snippet: "After six months of job searching, an old friend gave me the wake-up call I needed with concrete advice on improving my portfolio, job search strategy, and interview preparation"
 heroImage: "/src/assets/images/blog/2025-03-16-a-swift-kick-in-the-pants.png"
 tags: [work, life]
 ---
