@@ -1,7 +1,7 @@
 ---
 title: "Disasters"
 pubDate: 2025-03-30T00:00:00-05:00
-snippet: "Reflecting on twelve years of marriage, the magic of the number twelve, and how time can feel both vast and fleeting when sharing life's adventures with your perfect partner"
+snippet: "Comparing the community-building aftermath of Hurricane Helene with the isolating experience of forest fires in Western North Carolina, and reflecting on how different natural disasters shape our connections with neighbors and family"
 heroImage: "/src/assets/images/blog/2025-03-30-disasters.png"
 tags: [family, life]
 ---
