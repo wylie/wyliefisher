@@ -2,10 +2,7 @@
 import Connect from '../components/Connect.astro';
 import clones from '../assets/data/clones.js';
 
-function getRandomClone() {
-  const randomIndex = Math.floor(Math.random() * clones.clonesList.length);
-  return clones.clonesList[randomIndex];
-}
+const quotes = clones.clonesList;
 ---
 <footer>
   <section class="connect">
@@ -14,7 +11,15 @@ function getRandomClone() {
     <Connect url="https://www.linkedin.com/in/wyliefisher/" title="Let's connect on Linkedin!" icon="linkedin" />
     <Connect url="https://www.goodreads.com/wyliefisher" title="Read with me on Goodreads!" icon="goodreads" />
   </section>
-  <p class="quote">{getRandomClone()}</p>
+  <p class="quote" id="footer-quote"></p>
+
+  <script define:vars={{ quotes }}>
+    const el = document.getElementById("footer-quote");
+    if (el && Array.isArray(quotes) && quotes.length) {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      el.textContent = quotes[randomIndex];
+    }
+  </script>
 </footer>
 
 <style>
