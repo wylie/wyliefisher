@@ -2,7 +2,7 @@
 title: "Yearly Metrics"
 pubDate: 2025-01-05T00:00:00-05:00
 snippet: "Reflecting on my 2024 metrics from various services and personal tracking, I gained insights into my fitness, mindfulness, reading, gaming, entertainment, and environmental impact, and plan to track even more in 2025 for further improvement"
-heroImage: "/src/assets/images/blog/2025-01-05-yearly-metrics.png"
+heroImage: "/src/assets/images/blog/2026-01-04-starting-over.png"
 tags: ["life", "metrics"]
 ---
 
