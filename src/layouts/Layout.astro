@@ -59,6 +59,9 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 			</main>
 			<Footer />
 		</div>
+		<script type="module">
+			const t=document.title;document.body.removeAttribute("nojs");document.addEventListener("visibilitychange",()=>{document.hidden?document.title="Wait... come back!":document.title=t});
+		</script>
 	</body>
 </html>
 
