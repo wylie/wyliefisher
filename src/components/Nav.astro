@@ -23,7 +23,7 @@ const { title } = Astro.props;
   ) : (
     <a href="/resume/" class="link active" rel="noopener noreferrer" title={title}>Resume</a>
   )}
-  <a href="https://github.com/wylie" class="link active gh" target="_blank" rel="noopener noreferrer" title={title}>GitHub<span class="material-symbols-outlined gh-icon">open_in_new</span></a>
+  <a href="https://github.com/wylie" class="link active gh" target="_blank" rel="noopener noreferrer" title={title}>GitHub</a>
 </nav>
   
 <style>
@@ -35,25 +35,15 @@ const { title } = Astro.props;
   }
   .link {
     padding: .5rem .25rem;
+    cursor: default;
     text-decoration: none;
   }
-  .inactive {
-    text-decoration: none;
-  }
-  a.active,
-  a:hover {
-    /* text-decoration: underline; */
+  .link.active {
+    cursor: pointer;
     font-weight: bold;
   }
-  .link.gh {
-    display: flex;
-    gap: .25rem;
-    align-items: center;
-    text-decoration: none;
-    position: relative;
-  }
-  .gh-icon {
-    font-size: 14px;
+  .link.active:hover {
+    text-decoration: underline;
   }
   @media (min-width: 450px) {
     nav {
