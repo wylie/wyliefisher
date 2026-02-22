@@ -14,11 +14,19 @@ const quotes = clones.clonesList;
   <p class="quote" id="footer-quote"></p>
 
   <script define:vars={{ quotes }}>
-    const el = document.getElementById("footer-quote");
-    if (el && Array.isArray(quotes) && quotes.length) {
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      el.textContent = quotes[randomIndex];
+    function setRandomQuote() {
+      const el = document.getElementById("footer-quote");
+      if (el && Array.isArray(quotes) && quotes.length) {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        el.textContent = quotes[randomIndex];
+      }
     }
+    
+    // Run on initial load
+    setRandomQuote();
+    
+    // Run on every view transition navigation
+    document.addEventListener('astro:page-load', setRandomQuote);
   </script>
 </footer>
 
