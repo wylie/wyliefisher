@@ -23,9 +23,26 @@ switch (icon) {
 }
 ---
 
-<a class="connect-link" href={url} target="_blank" rel="noopener noreferrer" title={title}>
+<a class="connect-link" href={url} target="_blank" rel="noopener noreferrer" title={title} data-track-social={icon}>
   <Image src={iconSrc} class="icon" alt={title} />
 </a>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('[data-track-social]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const platform = (e.currentTarget as HTMLElement).getAttribute('data-track-social');
+        const w = window as any;
+        if (typeof w.gtag !== 'undefined') {
+          w.gtag('event', 'social_click', {
+            platform: platform,
+            link_url: (e.currentTarget as HTMLAnchorElement).href
+          });
+        }
+      });
+    });
+  });
+</script>
 
 <style>
   .connect-link {

@@ -31,7 +31,25 @@ const { pageTitle } = Astro.props;
   (window as any).dataLayer = (window as any).dataLayer || [];
   function gtag(...args: any[]) { (window as any).dataLayer.push(args); }
   gtag('js', new Date());
-  gtag('config', 'G-5X60SSE4MN');
+  gtag('config', 'G-5X60SSE4MN', {
+    send_page_view: false // We'll handle page views manually for view transitions
+  });
+  
+  // Send initial page view
+  gtag('event', 'page_view', {
+    page_title: document.title,
+    page_location: window.location.href,
+    page_path: window.location.pathname
+  });
+  
+  // Track page views on view transitions
+  document.addEventListener('astro:page-load', () => {
+    gtag('event', 'page_view', {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: window.location.pathname
+    });
+  });
 </script>
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=description,download,open_in_new" />

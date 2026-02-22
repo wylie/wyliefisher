@@ -6,7 +6,7 @@ const { title, url, link, description, date, tags } = Astro.props;
 <article class="card">
   <div class="header">
     <h3 class="title">
-      <a href={link} class="link">{title}</a>
+      <a href={link} class="link" data-track-card="{title}" data-card-type={date ? 'blog' : 'project'}>{title}</a>
     </h3>
     <p class="subheader">
       {date ?
@@ -25,10 +25,45 @@ const { title, url, link, description, date, tags } = Astro.props;
   </div>
   <p class="description">
     {description}... &nbsp;
-    <a class="readon" href={link}>
+    <a class="readon" href={link} data-track-readmore="{title}" data-card-type={date ? 'blog' : 'project'}>
       read more &rarr;
     </a>
   </p>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const w = window as any;
+    // Track card title clicks
+    document.querySelectorAll('[data-track-card]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const title = (e.currentTarget as HTMLElement).getAttribute('data-track-card');
+        const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
+        if (typeof w.gtag !== 'undefined') {
+          w.gtag('event', 'card_click', {
+            content_type: type,
+            item_id: title,
+            link_url: (e.currentTarget as HTMLAnchorElement).href
+          });
+        }
+      });
+    });
+    
+    // Track "read more" clicks
+    document.querySelectorAll('[data-track-readmore]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const title = (e.currentTarget as HTMLElement).getAttribute('data-track-readmore');
+        const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
+        if (typeof w.gtag !== 'undefined') {
+          w.gtag('event', 'read_more_click', {
+            content_type: type,
+            item_id: title,
+            link_url: (e.currentTarget as HTMLAnchorElement).href
+          });
+        }
+      });
+    });
+  });
+</script>
   <Tags tags={tags} />
 </article>
 
