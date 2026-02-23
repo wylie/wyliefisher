@@ -26,30 +26,66 @@ const { pageTitle } = Astro.props;
 <meta property="og:description" content="Ahoy! I'm Wylie Fisher, a dad, developer, and outdoor enthusiast." />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="Wylie Fisher" />
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5X60SSE4MN"></script>
-<script>
-  (window as any).dataLayer = (window as any).dataLayer || [];
-  function gtag(...args: any[]) { (window as any).dataLayer.push(args); }
-  gtag('js', new Date());
-  gtag('config', 'G-5X60SSE4MN', {
-    send_page_view: false // We'll handle page views manually for view transitions
-  });
-  
-  // Send initial page view
-  gtag('event', 'page_view', {
-    page_title: document.title,
-    page_location: window.location.href,
-    page_path: window.location.pathname
-  });
-  
-  // Track page views on view transitions
-  document.addEventListener('astro:page-load', () => {
-    gtag('event', 'page_view', {
-      page_title: document.title,
-      page_location: window.location.href,
-      page_path: window.location.pathname
-    });
-  });
+<script is:inline>
+  (function () {
+    var measurementId = 'G-5X60SSE4MN';
+    var consentKey = 'wf_analytics_consent';
+
+    window.gtag = window.gtag || function () {};
+
+    window.wfEnableAnalytics = function () {
+      if (window.__wfAnalyticsEnabled) return;
+
+      window.__wfAnalyticsEnabled = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+
+      window.gtag('js', new Date());
+      window.gtag('consent', 'default', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      window.gtag('config', measurementId, { send_page_view: true });
+
+      document.addEventListener('astro:page-load', function () {
+        window.gtag('config', measurementId, {
+          page_title: document.title,
+          page_location: window.location.href,
+          page_path: window.location.pathname
+        });
+      });
+
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+      document.head.appendChild(script);
+    };
+
+    window.wfDisableAnalytics = function () {
+      try {
+        localStorage.setItem(consentKey, 'denied');
+      } catch (_) {}
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
+      }
+    };
+
+    try {
+      if (localStorage.getItem(consentKey) === 'granted') {
+        window.wfEnableAnalytics();
+      }
+    } catch (_) {}
+  })();
 </script>
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=description,download,open_in_new" />
