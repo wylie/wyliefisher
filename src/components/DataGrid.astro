@@ -4,10 +4,12 @@ const { posts } = Astro.props;
 ---
 <section>
   <div class="grid">
-    {await Promise.all(posts.map(async (post) => {
+    {await Promise.all(posts.map(async (post, idx) => {
+      // Numbering: most recent is highest number
+      const number = posts.length - idx;
       return (
         <Card
-          title={post.data.title}
+          title={`#${number}`}
           description={post.data.snippet}
           tags={post.data.tags}
           url={post.data.url}
