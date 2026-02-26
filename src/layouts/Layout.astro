@@ -8,7 +8,7 @@ import { getImage } from 'astro:assets';
 
 import { ClientRouter } from 'astro:transitions';
 
-const { title, pubDate, heroImage, pageTitle } = Astro.props;
+const { title, pubDate, heroImage, pageTitle, pageNumber } = Astro.props;
 const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, height: 650 }) : null;
 ---
 <!doctype html>
@@ -24,39 +24,35 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 				<Nav />
 			</div>
 			<main transition:animate="fade">
-				{!title ? (
-					<slot />
-				) : (
-					<article>
-						{heroImageData && <a href="javascript:history.back()" class="back">&larr; back</a>}
-						{heroImageData && (
-							<div class="hero-image">
-									<img src={heroImageData.src} alt="" />
-							</div>
-						)}
-						{title || pubDate ? (
-							<header>
-								{title && (
-									<h2 class="title">
-										{title}
-									</h2>
-								)}
-								{pubDate && (
-									<div class="date">
-										{pubDate.toLocaleDateString("en-us", {
-											year: "numeric",
-											month: "short",
-											day: "numeric",
-										})}
+						{typeof pageNumber === 'number' ? (
+							<article>
+								{heroImageData && <a href="javascript:history.back()" class="back">&larr; back</a>}
+								{heroImageData && (
+									<div class="hero-image">
+												<img src={heroImageData.src} alt="" />
 									</div>
 								)}
-							</header>
-						) : null}
-						<div class="prose">
+								<header>
+									<h2 class="title">
+										#{pageNumber}
+									</h2>
+									{pubDate && (
+										<div class="date">
+											{pubDate.toLocaleDateString("en-us", {
+												year: "numeric",
+												month: "short",
+												day: "numeric",
+											})}
+										</div>
+									)}
+								</header>
+								<div class="prose">
+									<slot />
+								</div>
+							</article>
+						) : (
 							<slot />
-						</div>
-					</article>
-				)}
+						)}
 			</main>
 			<Footer />
 		</div>
