@@ -5,20 +5,38 @@ import Layout from '../layouts/Layout.astro';
   <h2>Download My Resume</h2>
   <div class="wrapper">
     <span class="one">
-      <a href="/resume/Wylie_Fisher_resume.pdf" download>
+      <a href="/resume/Wylie_Fisher_resume.pdf" download data-track-download="pdf">
         <span class="material-symbols-outlined" style={{fontSize: "4rem"}}>description</span>
         PDF
       </a>
       <span class="material-symbols-outlined download">download</span>
     </span>
     <span class="one">
-      <a href="/resume/Wylie_Fisher_resume.docx" download>
+      <a href="/resume/Wylie_Fisher_resume.docx" download data-track-download="docx">
         <span class="material-symbols-outlined" style={{fontSize: "4rem"}}>description</span>
         Word
       </a>
       <span class="material-symbols-outlined download">download</span>
     </span>
   </div>
+  
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      document.querySelectorAll('[data-track-download]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const format = (e.currentTarget as HTMLElement).getAttribute('data-track-download');
+          const w = window as any;
+          if (typeof w.gtag !== 'undefined') {
+            w.gtag('event', 'file_download', {
+              file_name: `Wylie_Fisher_resume.${format}`,
+              file_extension: format,
+              link_url: (e.currentTarget as HTMLAnchorElement).href
+            });
+          }
+        });
+      });
+    });
+  </script>
 </Layout>
 
 <style>

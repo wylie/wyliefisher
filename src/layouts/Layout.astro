@@ -3,6 +3,7 @@ import Meta from '../components/Meta.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import { getImage } from 'astro:assets';
 
 import { ClientRouter } from 'astro:transitions';
@@ -59,8 +60,64 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 			</main>
 			<Footer />
 		</div>
+		<CookieConsent />
 		<script type="module">
 			const t=document.title;document.body.removeAttribute("nojs");document.addEventListener("visibilitychange",()=>{document.hidden?document.title="Wait... come back!":document.title=t});
+		</script>
+		<script type="module">
+			// Scroll depth tracking
+			let scrollDepths = [25, 50, 75, 100];
+			let trackedDepths = new Set();
+			const w = window;
+			
+			function trackScrollDepth() {
+				const windowHeight = window.innerHeight;
+				const documentHeight = document.documentElement.scrollHeight;
+				const scrollTop = window.scrollY;
+				const scrollPercent = Math.round((scrollTop / (documentHeight - windowHeight)) * 100);
+				
+				scrollDepths.forEach(depth => {
+					if (scrollPercent >= depth && !trackedDepths.has(depth)) {
+						trackedDepths.add(depth);
+						if (typeof w.gtag !== 'undefined') {
+							w.gtag('event', 'scroll_depth', {
+								percent_scrolled: depth,
+								page_location: window.location.pathname
+							});
+						}
+					}
+				});
+			}
+			
+			// Track outbound links (external links)
+			function trackOutboundLinks() {
+				document.querySelectorAll('a[href^="http"]').forEach(link => {
+					const url = link.href;
+					// Only track if it's not your own domain
+					if (!url.includes('wyliefisher.com') && !link.hasAttribute('data-tracked')) {
+						link.setAttribute('data-tracked', 'true');
+						link.addEventListener('click', (e) => {
+							if (typeof w.gtag !== 'undefined') {
+								w.gtag('event', 'outbound_click', {
+									link_url: url,
+									link_domain: new URL(url).hostname
+								});
+							}
+						});
+					}
+				});
+			}
+			
+			// Initialize on page load
+			document.addEventListener('astro:page-load', () => {
+				trackedDepths.clear();
+				window.addEventListener('scroll', trackScrollDepth, { passive: true });
+				trackOutboundLinks();
+			});
+			
+			// Initial setup
+			window.addEventListener('scroll', trackScrollDepth, { passive: true });
+			trackOutboundLinks();
 		</script>
 	</body>
 </html>

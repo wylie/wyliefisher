@@ -1,0 +1,151 @@
+<aside id="cookie-consent" class="cookie-consent" hidden>
+  <p>
+    This site uses Google Analytics to understand site usage. Read the <a href="/privacy/">Privacy &amp; Cookies Policy</a>, then accept or decline analytics cookies.
+  </p>
+  <div class="actions">
+    <button id="cookie-accept" type="button">Accept</button>
+    <button id="cookie-decline" type="button">Decline</button>
+  </div>
+</aside>
+
+<script is:inline>
+  (function () {
+    var consentKey = 'wf_analytics_consent';
+    function hideBanner(banner) {
+      if (banner) banner.hidden = true;
+    }
+
+    function showBanner(banner) {
+      if (banner) banner.hidden = false;
+    }
+
+    function setConsent(value) {
+      try {
+        localStorage.setItem(consentKey, value);
+      } catch (_) {}
+    }
+
+    function init() {
+      var banner = document.getElementById('cookie-consent');
+      if (!banner) return;
+
+      var consent = null;
+      try {
+        consent = localStorage.getItem(consentKey);
+      } catch (_) {}
+
+      if (consent === 'granted') {
+        hideBanner(banner);
+        if (typeof window.wfEnableAnalytics === 'function') {
+          window.wfEnableAnalytics();
+        }
+      } else if (consent === 'denied') {
+        hideBanner(banner);
+        if (typeof window.wfDisableAnalytics === 'function') {
+          window.wfDisableAnalytics();
+        }
+      } else {
+        showBanner(banner);
+      }
+    }
+
+    function bindEvents() {
+      var banner = document.getElementById('cookie-consent');
+      var accept = document.getElementById('cookie-accept');
+      var decline = document.getElementById('cookie-decline');
+
+      if (!banner || !accept || !decline) return;
+
+      if (!accept.dataset.bound) {
+        accept.addEventListener('click', function () {
+          setConsent('granted');
+          if (typeof window.wfEnableAnalytics === 'function') {
+            window.wfEnableAnalytics();
+          }
+          hideBanner(banner);
+        });
+        accept.dataset.bound = 'true';
+      }
+
+      if (!decline.dataset.bound) {
+        decline.addEventListener('click', function () {
+          setConsent('denied');
+          if (typeof window.wfDisableAnalytics === 'function') {
+            window.wfDisableAnalytics();
+          }
+          hideBanner(banner);
+        });
+        decline.dataset.bound = 'true';
+      }
+    }
+
+    function setup() {
+      bindEvents();
+      init();
+    }
+
+    document.addEventListener('astro:page-load', setup);
+    setup();
+  })();
+</script>
+
+<style>
+  .cookie-consent[hidden] {
+    display: none !important;
+  }
+
+  .cookie-consent {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    max-width: 650px;
+    margin: 0 auto;
+    background: var(--background-contrast-color);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .cookie-consent p {
+    font-size: var(--fontSize-secondary);
+    line-height: 1.4;
+  }
+
+  .cookie-consent p a {
+    font-size: inherit;
+    font-weight: bold;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .actions button {
+    border: 1px solid var(--border-color);
+    background: var(--background-color);
+    color: var(--text-color);
+    border-radius: 6px;
+    padding: 0.35rem 0.6rem;
+    cursor: pointer;
+    font-size: var(--fontSize-secondary);
+  }
+
+  .actions button:hover {
+    background: var(--theme-color-2a);
+  }
+
+  @media (max-width: 600px) {
+    .cookie-consent {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

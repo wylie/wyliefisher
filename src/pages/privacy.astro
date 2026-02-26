@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <article class="policy">
+    <h2>Privacy &amp; Cookies Policy</h2>
+
+    <p>
+      This website uses Google Analytics 4 (GA4) to better understand how visitors use the site.
+      Analytics tracking is optional and controlled by the cookie banner.
+    </p>
+
+    <h3>What We Collect</h3>
+    <ul>
+      <li>Pages viewed and navigation path</li>
+      <li>Basic engagement events (for example: clicks, downloads, and scroll depth)</li>
+      <li>General technical details (browser/device information provided by GA4)</li>
+    </ul>
+
+    <h3>How We Use It</h3>
+    <ul>
+      <li>Understand which content is most useful</li>
+      <li>Improve site structure and usability</li>
+      <li>Measure interest in projects, blog posts, and contact links</li>
+    </ul>
+
+    <h3>Cookie Consent Choices</h3>
+    <ul>
+      <li><strong>Accept</strong>: enables GA4 analytics cookies</li>
+      <li><strong>Decline</strong>: keeps analytics disabled</li>
+      <li>Your choice is saved in your browser and reused on future visits</li>
+    </ul>
+
+    <h3>Manage or Change Consent</h3>
+    <p>
+      If you want to change your choice later, clear site data for this domain in your browser settings,
+      then reload the page to see the consent banner again.
+    </p>
+
+    <h3>Contact</h3>
+    <p>
+      Questions about this policy: <a href="mailto:me@wyliefisher.com">me@wyliefisher.com</a>
+    </p>
+
+    <p class="updated">Last updated: February 23, 2026</p>
+  </article>
+</Layout>
+
+<style>
+  .policy {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .policy ul {
+    margin-left: 1.5rem;
+  }
+
+  .updated {
+    font-size: var(--fontSize-secondary);
+    font-style: italic;
+  }
+</style>
