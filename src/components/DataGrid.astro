@@ -30,12 +30,15 @@ const getBlogPreview = (content = '', maxLength = 200) => {
       const description = post.data.pubDate
         ? getBlogPreview(post.body, 200)
         : post.data.snippet;
+      const tags = post.data.pubDate
+        ? undefined
+        : post.data.tags;
 
       return (
         <Card
           title={`#${number}`}
           description={description}
-          tags={post.data.tags}
+          tags={tags}
           url={post.data.url}
           link={`${post.slug}/`}
           date={post.data.pubDate}

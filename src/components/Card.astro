@@ -64,7 +64,7 @@ const { title, url, link, description, date, tags } = Astro.props;
     });
   });
 </script>
-  <Tags tags={tags} />
+  {tags?.length ? <Tags tags={tags} /> : null}
 </article>
 
 <style>
