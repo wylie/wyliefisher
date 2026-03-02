@@ -4,32 +4,30 @@ const { title, url, link, description, date, tags } = Astro.props;
 ---
 
 <article class="card">
-  <div class="header">
-    <h3 class="title">
-      <a href={link} class="link" data-track-card="{title}" data-card-type={date ? 'blog' : 'project'}>{title}</a>
-    </h3>
-    <p class="subheader">
-      {date ?
-        new Date(date).toLocaleDateString("en-us", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })
-      :
-        <a href={url} class="link" target="_blank" rel="noreferrer" title={title}>
-          {url}
-        </a>
-        <span class="material-symbols-outlined">open_in_new</span>
-      }
+  <a href={link} class="link" data-track-card="{title}" data-card-type={date ? 'blog' : 'project'}>
+    <div class="header">
+      <h3 class="title">
+        {title}
+      </h3>
+      <p class="subheader">
+        {date ?
+          new Date(date).toLocaleDateString("en-us", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        :
+          <a href={url} class="link" target="_blank" rel="noreferrer" title={title}>
+            {url}
+          </a>
+          <span class="material-symbols-outlined">open_in_new</span>
+        }
+      </p>
+    </div>
+    <p class="description">
+      {description}...<br/>read more &rarr;
     </p>
-  </div>
-  <p class="description">
-    {description}... &nbsp;
-    <a class="readon" href={link} data-track-readmore="{title}" data-card-type={date ? 'blog' : 'project'}>
-      read more &rarr;
-    </a>
-  </p>
-
+  </a>
 <script>
   document.addEventListener('astro:page-load', () => {
     const w = window as any;
