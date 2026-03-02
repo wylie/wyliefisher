@@ -22,6 +22,6 @@ const number = allPosts.findIndex(p => p.slug === post.slug) !== -1 ? allPosts.l
 
 ---
 
-<Layout pageNumber={number} pubDate={post.data.pubDate}>
+<Layout pageNumber={number} pubDate={post.data.pubDate} heroImage={post.data.heroImage}>
 	<Content />
 </Layout>
