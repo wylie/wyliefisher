@@ -20,6 +20,8 @@ const allPosts = (await getCollection('blog')).sort(
 );
 const number = allPosts.findIndex(p => p.slug === post.slug) !== -1 ? allPosts.length - allPosts.findIndex(p => p.slug === post.slug) : undefined;
 
+---
+
 <Layout pageNumber={number} pubDate={post.data.pubDate}>
 	<Content />
 </Layout>
