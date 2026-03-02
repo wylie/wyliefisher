@@ -3,8 +3,8 @@ import Tags from './Tags.astro';
 const { title, url, link, description, date, tags } = Astro.props;
 ---
 
-<article class="card">
-  <a href={link} class="link" data-track-card="{title}" data-card-type={date ? 'blog' : 'project'}>
+<a href={link} class="link" data-track-card="{title}" data-card-type={date ? 'blog' : 'project'}>
+  <article class="card">
     <div class="header">
       <h3 class="title">
         {title}
@@ -25,45 +25,46 @@ const { title, url, link, description, date, tags } = Astro.props;
       </p>
     </div>
     <p class="description">
-      {description}...<br/>read more &rarr;
+      {description}...<span class="readon">read more &rarr;</span>
     </p>
-  </a>
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const w = window as any;
-    // Track card title clicks
-    document.querySelectorAll('[data-track-card]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const title = (e.currentTarget as HTMLElement).getAttribute('data-track-card');
-        const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
-        if (typeof w.gtag !== 'undefined') {
-          w.gtag('event', 'card_click', {
-            content_type: type,
-            item_id: title,
-            link_url: (e.currentTarget as HTMLAnchorElement).href
-          });
-        }
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const w = window as any;
+      // Track card title clicks
+      document.querySelectorAll('[data-track-card]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const title = (e.currentTarget as HTMLElement).getAttribute('data-track-card');
+          const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
+          if (typeof w.gtag !== 'undefined') {
+            w.gtag('event', 'card_click', {
+              content_type: type,
+              item_id: title,
+              link_url: (e.currentTarget as HTMLAnchorElement).href
+            });
+          }
+        });
+      });
+      
+      // Track "read more" clicks
+      document.querySelectorAll('[data-track-readmore]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const title = (e.currentTarget as HTMLElement).getAttribute('data-track-readmore');
+          const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
+          if (typeof w.gtag !== 'undefined') {
+            w.gtag('event', 'read_more_click', {
+              content_type: type,
+              item_id: title,
+              link_url: (e.currentTarget as HTMLAnchorElement).href
+            });
+          }
+        });
       });
     });
-    
-    // Track "read more" clicks
-    document.querySelectorAll('[data-track-readmore]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const title = (e.currentTarget as HTMLElement).getAttribute('data-track-readmore');
-        const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
-        if (typeof w.gtag !== 'undefined') {
-          w.gtag('event', 'read_more_click', {
-            content_type: type,
-            item_id: title,
-            link_url: (e.currentTarget as HTMLAnchorElement).href
-          });
-        }
-      });
-    });
-  });
-</script>
-  {tags?.length ? <Tags tags={tags} /> : null}
-</article>
+  </script>
+    {tags?.length ? <Tags tags={tags} /> : null}
+  </article>
+</a>
+
 
 <style>
   .card {
@@ -71,9 +72,10 @@ const { title, url, link, description, date, tags } = Astro.props;
     grid-template-rows: auto 1fr auto;
     padding: 1rem;
     background: var(--background-contrast-color);
-    transition: all .1s;
+    transition: all .25s;
     position: relative;
     border-radius: 6px;
+    bottom: 0;
   }
   .card::before {
     content: "";
@@ -86,6 +88,9 @@ const { title, url, link, description, date, tags } = Astro.props;
     border-top-color: var(--theme-color-1);
     border-left-color: var(--theme-color-2a);
     border-right-color: var(--theme-color-1);
+  }
+  .card:hover {
+    bottom: 6px;
   }
   .header {
     margin-bottom: 1rem;
@@ -113,16 +118,15 @@ const { title, url, link, description, date, tags } = Astro.props;
   }
   .link {
     text-decoration: none;
-  }
-  .link:hover,
-  .link:hover .url {
-    text-decoration: underline;
+    display: flex;
   }
   .description {
     flex: 1 1 100%;
     font-size: 1rem;
   }
   .readon {
+    display: block;
+    font-weight: bold;
     white-space: nowrap;
   }
 </style>
