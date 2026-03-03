@@ -78,6 +78,7 @@ const { title, url, link, description, date, tags } = Astro.props;
     content: "";
     border-radius: 0 0 0 6px;
     position: absolute;
+    top: 0;
     right: 0;
     border-style: solid;
     border-width: 20px;
@@ -85,9 +86,17 @@ const { title, url, link, description, date, tags } = Astro.props;
     border-top-color: var(--theme-color-1);
     border-left-color: var(--theme-color-2a);
     border-right-color: var(--theme-color-1);
+    transform-origin: top right;
+    transform: scale(1);
+    opacity: 1;
+    transition: transform .25s ease, opacity .25s ease;
   }
   .card:hover {
     bottom: 6px;
+  }
+  .card:hover::before {
+    transform: scale(0);
+    opacity: 0;
   }
   .header {
     margin-bottom: 1rem;
