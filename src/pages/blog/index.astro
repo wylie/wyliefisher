@@ -14,7 +14,7 @@ const posts = (await getCollection("blog")).sort(
   <div class="copy">
     <p>Hey there! I'm challenging myself to write weekly blog posts every Sunday, sharing thoughts and experiences from my journey in life. Join me as I embark on this adventure!</p>
   </div>
-  <DataGrid posts={posts} />
+  <DataGrid posts={posts} placeFirstCardRight={true} useNumberTitles={true} />
 </Layout>
 
 <style>

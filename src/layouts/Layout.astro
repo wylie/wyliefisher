@@ -8,7 +8,7 @@ import { getImage } from 'astro:assets';
 
 import { ClientRouter } from 'astro:transitions';
 
-const { title, pubDate, heroImage, pageTitle, pageNumber } = Astro.props;
+const { title, pubDate, heroImage, pageTitle, pageNumber, showBack = false } = Astro.props;
 const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, height: 650 }) : null;
 ---
 <!doctype html>
@@ -26,7 +26,7 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 			<main transition:animate="fade">
 						{typeof pageNumber === 'number' ? (
 							<article>
-								{heroImageData && <a href="javascript:history.back()" class="back">&larr; back</a>}
+								{showBack && <a href="javascript:history.back()" class="back">&larr; back</a>}
 								{heroImageData && (
 									<div class="hero-image">
 												<img src={heroImageData.src} alt="" />
@@ -51,7 +51,15 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 								</div>
 							</article>
 						) : (
-							<slot />
+							<>
+								{showBack && <a href="javascript:history.back()" class="back">&larr; back</a>}
+								{heroImageData && (
+									<div class="hero-image">
+										<img src={heroImageData.src} alt="" />
+									</div>
+								)}
+								<slot />
+							</>
 						)}
 			</main>
 			<Footer />

@@ -3,7 +3,7 @@ title: "Milkweed Mental Health"
 order: 1
 heroImage: "/src/assets/images/projects/milkweed-mental-health.png"
 tags: ["Astro", "HTML", "CSS", "JavaScript"]
-url: "https://wylie.github.io/teresafisherphd/"
+url: "https://teresafisherphd.com"
 snippet: "Milkweed Mental Health is my wife's private practice. This website helps her connect with clients and provide information about her services. It's designed to be welcoming, informative, and easy to navigate."
 ---
 I've been playing around with <a href="https://astro.build/" target="_blank">Astro</a> a lot lately, and I love it. I redid this website in it, wrote a [blog post](/blog/2025-03-09-astro/) about it, and I thought that it was time to make a "real" project with it. I don't know if I consider my portfolio site to be a "real" project...

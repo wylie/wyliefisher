@@ -17,9 +17,7 @@ const { title, url, link, description, date, tags } = Astro.props;
             day: "numeric",
           })
         :
-          <a href={url} class="link" target="_blank" rel="noreferrer" title={title}>
-            {url}
-          </a>
+          <span>{url}</span>
           <span class="material-symbols-outlined">open_in_new</span>
         }
       </p>
@@ -27,44 +25,43 @@ const { title, url, link, description, date, tags } = Astro.props;
     <p class="description">
       {description}...<span class="readon">read more &rarr;</span>
     </p>
-  <script>
-    document.addEventListener('astro:page-load', () => {
-      const w = window as any;
-      // Track card title clicks
-      document.querySelectorAll('[data-track-card]').forEach(link => {
-        link.addEventListener('click', (e) => {
-          const title = (e.currentTarget as HTMLElement).getAttribute('data-track-card');
-          const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
-          if (typeof w.gtag !== 'undefined') {
-            w.gtag('event', 'card_click', {
-              content_type: type,
-              item_id: title,
-              link_url: (e.currentTarget as HTMLAnchorElement).href
-            });
-          }
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        const w = window as any;
+        // Track card title clicks
+        document.querySelectorAll('[data-track-card]').forEach(link => {
+          link.addEventListener('click', (e) => {
+            const title = (e.currentTarget as HTMLElement).getAttribute('data-track-card');
+            const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
+            if (typeof w.gtag !== 'undefined') {
+              w.gtag('event', 'card_click', {
+                content_type: type,
+                item_id: title,
+                link_url: (e.currentTarget as HTMLAnchorElement).href
+              });
+            }
+          });
+        });
+        
+        // Track "read more" clicks
+        document.querySelectorAll('[data-track-readmore]').forEach(link => {
+          link.addEventListener('click', (e) => {
+            const title = (e.currentTarget as HTMLElement).getAttribute('data-track-readmore');
+            const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
+            if (typeof w.gtag !== 'undefined') {
+              w.gtag('event', 'read_more_click', {
+                content_type: type,
+                item_id: title,
+                link_url: (e.currentTarget as HTMLAnchorElement).href
+              });
+            }
+          });
         });
       });
-      
-      // Track "read more" clicks
-      document.querySelectorAll('[data-track-readmore]').forEach(link => {
-        link.addEventListener('click', (e) => {
-          const title = (e.currentTarget as HTMLElement).getAttribute('data-track-readmore');
-          const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
-          if (typeof w.gtag !== 'undefined') {
-            w.gtag('event', 'read_more_click', {
-              content_type: type,
-              item_id: title,
-              link_url: (e.currentTarget as HTMLAnchorElement).href
-            });
-          }
-        });
-      });
-    });
-  </script>
+    </script>
     {tags?.length ? <Tags tags={tags} /> : null}
   </article>
 </a>
-
 
 <style>
   .card {
