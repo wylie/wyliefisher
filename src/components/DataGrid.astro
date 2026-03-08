@@ -6,13 +6,7 @@ const {
   useNumberTitles = false,
 } = Astro.props;
 
-const orderedPosts = placeFirstCardRight && posts.length > 1
-  ? [
-      { post: posts[1], originalIndex: 1 },
-      { post: posts[0], originalIndex: 0 },
-      ...posts.slice(2).map((post, idx) => ({ post, originalIndex: idx + 2 })),
-    ]
-  : posts.map((post, idx) => ({ post, originalIndex: idx }));
+const indexedPosts = posts.map((post, idx) => ({ post, originalIndex: idx }));
 
 const getBlogPreview = (content = '', maxLength = 200) => {
   const plainText = content
@@ -35,8 +29,8 @@ const getBlogPreview = (content = '', maxLength = 200) => {
 };
 ---
 <section>
-  <div class="grid">
-    {await Promise.all(orderedPosts.map(async ({ post, originalIndex }) => {
+  <div class:list={["grid", { "swap-columns": placeFirstCardRight }]}>
+    {await Promise.all(indexedPosts.map(async ({ post, originalIndex }) => {
       // Numbering: most recent is highest number
       const number = posts.length - originalIndex;
       const title = useNumberTitles ? `#${number}` : post.data.title;
@@ -74,6 +68,14 @@ const getBlogPreview = (content = '', maxLength = 200) => {
   @media (min-width: 600px) {
     .grid {
       grid-template-columns: 1fr 1fr;
+    }
+
+    .grid.swap-columns > :nth-child(odd) {
+      grid-column: 2;
+    }
+
+    .grid.swap-columns > :nth-child(even) {
+      grid-column: 1;
     }
   }
 </style>
