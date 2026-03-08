@@ -27,15 +27,11 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 						{typeof pageNumber === 'number' ? (
 							<article>
 								{showBack && <a href="javascript:history.back()" class="back">&larr; back</a>}
-								{heroImageData && (
-									<div class="hero-image">
-												<img src={heroImageData.src} alt="" />
-									</div>
-								)}
+								<slot name="aboveHero" />
 								<header>
-									<h2 class="title">
+									{/* <h2 class="title">
 										#{pageNumber}
-									</h2>
+									</h2> */}
 									{pubDate && (
 										<div class="date">
 											{pubDate.toLocaleDateString("en-us", {
@@ -46,6 +42,11 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 										</div>
 									)}
 								</header>
+								{heroImageData && (
+									<div class="hero-image">
+												<img src={heroImageData.src} alt="" />
+									</div>
+								)}
 								<div class="prose">
 									<slot />
 								</div>
@@ -220,7 +221,12 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 	/* CONTENT POSTS */
 	.back {
 		margin: -.5rem 0 0.5rem;
-    display: block;
+		display: inline-block;
+		text-decoration: none;
+		font-weight: bold;
+	}
+	.back:hover {
+		text-decoration: underline;
 	}
 	.prose h3 {
 		border-bottom: 1px solid var(--border-color);
@@ -232,6 +238,7 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 	.hero-image img {
 		max-width: 650px;
 		border-radius: 10px;
+		margin-bottom: 1rem;
 	}
 	.prose table {
 		border: 1px solid black;
@@ -272,21 +279,15 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 	}
 	article {
 		border-bottom: 3px dashed var(--border-color);
-    padding-bottom: 1rem;
 	}
 	header {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		padding-bottom: 1rem;
 		margin: 1rem 0;
-		border-bottom: 3px dashed var(--border-color);
 	}
 	header .date {
-		margin-top: .5rem;
-		align-self: flex-end;
-    justify-self: flex-end;
-		white-space: nowrap;
+		font-size: 24px;
 	}
 	@media screen and (min-width: 768px) {
 		header {
