@@ -54,6 +54,7 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 						) : (
 							<>
 								{showBack && <a href="javascript:history.back()" class="back">&larr; back</a>}
+								<slot name="aboveHero" />
 								{heroImageData && (
 									<div class="hero-image">
 										<img src={heroImageData.src} alt="" />
