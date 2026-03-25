@@ -66,15 +66,15 @@ import Layout from '../layouts/Layout.astro';
       <article class="experience-item">
         <div class="experience-heading">
           <div>
-            <h3>General Manager</h3>
-            <p class="company">Fiddlehead Farm &amp; Forest | Fletcher, NC</p>
+            <h3>Fiddlehead Farm &amp; Forest | Fletcher, NC</h3>
+            <p class="role-description">
+              Fiddlehead Farm &amp; Forest is a community-focused climbing gym, bike park, and
+              fitness facility offering youth programs, events, and year-round recreation.
+            </p>
+            <h4>General Manager</h4>
           </div>
           <p class="dates">03/2025 - 03/2026</p>
         </div>
-        <p class="role-description">
-          Fiddlehead Farm &amp; Forest is a community-focused climbing gym, bike park, and
-          fitness facility offering youth programs, events, and year-round recreation.
-        </p>
         <ul>
           <li>
             Led day-to-day operations across all departments, including climbing, bike park, cafe,
@@ -114,15 +114,15 @@ import Layout from '../layouts/Layout.astro';
       <article class="experience-item">
         <div class="experience-heading">
           <div>
-            <h3>Principal Software Engineer</h3>
-            <p class="company">EBSCO Information Services | Ipswich, MA</p>
+            <h3 class="company">EBSCO Information Services | Ipswich, MA</h3>
+            <p class="role-description">
+              EBSCO Information Services is a leader in research databases and discovery services,
+              supporting libraries, academic institutions, and healthcare providers.
+            </p>
+            <h4>Principal Software Engineer</h4>
           </div>
           <p class="dates">10/2010 - 09/2024</p>
         </div>
-        <p class="role-description">
-          EBSCO Information Services is a leader in research databases and discovery services,
-          supporting libraries, academic institutions, and healthcare providers.
-        </p>
         <ul>
           <li>
             Led the design and long-term maintenance of a reusable front-end component library,
@@ -141,13 +141,9 @@ import Layout from '../layouts/Layout.astro';
             and maintainable front-end practices.
           </li>
         </ul>
-      </article>
-
-      <article class="experience-item">
         <div class="experience-heading">
           <div>
-            <h3>Senior / Web User Interface Engineer</h3>
-            <p class="company">EBSCO Information Services | Ipswich, MA</p>
+            <h4>Senior / Web User Interface Engineer</h4>
           </div>
         </div>
         <ul>
@@ -169,15 +165,15 @@ import Layout from '../layouts/Layout.astro';
       <article class="experience-item">
         <div class="experience-heading">
           <div>
-            <h3>Front End Engineer II</h3>
-            <p class="company">Wayfair | Boston, MA</p>
+            <h3 class="company">Wayfair | Boston, MA</h3>
+            <p class="role-description">
+              Wayfair is a leading online retailer in home furnishings and decor, offering an extensive
+              product selection across multiple brands globally.
+            </p>
+            <h4>Front End Engineer II</h4>
           </div>
           <p class="dates">04/2016 - 10/2016</p>
         </div>
-        <p class="role-description">
-          Wayfair is a leading online retailer in home furnishings and decor, offering an extensive
-          product selection across multiple brands globally.
-        </p>
         <ul>
           <li>
             Delivered scalable, maintainable features for five e-commerce platforms using PHP,
@@ -188,12 +184,15 @@ import Layout from '../layouts/Layout.astro';
           </li>
         </ul>
       </article>
-
+      
       <article class="experience-item">
         <div class="experience-heading">
           <div>
-            <h3>Freelance Web Developer</h3>
-            <p class="company">Freelance | Hendersonville, NC</p>
+            <h3 class="company">Freelance | Hendersonville, NC</h3>
+            <p class="role-description">
+              Provided freelance web development services for a wide range of clients, building custom websites and tailored digital solutions to meet specific needs.
+            </p>
+            <h4>Freelance Web Developer</h4>
           </div>
           <p class="dates">12/2009 - 12/2025</p>
         </div>
@@ -208,31 +207,40 @@ import Layout from '../layouts/Layout.astro';
           </li>
         </ul>
       </article>
-
+      
       <article class="experience-item compact">
         <div class="experience-heading">
           <div>
-            <h3>Web Developer</h3>
-            <p class="company">The Biltmore Company | Asheville, NC</p>
+            <h3 class="company">The Biltmore Company | Asheville, NC</h3>
+            <p class="role-description">
+              Supported website updates and content publishing within the marketing department, collaborating with internal teams to ensure accurate and timely delivery of web content.
+            </p>
           </div>
+          <p class="dates">11/2005 - 12/2009</p>
         </div>
       </article>
-
+      
       <article class="experience-item compact">
         <div class="experience-heading">
           <div>
-            <h3>Web Developer</h3>
-            <p class="company">Arnold Worldwide | Boston, MA</p>
+            <h3 class="company">Arnold Worldwide | Boston, MA</h3>
+            <p class="role-description">
+              Worked within a fast-paced marketing agency environment, contributing to updates and maintenance for major brand websites while collaborating closely with designers and meeting tight deadlines.
+            </p>
           </div>
+          <p class="dates">3/2001 - 6/2002</p>
         </div>
       </article>
-
+      
       <article class="experience-item compact">
         <div class="experience-heading">
           <div>
-            <h3>Screenprinter</h3>
-            <p class="company">Mirror Image | Cambridge, MA</p>
+            <h3 class="company">Mirror Image | Cambridge, MA</h3>
+            <p class="role-description">
+              Produced high-quality screen-printed apparel for well-known brands and organizations, contributing to award-winning designs through attention to detail and craftsmanship.
+            </p>
           </div>
+          <p class="dates">11/2005 - 12/2009</p>
         </div>
       </article>
     </div>
@@ -277,6 +285,11 @@ import Layout from '../layouts/Layout.astro';
 
   h1 {
     white-space: normal;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 1.125rem;
   }
 
   .summary {
@@ -377,6 +390,10 @@ import Layout from '../layouts/Layout.astro';
     padding-bottom: 0.5rem;
   }
 
+  .experience-item > .experience-heading:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+
   .experience-heading {
     display: flex;
     flex-direction: column;
@@ -384,15 +401,14 @@ import Layout from '../layouts/Layout.astro';
     margin-bottom: 0.75rem;
   }
 
-  .company,
   .dates,
   .role-description {
     font-size: 1rem;
   }
 
-  .company,
   .dates {
     font-weight: bold;
+    white-space: nowrap;
   }
 
   .role-description {
