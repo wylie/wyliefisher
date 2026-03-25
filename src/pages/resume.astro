@@ -1,24 +1,242 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout>
-  <h2>Download My Resume</h2>
-  <div class="wrapper">
-    <span class="one">
-      <a href="/resume/Wylie_Fisher_resume.pdf" download data-track-download="pdf">
-        <span class="material-symbols-outlined" style={{fontSize: "4rem"}}>description</span>
-        PDF
-      </a>
-      <span class="material-symbols-outlined download">download</span>
-    </span>
-    <span class="one">
-      <a href="/resume/Wylie_Fisher_resume.docx" download data-track-download="docx">
-        <span class="material-symbols-outlined" style={{fontSize: "4rem"}}>description</span>
-        Word
-      </a>
-      <span class="material-symbols-outlined download">download</span>
-    </span>
-  </div>
+<Layout pageTitle="Resume">
+  <section class="resume-header">
+    <div class="summary">
+      <h1>Wylie Fisher</h1>
+      <p class="summary">
+        Experienced professional with a strong background in problem-solving, collaboration, and building effective systems. Known for clear communication, reliability, and a thoughtful approach to both technical and day-to-day work. Contributes to team success through organization, documentation, and a focus on practical, scalable solutions.
+      </p>
+    </div>
+    <div class="downloads" aria-label="Resume downloads">
+      <h2>Download</h2>
+      <div class="download-grid">
+        <span class="download-item">
+          <a href="/resume/Wylie_Fisher_resume.pdf" download data-track-download="pdf">
+            <span class="material-symbols-outlined icon">description</span>
+            PDF
+          </a>
+          <span class="material-symbols-outlined download-arrow">download</span>
+        </span>
+        <span class="download-item">
+          <a href="/resume/Wylie_Fisher_resume.docx" download data-track-download="docx">
+            <span class="material-symbols-outlined icon">description</span>
+            Word
+          </a>
+          <span class="material-symbols-outlined download-arrow">download</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="resume-section">
+    <h2>Skills</h2>
+    <div class="section-stack">
+      <div>
+        <h3>Leadership, Operations &amp; Strategy</h3>
+        <p>
+          Operations Management, Team Leadership, Hiring &amp; Onboarding, Staff Training &amp;
+          Mentorship, Scheduling &amp; Payroll Oversight, Budgeting &amp; Forecasting, Contribution
+          Margin Analysis, Scenario Planning, Program Development, Vendor Management, Risk
+          Management, Incident Response, Clear Communication, Change Management
+        </p>
+      </div>
+      <div>
+        <h3>Systems &amp; Process</h3>
+        <p>
+          Operational Systems Design, Process Documentation, Cross-Department Coordination,
+          Data-Informed Decision Making, Tool Evaluation &amp; Implementation, Workflow
+          Optimization, Google Sheets (advanced formulas), Reporting &amp; Analysis
+        </p>
+      </div>
+      <div>
+        <h3>Technical Foundations</h3>
+        <p>
+          HTML, CSS, JavaScript, WordPress, Basic PHP &amp; Python, Accessibility Awareness
+          (WCAG), Documentation, Version Control (Git)
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="resume-section">
+    <h2>Work Experience</h2>
+    <div class="experience-list">
+      <article class="experience-item">
+        <div class="experience-heading">
+          <div>
+            <h3>General Manager</h3>
+            <p class="company">Fiddlehead Farm &amp; Forest | Fletcher, NC</p>
+          </div>
+          <p class="dates">03/2025 - 03/2026</p>
+        </div>
+        <p class="role-description">
+          Fiddlehead Farm &amp; Forest is a community-focused climbing gym, bike park, and
+          fitness facility offering youth programs, events, and year-round recreation.
+        </p>
+        <ul>
+          <li>
+            Led day-to-day operations across all departments, including climbing, bike park, cafe,
+            fitness, retail, and youth programming, ensuring safe, consistent, and high-quality
+            experiences for members and guests.
+          </li>
+          <li>
+            Built and refined operational systems for scheduling, payroll, budgeting, and
+            documentation, improving clarity, accountability, and cross-department coordination.
+          </li>
+          <li>
+            Managed financial planning and forecasting, including departmental budgets,
+            contribution analysis, and scenario modeling to support sustainable growth and cost
+            control.
+          </li>
+          <li>
+            Oversaw hiring, onboarding, training, and performance management for staff across
+            multiple roles, fostering a collaborative, supportive, and safety-focused team culture.
+          </li>
+          <li>
+            Partnered with program leads and coaches to design, launch, and iterate youth
+            programs, camps, clubs, and teams, balancing community impact with operational
+            sustainability.
+          </li>
+          <li>
+            Coordinated facility operations, risk management, and compliance, maintaining safety
+            standards and responding effectively to weather events, incidents, and operational
+            disruptions.
+          </li>
+          <li>
+            Collaborated with ownership, vendors, and community partners to support events,
+            partnerships, and long-term strategic planning.
+          </li>
+        </ul>
+      </article>
+
+      <article class="experience-item">
+        <div class="experience-heading">
+          <div>
+            <h3>Principal Software Engineer</h3>
+            <p class="company">EBSCO Information Services | Ipswich, MA</p>
+          </div>
+          <p class="dates">10/2010 - 09/2024</p>
+        </div>
+        <p class="role-description">
+          EBSCO Information Services is a leader in research databases and discovery services,
+          supporting libraries, academic institutions, and healthcare providers.
+        </p>
+        <ul>
+          <li>
+            Led the design and long-term maintenance of a reusable front-end component library,
+            improving consistency and scalability across multiple products.
+          </li>
+          <li>
+            Established documentation standards and authored comprehensive technical guides,
+            improving onboarding and cross-team collaboration.
+          </li>
+          <li>
+            Partnered with designers, product managers, and backend teams to align technical
+            solutions with user and business goals.
+          </li>
+          <li>
+            Mentored engineers in accessibility (WCAG standards), responsive design principles,
+            and maintainable front-end practices.
+          </li>
+        </ul>
+      </article>
+
+      <article class="experience-item">
+        <div class="experience-heading">
+          <div>
+            <h3>Senior / Web User Interface Engineer</h3>
+            <p class="company">EBSCO Information Services | Ipswich, MA</p>
+          </div>
+        </div>
+        <ul>
+          <li>
+            Improved application performance and maintainability through frontend architecture
+            optimization and refactoring efforts.
+          </li>
+          <li>
+            Conducted code reviews and collaborated closely with designers and engineers to
+            deliver accessible, user-centered features.
+          </li>
+          <li>
+            Supported ongoing feature development while maintaining high standards for quality,
+            accessibility, and stability.
+          </li>
+        </ul>
+      </article>
+
+      <article class="experience-item">
+        <div class="experience-heading">
+          <div>
+            <h3>Front End Engineer II</h3>
+            <p class="company">Wayfair | Boston, MA</p>
+          </div>
+          <p class="dates">04/2016 - 10/2016</p>
+        </div>
+        <p class="role-description">
+          Wayfair is a leading online retailer in home furnishings and decor, offering an extensive
+          product selection across multiple brands globally.
+        </p>
+        <ul>
+          <li>
+            Delivered scalable, maintainable features for five e-commerce platforms using PHP,
+            JavaScript, HTML, and CSS.
+          </li>
+          <li>
+            Enhanced site performance and reliability by implementing front-end best practices.
+          </li>
+        </ul>
+      </article>
+
+      <article class="experience-item">
+        <div class="experience-heading">
+          <div>
+            <h3>Freelance Web Developer</h3>
+            <p class="company">Freelance | Hendersonville, NC</p>
+          </div>
+          <p class="dates">12/2009 - 12/2025</p>
+        </div>
+        <ul>
+          <li>
+            Built and maintained custom websites with a focus on scalable, responsive designs and
+            client-specific solutions.
+          </li>
+          <li>
+            Delivered tailored WordPress themes and hand-coded websites integrating CMS and
+            database management.
+          </li>
+        </ul>
+      </article>
+
+      <article class="experience-item compact">
+        <div class="experience-heading">
+          <div>
+            <h3>Web Developer</h3>
+            <p class="company">The Biltmore Company | Asheville, NC</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="experience-item compact">
+        <div class="experience-heading">
+          <div>
+            <h3>Web Developer</h3>
+            <p class="company">Arnold Worldwide | Boston, MA</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="experience-item compact">
+        <div class="experience-heading">
+          <div>
+            <h3>Screenprinter</h3>
+            <p class="company">Mirror Image | Cambridge, MA</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
   
   <script>
     document.addEventListener('astro:page-load', () => {
@@ -40,32 +258,211 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  .wrapper {
+  .resume-header {
     display: flex;
+    flex-direction: column;
     gap: 2rem;
   }
-  a {
+
+  .summary {
+    order: 2;
+  }
+
+  .eyebrow {
+    font-size: var(--fontSize-secondary);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    white-space: normal;
+  }
+
+  .summary {
+    margin-top: 1rem;
+    max-width: 60ch;
+  }
+
+  .contact-card {
+    border: 2px dashed var(--border-color);
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    background: color-mix(in srgb, var(--background-color) 82%, white 18%);
+  }
+
+  .contact-card p + p {
+    margin-top: 0.5rem;
+  }
+
+  .downloads {
+    order: 1;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2rem;
+  }
+
+  .download-grid {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 4rem;
+    margin-top: 1rem;
+    justify-content: space-evenly;    
+  }
+
+  .download-item {
+    display: flex;
+    position: relative;
+  }
+
+  .download-item a {
     display: flex;
     align-items: center;
     text-decoration: none;
     flex-direction: column;
+    gap: 0.25rem;
+    font-weight: bold;
   }
-  .one {
-    display: flex;
-    align-items: center;
-    position: relative
-  }
-  .download {
+
+  .download-arrow {
     position: absolute;
-    top: 3rem;
+    top: 0;
+    right: -4rem;
     opacity: 0;
     transition: all .3s;
   }
-  .one:hover .download {
+
+  .download-item:hover .download-arrow {
     opacity: 1;
-    top: 5rem;
+    top: 0;
   }
+
+  .icon,
   .material-symbols-outlined {
     font-size: 4rem;
+  }
+
+  .section-stack,
+  .experience-list,
+  .qualification-list {
+    margin-top: 1rem;
+  }
+
+  .section-stack,
+  .experience-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .resume-section h2 {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .resume-section h3 {
+    border-bottom: 0;
+    margin-top: 0;
+  }
+
+  .experience-item {
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 1.5rem;
+  }
+
+  .experience-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .experience-item.compact {
+    padding-bottom: 0.5rem;
+  }
+
+  .experience-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .company,
+  .dates,
+  .role-description {
+    font-size: 1rem;
+  }
+
+  .company,
+  .dates {
+    font-weight: bold;
+  }
+
+  .role-description {
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .experience-item ul,
+  .qualification-list {
+    margin-left: 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .education-item p {
+    margin-top: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .resume-header {
+      flex-direction: row;
+      align-items: start;
+      justify-content: space-between;
+    }
+
+    .summary {
+      order: 1;
+    }
+
+    .contact-card {
+      width: min(240px, 100%);
+      flex-shrink: 0;
+    }
+
+    .experience-heading {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    .downloads {
+      background-color: var(--background-contrast-color);
+      border-radius: 6px;
+      padding: 1rem 1rem 4rem;
+      order: 2;
+    }
+
+    .download-grid {
+      flex-direction: column; 
+    }
+
+    .download-item {
+      display: flex;
+      flex-direction: column;
+      width: unset;
+      align-items: center;
+    }
+
+    .download-arrow {
+      top: 3rem;
+      right: unset
+    }
+
+    .download-item:hover .download-arrow {
+      top: 5rem;
+    }
+    .icon,
+    .material-symbols-outlined {
+      font-size: 3rem;
+    }
+
   }
 </style>
