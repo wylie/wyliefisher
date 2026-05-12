@@ -1,9 +1,10 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { getPublishedPosts } from '../../lib/blog';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
+	const posts = getPublishedPosts(await getCollection('blog'));
 	return posts.map((post) => ({
 		params: { slug: post.slug },
 		props: post,
@@ -15,9 +16,7 @@ const post = Astro.props;
 const { Content } = await post.render();
 
 // Get all posts to determine index
-const allPosts = (await getCollection('blog')).sort(
-	(a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
-);
+const allPosts = getPublishedPosts(await getCollection('blog'));
 const currentIndex = allPosts.findIndex((p) => p.slug === post.slug);
 const number = currentIndex !== -1 ? allPosts.length - currentIndex : undefined;
 

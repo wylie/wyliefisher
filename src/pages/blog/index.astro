@@ -3,10 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 
 import { getCollection } from "astro:content";
 import DataGrid from '../../components/DataGrid.astro';
+import { getPublishedPosts } from '../../lib/blog';
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
-);
+const posts = getPublishedPosts(await getCollection("blog"));
 ---
 
 <Layout>

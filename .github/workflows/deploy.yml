@@ -5,6 +5,9 @@ on:
   # Using a different branch name? Replace `main` with your branch’s name
   push:
     branches: [main]
+  # Rebuild every Sunday morning so future-dated posts publish automatically.
+  schedule:
+    - cron: "0 10 * * 0"
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
