@@ -7,8 +7,15 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 
 <section class="home-intro">
 	<div class="intro-copy">
-		<p class="eyebrow">Ahoy</p>
-		<h2>A thoughtful corner of the internet for work, writing, and rebuilding a life with care.</h2>
+		<div class="intro-heading">
+			<div>
+				<p class="eyebrow">Ahoy</p>
+				<h2>A thoughtful corner of the internet for work, writing, and rebuilding a life with care.</h2>
+			</div>
+			<div class="portrait-wrap">
+				<Image src={face} alt="Portrait illustration of Wylie Fisher" width={220} class="portrait" />
+			</div>
+		</div>
 		<p>
 			I'm Wylie: a dad, partner, longtime front-end developer, and systems-minded generalist who cares
 			about clarity, accessibility, useful tools, and the everyday creativity found in gardens,
@@ -23,12 +30,6 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 			<a href="/blog/" class="secondary-link">Read the blog</a>
 		</div>
 	</div>
-	<div class="portrait-card">
-		<Image src={face} alt="Portrait illustration of Wylie Fisher" width={420} class="portrait" />
-		<p class="portrait-note">
-			Practical, curious, a little weird, and usually trying to leave things better than I found them.
-		</p>
-	</div>
 </section>
 
 <section class="home-section">
@@ -39,7 +40,7 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 	<div class="two-column-copy">
 		<div class="copy-card">
 			<p>
-				I love Lego, <a href="https://www.goodreads.com/wyliefisher" target="_blank" data-track-link="goodreads">books</a>,
+				I love Lego, books,
 				animals, and the kind of creativity that shows up in kitchens, workshops, and backyards. Our
 				home is shared with two cats, a dog named Meatball, and a few other tiny lives, with chickens
 				still high on the wish list.
@@ -58,7 +59,7 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 			</p>
 			<p>
 				If you're curious about what I’m building, reading, or thinking through, you’ll find it here.
-				If you just want to say hello, <a href="mailto:wylie@wyliefisher.com" data-track-link="email-about">I’d love to connect</a>.
+				The footer is the best place to find me elsewhere or say hello.
 			</p>
 		</div>
 	</div>
@@ -111,51 +112,15 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 	</div>
 </section>
 
-<section class="home-section elsewhere">
-	<div class="section-heading">
-		<p class="eyebrow">Elsewhere</p>
-		<h2>More places to find me.</h2>
-	</div>
-	<p>
-		GitHub is where the code lives, Goodreads is where the reading life leaks out, and email is still the
-		best place for a real hello.
-	</p>
-	<div class="intro-links">
-		<a href="https://github.com/wylie" target="_blank" rel="noopener noreferrer" class="primary-link">GitHub</a>
-		<a href="mailto:wylie@wyliefisher.com" class="secondary-link">Email</a>
-	</div>
-</section>
-
-<script>
-	document.addEventListener('astro:page-load', () => {
-		document.querySelectorAll('[data-track-link]').forEach((link) => {
-			link.addEventListener('click', (e) => {
-				const linkId = (e.currentTarget as HTMLElement).getAttribute('data-track-link');
-				const w = window as any;
-				if (typeof w.gtag !== 'undefined') {
-					w.gtag('event', 'link_click', {
-						link_id: linkId,
-						link_url: (e.currentTarget as HTMLAnchorElement).href
-					});
-				}
-			});
-		});
-	});
-</script>
-
 <style>
 	.home-intro {
-		display: grid;
-		gap: 1.5rem;
-		align-items: stretch;
+		display: block;
 	}
 
 	.intro-copy,
-	.portrait-card,
 	.copy-card,
 	.feature-card,
-	.writing-item,
-	.elsewhere {
+	.writing-item {
 		border: 1px solid var(--color-line);
 		border-radius: var(--radius-md);
 		background: color-mix(in srgb, var(--color-panel) 88%, white 12%);
@@ -165,7 +130,17 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 		padding: clamp(1.5rem, 4vw, 2.5rem);
 		display: grid;
 		gap: 1rem;
-		height: 100%;
+	}
+
+	.intro-heading {
+		display: grid;
+		gap: 1.25rem;
+		align-items: center;
+	}
+
+	.intro-heading > div:first-child {
+		display: grid;
+		gap: 0.45rem;
 	}
 
 	.intro-links {
@@ -204,31 +179,24 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 		color: var(--color-text);
 	}
 
-	.portrait-card {
+	.portrait-wrap {
 		display: grid;
-		grid-template-rows: minmax(0, 1fr) auto;
-		align-items: center;
-		padding: 1.25rem;
-		height: 100%;
+		place-items: center;
+		width: 8rem;
+		aspect-ratio: 590 / 835;
+		justify-self: center;
+		border: 1px solid var(--color-line);
+		border-radius: 4rem 4rem var(--radius-sm) var(--radius-sm);
 		background:
 			linear-gradient(180deg, rgba(220, 229, 216, 0.5), transparent 55%),
 			color-mix(in srgb, var(--color-panel-strong) 70%, white 30%);
 	}
 
 	.portrait {
-		width: min(100%, 22rem);
-		height: auto;
-		max-height: 32rem;
-		margin: 0 auto;
+		width: 100%;
+		height: 100%;
 		object-fit: contain;
 		aspect-ratio: 590 / 835;
-	}
-
-	.portrait-note {
-		margin-top: 1rem;
-		font-size: 1rem;
-		color: var(--color-text-soft);
-		text-align: center;
 	}
 
 	.section-heading {
@@ -249,8 +217,7 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 
 	.copy-card,
 	.feature-card,
-	.writing-item,
-	.elsewhere {
+	.writing-item {
 		padding: 1.25rem;
 		text-decoration: none;
 		color: inherit;
@@ -298,12 +265,7 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 		color: var(--color-text-soft);
 	}
 
-	.elsewhere {
-		gap: 1rem;
-	}
-
 	@media (min-width: 860px) {
-		.home-intro,
 		.section-heading-inline,
 		.two-column-copy,
 		.feature-grid {
@@ -314,16 +276,21 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 			justify-self: end;
 			align-self: end;
 		}
-	}
 
-	@media (max-width: 859px) {
-		.intro-copy,
-		.portrait-card {
-			height: auto;
+		.intro-heading {
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 2rem;
 		}
 
-		.portrait {
-			max-height: 28rem;
+		.portrait-wrap {
+			width: 9.5rem;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.portrait-wrap {
+			width: 6rem;
+			justify-self: start;
 		}
 	}
 </style>

@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-const { title, url, icon, label } = Astro.props;
+const { title, url, icon, label, description } = Astro.props;
 import emailIcon from '../assets/images/email.png';
 import githubIcon from '../assets/images/github.png';
 import goodreadsIcon from '../assets/images/goodreads.png';
@@ -23,49 +23,53 @@ switch (icon) {
 }
 ---
 
-<a class="connect-link" href={url} target="_blank" rel="noopener noreferrer" title={title} data-track-social={icon}>
+<a
+	class="connect-link"
+	href={url}
+	target={url.startsWith('http') ? '_blank' : undefined}
+	rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
+	title={title}
+	data-track-social={icon}
+>
 	<span class="icon-wrap">
-		<Image src={iconSrc} class="icon" alt={title} />
+		<Image src={iconSrc} class="icon" alt="" />
 	</span>
-	<span class="label">{label}</span>
+	<span class="link-copy">
+		<span class="label">{label}</span>
+		<span class="description">{description}</span>
+	</span>
 </a>
-
-<script>
-	document.addEventListener('astro:page-load', () => {
-		document.querySelectorAll('[data-track-social]').forEach((link) => {
-			link.addEventListener('click', (e) => {
-				const platform = (e.currentTarget as HTMLElement).getAttribute('data-track-social');
-				const w = window as any;
-				if (typeof w.gtag !== 'undefined') {
-					w.gtag('event', 'social_click', {
-						platform: platform,
-						link_url: (e.currentTarget as HTMLAnchorElement).href
-					});
-				}
-			});
-		});
-	});
-</script>
 
 <style>
 	.connect-link {
-		display: inline-flex;
+		display: flex;
 		align-items: center;
 		gap: 0.7rem;
-		padding: 0.55rem 0.8rem;
-		border: 1px solid var(--color-line);
-		border-radius: 999px;
-		background: var(--color-panel);
+		padding: 0.85rem 0;
+		border-bottom: 1px solid color-mix(in srgb, var(--color-line) 65%, transparent 35%);
 		font-family: var(--font-sans);
-		font-size: 0.92rem;
-		font-weight: 700;
 		text-decoration: none;
 		color: var(--color-text);
 	}
 
 	.connect-link:hover {
-		background: var(--color-accent-soft);
-		color: var(--color-text);
+		color: var(--color-warm);
+	}
+
+	.link-copy {
+		display: grid;
+		gap: 0.1rem;
+	}
+
+	.label {
+		font-size: 0.95rem;
+		font-weight: 700;
+	}
+
+	.description {
+		font-family: var(--font-serif);
+		font-size: 0.9rem;
+		color: var(--color-text-soft);
 	}
 
 	.icon-wrap {

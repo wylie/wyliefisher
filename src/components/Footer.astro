@@ -5,18 +5,19 @@ import clones from '../assets/data/clones.js';
 const quotes = clones.clonesList;
 ---
 <footer class="site-footer">
+	<div class="footer-intro">
+		<p class="eyebrow">Keep in touch</p>
+		<h2>Thanks for stopping by.</h2>
+		<p>Email is best for a real conversation. You can also find my code, work history, and reading life in the places below.</p>
+	</div>
 	<div class="footer-grid">
-		<section>
-			<p class="eyebrow">Elsewhere</p>
-			<div class="connect">
-				<Connect url="mailto:wylie@wyliefisher.com" title="Email me!" icon="email" label="Email" />
-				<Connect url="https://github.com/wylie" title="More work on GitHub!" icon="github" label="GitHub" />
-				<Connect url="https://www.linkedin.com/in/wyliefisher/" title="Let's connect on Linkedin!" icon="linkedin" label="LinkedIn" />
-				<Connect url="https://www.goodreads.com/wyliefisher" title="Read with me on Goodreads!" icon="goodreads" label="Goodreads" />
-			</div>
-		</section>
+		<nav class="connect" aria-label="External links">
+			<Connect url="mailto:wylie@wyliefisher.com" title="Email Wylie" icon="email" label="Email" description="Say hello" />
+			<Connect url="https://github.com/wylie" title="Wylie on GitHub" icon="github" label="GitHub" description="Projects and code" />
+			<Connect url="https://www.linkedin.com/in/wyliefisher/" title="Wylie on LinkedIn" icon="linkedin" label="LinkedIn" description="Work and experience" />
+			<Connect url="https://www.goodreads.com/wyliefisher" title="Wylie on Goodreads" icon="goodreads" label="Goodreads" description="Books and reading" />
+		</nav>
 		<section class="footer-meta">
-			<p class="eyebrow">Small print</p>
 			<p>&copy; 2026 Wylie Fisher. Some independent work is done through Argon Collaborative LLC.</p>
 			<p class="quote" id="footer-quote"></p>
 		</section>
@@ -34,25 +35,61 @@ const quotes = clones.clonesList;
 		setRandomQuote();
 		document.addEventListener('astro:page-load', setRandomQuote);
 	</script>
+	<script>
+		function trackSocialLinks() {
+			document.querySelectorAll('[data-track-social]').forEach((link) => {
+				if ((link as HTMLElement).dataset.trackingBound) return;
+
+				link.addEventListener('click', (event) => {
+					const target = event.currentTarget as HTMLAnchorElement;
+					const w = window as any;
+					if (typeof w.gtag !== 'undefined') {
+						w.gtag('event', 'social_click', {
+							platform: target.dataset.trackSocial,
+							link_url: target.href
+						});
+					}
+				});
+
+				(link as HTMLElement).dataset.trackingBound = 'true';
+			});
+		}
+
+		document.addEventListener('astro:page-load', trackSocialLinks);
+		trackSocialLinks();
+	</script>
 </footer>
 
 <style>
 	.site-footer {
 		margin-top: 4rem;
-		padding-top: 1.5rem;
+		padding-top: 2rem;
 		border-top: 1px solid var(--color-line);
+	}
+
+	.footer-intro {
+		display: grid;
+		gap: 0.55rem;
+		max-width: 42rem;
+	}
+
+	.footer-intro p:last-child {
+		font-size: 1rem;
+		color: var(--color-text-soft);
 	}
 
 	.footer-grid {
 		display: grid;
-		gap: 2rem;
+		gap: 2.5rem;
+		margin-top: 1.5rem;
+		padding-top: 1.25rem;
+		border-top: 1px dashed var(--color-line);
 	}
 
 	.connect {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.85rem;
-		margin-top: 0.85rem;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0 1.5rem;
 	}
 
 	.footer-meta {
@@ -69,10 +106,20 @@ const quotes = clones.clonesList;
 		font-style: italic;
 	}
 
+	@media (max-width: 520px) {
+		.connect {
+			grid-template-columns: 1fr;
+		}
+	}
+
 	@media (min-width: 800px) {
 		.footer-grid {
-			grid-template-columns: 1.1fr 0.9fr;
-			align-items: start;
+			grid-template-columns: minmax(0, 1.5fr) minmax(15rem, 0.7fr);
+			align-items: end;
+		}
+
+		.footer-meta {
+			text-align: right;
 		}
 	}
 </style>
