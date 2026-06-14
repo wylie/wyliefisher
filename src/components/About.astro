@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import face from '../assets/images/portrait.png';
 
-const { featuredProjects = [], recentPosts = [] } = Astro.props;
+const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length } = Astro.props;
 ---
 
 <section class="home-intro">
@@ -92,21 +92,22 @@ const { featuredProjects = [], recentPosts = [] } = Astro.props;
 		<a href="/blog/" class="section-link">Visit the blog</a>
 	</div>
 	<div class="writing-list">
-		{recentPosts.map((post, index) => (
-			<a href={`/blog/${post.slug}/`} class="writing-item">
-				<div>
-					<p class="writing-number">#{recentPosts.length - index}</p>
-					<h3>{post.data.title ?? `Weeknote #${recentPosts.length - index}`}</h3>
-				</div>
-				<time datetime={post.data.pubDate.toISOString()}>
-					{post.data.pubDate.toLocaleDateString('en-us', {
-						year: 'numeric',
-						month: 'long',
-						day: 'numeric',
-					})}
-				</time>
-			</a>
-		))}
+		{recentPosts.map((post, index) => {
+			const postNumber = totalPosts - index;
+
+			return (
+				<a href={`/blog/${post.slug}/`} class="writing-item">
+					<h3>#{postNumber}</h3>
+					<time datetime={post.data.pubDate.toISOString()}>
+						{post.data.pubDate.toLocaleDateString('en-us', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric',
+						})}
+					</time>
+				</a>
+			);
+		})}
 	</div>
 </section>
 
@@ -146,7 +147,7 @@ const { featuredProjects = [], recentPosts = [] } = Astro.props;
 	.home-intro {
 		display: grid;
 		gap: 1.5rem;
-		align-items: center;
+		align-items: stretch;
 	}
 
 	.intro-copy,
@@ -164,6 +165,7 @@ const { featuredProjects = [], recentPosts = [] } = Astro.props;
 		padding: clamp(1.5rem, 4vw, 2.5rem);
 		display: grid;
 		gap: 1rem;
+		height: 100%;
 	}
 
 	.intro-links {
@@ -203,7 +205,11 @@ const { featuredProjects = [], recentPosts = [] } = Astro.props;
 	}
 
 	.portrait-card {
+		display: grid;
+		grid-template-rows: minmax(0, 1fr) auto;
+		align-items: center;
 		padding: 1.25rem;
+		height: 100%;
 		background:
 			linear-gradient(180deg, rgba(220, 229, 216, 0.5), transparent 55%),
 			color-mix(in srgb, var(--color-panel-strong) 70%, white 30%);
@@ -211,7 +217,11 @@ const { featuredProjects = [], recentPosts = [] } = Astro.props;
 
 	.portrait {
 		width: min(100%, 22rem);
+		height: auto;
+		max-height: 32rem;
 		margin: 0 auto;
+		object-fit: contain;
+		aspect-ratio: 590 / 835;
 	}
 
 	.portrait-note {
@@ -256,8 +266,7 @@ const { featuredProjects = [], recentPosts = [] } = Astro.props;
 		border-color: var(--color-line-strong);
 	}
 
-	.feature-meta,
-	.writing-number {
+	.feature-meta {
 		font-family: var(--font-sans);
 		font-size: 0.8rem;
 		font-weight: 700;
@@ -266,9 +275,12 @@ const { featuredProjects = [], recentPosts = [] } = Astro.props;
 		color: var(--color-text-soft);
 	}
 
-	.feature-card h3,
-	.writing-item h3 {
+	.feature-card h3 {
 		margin-top: 0.5rem;
+	}
+
+	.writing-item h3 {
+		font-size: clamp(1.5rem, 3vw, 2rem);
 	}
 
 	.writing-item {
@@ -301,6 +313,17 @@ const { featuredProjects = [], recentPosts = [] } = Astro.props;
 		.section-heading-inline > .section-link {
 			justify-self: end;
 			align-self: end;
+		}
+	}
+
+	@media (max-width: 859px) {
+		.intro-copy,
+		.portrait-card {
+			height: auto;
+		}
+
+		.portrait {
+			max-height: 28rem;
 		}
 	}
 </style>

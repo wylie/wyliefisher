@@ -8,7 +8,12 @@ const projects = (await getCollection('project')).sort(
 	(a, b) => a.data.order - b.data.order,
 );
 const posts = getPublishedPosts(await getCollection('blog'));
+const recentPosts = posts.slice(0, 4);
 ---
 <Layout pageTitle="Ahoy">
-	<About featuredProjects={projects.slice(0, 4)} recentPosts={posts.slice(0, 4)} />
+	<About
+		featuredProjects={projects.slice(0, 4)}
+		recentPosts={recentPosts}
+		totalPosts={posts.length}
+	/>
 </Layout>

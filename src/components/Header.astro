@@ -42,16 +42,19 @@
 		color: var(--color-text-soft);
 	}
 
-	@media (min-width: 900px) {
+	@media (min-width: 1024px) {
 		.site-header {
-			grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+			grid-template-columns: minmax(0, 1fr) auto;
 			align-items: end;
 			gap: 2rem;
 		}
 
 		.site-note {
 			justify-self: end;
+			max-width: none;
+			font-size: 0.95rem;
 			text-align: right;
+			white-space: nowrap;
 		}
 	}
 </style>
