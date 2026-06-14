@@ -131,7 +131,7 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 	}
 
 	.intro-heading {
-		display: flow-root;
+		display: flex;
 		gap: 1.25rem;
 		align-items: center;
 	}
@@ -179,7 +179,7 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 
 	.portrait {
 		float: right;
-		width: 5rem;
+		width: 7rem;
 		height: auto;
 		margin: 0 0 0.75rem 1rem;
 		object-fit: contain;
@@ -272,14 +272,13 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 
 		.portrait {
 			float: none;
-			width: 9.5rem;
 			margin: 0;
 		}
 	}
 
 	@media (max-width: 560px) {
 		.portrait {
-			width: 4.5rem;
+			margin: 0;
 		}
 	}
 </style>
