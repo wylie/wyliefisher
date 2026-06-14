@@ -1,6 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import DetailNav from '../../components/DetailNav.astro';
 import { getPublishedPosts } from '../../lib/blog';
 
 export async function getStaticPaths() {
@@ -29,39 +30,23 @@ const olderPost = currentIndex !== -1 && currentIndex < allPosts.length - 1
 
 
 <Layout pageNumber={number} pubDate={post.data.pubDate} heroImage={post.data.heroImage}>
-	<nav slot="aboveHero" class="post-nav-row post-nav-row-top" aria-label="Blog post navigation">
-		{newerPost ? (
-			<a href={`/blog/${newerPost.slug}/`} class="post-nav-link post-nav-left">&larr; newer</a>
-		) : (
-			<span class="post-nav-spacer" aria-hidden="true"></span>
-		)}
-		<a href="/blog/" class="post-nav-link post-nav-center">blog index</a>
-		{olderPost ? (
-			<a href={`/blog/${olderPost.slug}/`} class="post-nav-link post-nav-right">older &rarr;</a>
-		) : (
-			<span class="post-nav-spacer" aria-hidden="true"></span>
-		)}
-	</nav>
+	<DetailNav
+		slot="aboveHero"
+		newer={newerPost && { href: `/blog/${newerPost.slug}/` }}
+		older={olderPost && { href: `/blog/${olderPost.slug}/` }}
+		indexHref="/blog/"
+		indexLabel="Blog index"
+		ariaLabel="Blog post navigation"
+	/>
 
 	<Content />
 
-	<nav class="post-nav-row post-nav-row-bottom" aria-label="Blog post navigation">
-		{newerPost ? (
-			<a href={`/blog/${newerPost.slug}/`} class="post-nav-link post-nav-left">&larr; newer</a>
-		) : (
-			<span class="post-nav-spacer" aria-hidden="true"></span>
-		)}
-		<a href="/blog/" class="post-nav-link post-nav-center">blog index</a>
-		{olderPost ? (
-			<a href={`/blog/${olderPost.slug}/`} class="post-nav-link post-nav-right">older &rarr;</a>
-		) : (
-			<span class="post-nav-spacer" aria-hidden="true"></span>
-		)}
-	</nav>
+	<DetailNav
+		newer={newerPost && { href: `/blog/${newerPost.slug}/` }}
+		older={olderPost && { href: `/blog/${olderPost.slug}/` }}
+		indexHref="/blog/"
+		indexLabel="Blog index"
+		position="bottom"
+		ariaLabel="Blog post navigation"
+	/>
 </Layout>
-
-<style>
-	.post-nav-row-bottom {
-		margin-top: 1.5rem;
-	}
-</style>

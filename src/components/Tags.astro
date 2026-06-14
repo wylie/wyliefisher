@@ -1,7 +1,7 @@
 ---
-const { tags } = Astro.props;
+const { tags, compact = false } = Astro.props;
 ---
-<p class="tags" aria-label="Tags">
+<p class:list={['tags', { compact }]} aria-label="Technologies">
 	{tags.map((tag) => (
 		<span class="tag">{tag}</span>
 	))}
@@ -13,6 +13,10 @@ const { tags } = Astro.props;
 		flex-wrap: wrap;
 		gap: 0.55rem;
 		margin-top: 1rem;
+	}
+
+	.tags.compact {
+		margin-top: 0;
 	}
 
 	.tag {

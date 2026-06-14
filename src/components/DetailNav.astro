@@ -1,0 +1,125 @@
+---
+const {
+	newer,
+	older,
+	indexHref,
+	indexLabel,
+	position = 'top',
+	ariaLabel,
+} = Astro.props;
+---
+
+<nav
+	class:list={[
+		'detail-nav',
+		`detail-nav-${position}`,
+		{ 'has-newer': Boolean(newer), 'has-older': Boolean(older) },
+	]}
+	aria-label={ariaLabel}
+>
+	{newer ? (
+		<a href={newer.href} class="detail-nav-link detail-nav-newer">
+			<span aria-hidden="true">&larr;</span> Newer
+		</a>
+	) : (
+		<span class="detail-nav-spacer detail-nav-newer" aria-hidden="true"></span>
+	)}
+	<a href={indexHref} class="detail-nav-link detail-nav-index">{indexLabel}</a>
+	{older ? (
+		<a href={older.href} class="detail-nav-link detail-nav-older">
+			Older <span aria-hidden="true">&rarr;</span>
+		</a>
+	) : (
+		<span class="detail-nav-spacer detail-nav-older" aria-hidden="true"></span>
+	)}
+</nav>
+
+<style>
+	.detail-nav {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+		grid-template-areas: "newer index older";
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.75rem 0;
+		border-top: 1px solid var(--color-line);
+		border-bottom: 1px solid var(--color-line);
+	}
+
+	.detail-nav-bottom {
+		margin-top: 0.5rem;
+		border-bottom: 0;
+	}
+
+	.detail-nav-top {
+		margin-bottom: -0.25rem;
+	}
+
+	.detail-nav-link {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.75rem;
+		width: fit-content;
+		padding: 0.55rem 0.8rem;
+		border-radius: 999px;
+		font-family: var(--font-sans);
+		font-size: 0.9rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.detail-nav-newer {
+		grid-area: newer;
+		justify-self: start;
+		gap: 0.3rem;
+	}
+
+	.detail-nav-index {
+		grid-area: index;
+		justify-self: center;
+		background: var(--color-accent-soft);
+		color: var(--color-text);
+	}
+
+	.detail-nav-older {
+		grid-area: older;
+		justify-self: end;
+		gap: 0.3rem;
+		text-align: right;
+	}
+
+	.detail-nav-spacer {
+		min-height: 2.75rem;
+	}
+
+	@media (max-width: 600px) {
+		.detail-nav {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-template-areas:
+				"index index"
+				"newer older";
+			gap: 0.5rem;
+			padding: 0.65rem 0;
+		}
+
+		.detail-nav-link {
+			width: 100%;
+			justify-content: center;
+			border: 1px solid var(--color-line);
+			background: var(--color-panel);
+		}
+
+		.detail-nav-index {
+			background: var(--color-accent-soft);
+		}
+
+		.detail-nav-spacer {
+			display: none;
+		}
+
+		.detail-nav:not(.has-newer) .detail-nav-older,
+		.detail-nav:not(.has-older) .detail-nav-newer {
+			grid-column: 1 / -1;
+		}
+	}
+</style>

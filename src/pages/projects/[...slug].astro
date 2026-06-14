@@ -1,6 +1,8 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import DetailNav from '../../components/DetailNav.astro';
+import Tags from '../../components/Tags.astro';
 
 export async function getStaticPaths() {
 	const projects = await getCollection('project');
@@ -35,39 +37,29 @@ const olderProject = currentIndex !== -1 && currentIndex < allProjects.length - 
 					Visit site <span aria-hidden="true">&rarr;</span>
 				</a>
 			)}
-			<p>{post.data.tags.join(' · ')}</p>
+			<Tags tags={post.data.tags} compact={true} />
 		</div>
 	</section>
 
-	<nav slot="aboveHero" class="post-nav-row post-nav-row-top" aria-label="Project navigation">
-		{newerProject ? (
-			<a href={`/projects/${newerProject.slug}/`} class="post-nav-link post-nav-left">&larr; newer</a>
-		) : (
-			<span class="post-nav-spacer" aria-hidden="true"></span>
-		)}
-		<a href="/projects/" class="post-nav-link post-nav-center">project index</a>
-		{olderProject ? (
-			<a href={`/projects/${olderProject.slug}/`} class="post-nav-link post-nav-right">older &rarr;</a>
-		) : (
-			<span class="post-nav-spacer" aria-hidden="true"></span>
-		)}
-	</nav>
+	<DetailNav
+		slot="aboveHero"
+		newer={newerProject && { href: `/projects/${newerProject.slug}/` }}
+		older={olderProject && { href: `/projects/${olderProject.slug}/` }}
+		indexHref="/projects/"
+		indexLabel="Project index"
+		ariaLabel="Project navigation"
+	/>
 
 	<Content />
 
-	<nav class="post-nav-row post-nav-row-bottom" aria-label="Project navigation">
-		{newerProject ? (
-			<a href={`/projects/${newerProject.slug}/`} class="post-nav-link post-nav-left">&larr; newer</a>
-		) : (
-			<span class="post-nav-spacer" aria-hidden="true"></span>
-		)}
-		<a href="/projects/" class="post-nav-link post-nav-center">project index</a>
-		{olderProject ? (
-			<a href={`/projects/${olderProject.slug}/`} class="post-nav-link post-nav-right">older &rarr;</a>
-		) : (
-			<span class="post-nav-spacer" aria-hidden="true"></span>
-		)}
-	</nav>
+	<DetailNav
+		newer={newerProject && { href: `/projects/${newerProject.slug}/` }}
+		older={olderProject && { href: `/projects/${olderProject.slug}/` }}
+		indexHref="/projects/"
+		indexLabel="Project index"
+		position="bottom"
+		ariaLabel="Project navigation"
+	/>
 </Layout>
 
 <style>
@@ -76,8 +68,7 @@ const olderProject = currentIndex !== -1 && currentIndex < allProjects.length - 
 		gap: 0.85rem;
 	}
 
-	.project-hero p:last-child,
-	.project-meta p {
+	.project-hero > p:last-of-type {
 		color: var(--color-text-soft);
 	}
 

@@ -131,7 +131,7 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 	}
 
 	.intro-heading {
-		display: grid;
+		display: flow-root;
 		gap: 1.25rem;
 		align-items: center;
 	}
@@ -178,9 +178,10 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 	}
 
 	.portrait {
-		width: 8rem;
+		float: right;
+		width: 5rem;
 		height: auto;
-		justify-self: center;
+		margin: 0 0 0.75rem 1rem;
 		object-fit: contain;
 		aspect-ratio: 590 / 835;
 	}
@@ -264,19 +265,21 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 		}
 
 		.intro-heading {
+			display: grid;
 			grid-template-columns: minmax(0, 1fr) auto;
 			gap: 2rem;
 		}
 
 		.portrait {
+			float: none;
 			width: 9.5rem;
+			margin: 0;
 		}
 	}
 
 	@media (max-width: 560px) {
 		.portrait {
-			width: 6rem;
-			justify-self: start;
+			width: 4.5rem;
 		}
 	}
 </style>
