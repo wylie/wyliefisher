@@ -8,17 +8,17 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 <section class="home-intro">
 	<div class="intro-copy">
 		<div class="intro-heading">
-			<div>
-				<p class="eyebrow">Ahoy</p>
-				<h2>A thoughtful corner of the internet for work, writing, and rebuilding a life with care.</h2>
-			</div>
-			<Image src={face} alt="Portrait illustration of Wylie Fisher" width={220} class="portrait" />
+			<p class="eyebrow">Ahoy</p>
+			<h2>A thoughtful corner of the internet for work, writing, and rebuilding a life with care.</h2>
 		</div>
-		<p>
-			I'm Wylie: a dad, partner, longtime front-end developer, and systems-minded generalist who cares
-			about clarity, accessibility, useful tools, and the everyday creativity found in gardens,
-			campfires, books, and making things by hand.
-		</p>
+		<div class="intro-lead">
+			<Image src={face} alt="Portrait illustration of Wylie Fisher" width={220} class="portrait" />
+			<p>
+				I'm Wylie: a dad, partner, longtime front-end developer, and systems-minded generalist who cares
+				about clarity, accessibility, useful tools, and the everyday creativity found in gardens,
+				campfires, books, and making things by hand.
+			</p>
+		</div>
 		<p>
 			These days I’m focused on home, family, small web projects, and figuring out what an honest next
 			chapter looks like. This site is my home base for that work.
@@ -131,14 +131,12 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 	}
 
 	.intro-heading {
-		display: flex;
-		gap: 1.25rem;
-		align-items: center;
-	}
-
-	.intro-heading > div:first-child {
 		display: grid;
 		gap: 0.45rem;
+	}
+
+	.intro-lead {
+		display: flow-root;
 	}
 
 	.intro-links {
@@ -179,9 +177,9 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 
 	.portrait {
 		float: right;
-		width: 7rem;
+		width: 5rem;
 		height: auto;
-		margin: 0 0 0.75rem 1rem;
+		margin: 0 0 0.5rem 1rem;
 		object-fit: contain;
 		aspect-ratio: 590 / 835;
 	}
@@ -253,6 +251,10 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 	}
 
 	@media (min-width: 860px) {
+		.intro-copy {
+			grid-template-columns: minmax(0, 1fr) auto;
+		}
+
 		.section-heading-inline,
 		.two-column-copy,
 		.feature-grid {
@@ -265,20 +267,45 @@ const { featuredProjects = [], recentPosts = [], totalPosts = recentPosts.length
 		}
 
 		.intro-heading {
-			display: grid;
-			grid-template-columns: minmax(0, 1fr) auto;
-			gap: 2rem;
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		.intro-lead {
+			display: contents;
+		}
+
+		.intro-lead p,
+		.intro-copy > p,
+		.intro-links {
+			grid-column: 1 / -1;
 		}
 
 		.portrait {
 			float: none;
+			grid-column: 2;
+			grid-row: 1;
+			align-self: center;
+			width: 7rem;
 			margin: 0;
 		}
 	}
 
 	@media (max-width: 560px) {
 		.portrait {
-			margin: 0;
+			width: 4.5rem;
+			margin-left: 0.75rem;
+		}
+	}
+
+	@media (max-width: 360px) {
+		.intro-copy {
+			padding: 1.25rem;
+		}
+
+		.intro-links a {
+			width: 100%;
+			justify-content: center;
 		}
 	}
 </style>
