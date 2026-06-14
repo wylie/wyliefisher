@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-const { title, url, icon } = Astro.props;
+const { title, url, icon, label } = Astro.props;
 import emailIcon from '../assets/images/email.png';
 import githubIcon from '../assets/images/github.png';
 import goodreadsIcon from '../assets/images/goodreads.png';
@@ -8,52 +8,77 @@ import linkedinIcon from '../assets/images/linkedin.png';
 
 let iconSrc;
 switch (icon) {
-  case 'email':
-    iconSrc = emailIcon;
-    break;
-  case 'github':
-    iconSrc = githubIcon;
-    break;
-  case 'goodreads':
-    iconSrc = goodreadsIcon;
-    break;
-  case 'linkedin':
-    iconSrc = linkedinIcon;
-    break;
+	case 'email':
+		iconSrc = emailIcon;
+		break;
+	case 'github':
+		iconSrc = githubIcon;
+		break;
+	case 'goodreads':
+		iconSrc = goodreadsIcon;
+		break;
+	case 'linkedin':
+		iconSrc = linkedinIcon;
+		break;
 }
 ---
 
 <a class="connect-link" href={url} target="_blank" rel="noopener noreferrer" title={title} data-track-social={icon}>
-  <Image src={iconSrc} class="icon" alt={title} />
+	<span class="icon-wrap">
+		<Image src={iconSrc} class="icon" alt={title} />
+	</span>
+	<span class="label">{label}</span>
 </a>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    document.querySelectorAll('[data-track-social]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const platform = (e.currentTarget as HTMLElement).getAttribute('data-track-social');
-        const w = window as any;
-        if (typeof w.gtag !== 'undefined') {
-          w.gtag('event', 'social_click', {
-            platform: platform,
-            link_url: (e.currentTarget as HTMLAnchorElement).href
-          });
-        }
-      });
-    });
-  });
+	document.addEventListener('astro:page-load', () => {
+		document.querySelectorAll('[data-track-social]').forEach((link) => {
+			link.addEventListener('click', (e) => {
+				const platform = (e.currentTarget as HTMLElement).getAttribute('data-track-social');
+				const w = window as any;
+				if (typeof w.gtag !== 'undefined') {
+					w.gtag('event', 'social_click', {
+						platform: platform,
+						link_url: (e.currentTarget as HTMLAnchorElement).href
+					});
+				}
+			});
+		});
+	});
 </script>
 
 <style>
-  .connect-link {
-    line-height: 0;
-  }
-  .icon {
-    width: 2.25rem;
-    height: 2.25rem;
-    filter: brightness(170%) saturate(100%) invert(23%) sepia(20%) saturate(450%) hue-rotate(165deg) brightness(90%) contrast(100%);
-  }
-  .icon:hover {
-    transform: scale(1.1);
-  }
+	.connect-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.7rem;
+		padding: 0.55rem 0.8rem;
+		border: 1px solid var(--color-line);
+		border-radius: 999px;
+		background: var(--color-panel);
+		font-family: var(--font-sans);
+		font-size: 0.92rem;
+		font-weight: 700;
+		text-decoration: none;
+		color: var(--color-text);
+	}
+
+	.connect-link:hover {
+		background: var(--color-accent-soft);
+		color: var(--color-text);
+	}
+
+	.icon-wrap {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.6rem;
+		height: 1.6rem;
+	}
+
+	.icon {
+		width: 1.4rem;
+		height: 1.4rem;
+		filter: brightness(70%) saturate(70%) sepia(15%) hue-rotate(45deg);
+	}
 </style>

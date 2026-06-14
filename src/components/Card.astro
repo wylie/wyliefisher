@@ -1,138 +1,125 @@
 ---
 import Tags from './Tags.astro';
 const { title, url, link, description, date, tags } = Astro.props;
+const isBlog = Boolean(date);
 ---
 
-<a href={link} class="link" data-track-card="{title}" data-card-type={date ? 'blog' : 'project'}>
-  <article class="card">
-    <div class="header">
-      <h3 class="title">
-        {title}
-      </h3>
-      <p class="subheader">
-        {date ?
-          new Date(date).toLocaleDateString("en-us", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-          })
-        :
-          <span>{url}</span>
-          <span class="material-symbols-outlined">open_in_new</span>
-        }
-      </p>
-    </div>
-    <p class="description">
-      {description}...<span class="readon">read more &rarr;</span>
-    </p>
-    <script>
-      document.addEventListener('astro:page-load', () => {
-        const w = window as any;
-        // Track card title clicks
-        document.querySelectorAll('[data-track-card]').forEach(link => {
-          link.addEventListener('click', (e) => {
-            const title = (e.currentTarget as HTMLElement).getAttribute('data-track-card');
-            const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
-            if (typeof w.gtag !== 'undefined') {
-              w.gtag('event', 'card_click', {
-                content_type: type,
-                item_id: title,
-                link_url: (e.currentTarget as HTMLAnchorElement).href
-              });
-            }
-          });
-        });
-        
-        // Track "read more" clicks
-        document.querySelectorAll('[data-track-readmore]').forEach(link => {
-          link.addEventListener('click', (e) => {
-            const title = (e.currentTarget as HTMLElement).getAttribute('data-track-readmore');
-            const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
-            if (typeof w.gtag !== 'undefined') {
-              w.gtag('event', 'read_more_click', {
-                content_type: type,
-                item_id: title,
-                link_url: (e.currentTarget as HTMLAnchorElement).href
-              });
-            }
-          });
-        });
-      });
-    </script>
-    {tags?.length ? <Tags tags={tags} /> : null}
-  </article>
+<a href={link} class="card-link" data-track-card={title} data-card-type={isBlog ? 'blog' : 'project'}>
+	<article class="card">
+		<div class="card-top">
+			<p class="card-meta">
+				{isBlog ? (
+					<time datetime={new Date(date).toISOString()}>
+						{new Date(date).toLocaleDateString('en-us', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric',
+						})}
+					</time>
+				) : (
+					<>
+						<span>Project</span>
+						{url && <span class="project-url">{url.replace(/^https?:\/\//, '').replace(/\/$/, '')}</span>}
+					</>
+				)}
+			</p>
+			<h3 class="card-title">{title}</h3>
+		</div>
+		<p class="card-description">
+			{description}...
+		</p>
+		<div class="card-bottom">
+			<p class="card-cta">{isBlog ? 'Read entry' : 'View case study'} <span aria-hidden="true">&rarr;</span></p>
+			{tags?.length ? <Tags tags={tags} /> : null}
+		</div>
+	</article>
 </a>
 
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const w = window as any;
+		document.querySelectorAll('[data-track-card]').forEach((link) => {
+			link.addEventListener('click', (e) => {
+				const title = (e.currentTarget as HTMLElement).getAttribute('data-track-card');
+				const type = (e.currentTarget as HTMLElement).getAttribute('data-card-type');
+				if (typeof w.gtag !== 'undefined') {
+					w.gtag('event', 'card_click', {
+						content_type: type,
+						item_id: title,
+						link_url: (e.currentTarget as HTMLAnchorElement).href
+					});
+				}
+			});
+		});
+	});
+</script>
+
 <style>
-  .card {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    padding: 1rem;
-    background: var(--background-contrast-color);
-    transition: all .25s;
-    position: relative;
-    border-radius: 6px;
-    bottom: 0;
-  }
-  .card::before {
-    content: "";
-    border-radius: 0 0 0 6px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-style: solid;
-    border-width: 20px;
-    border-bottom-color: var(--theme-color-2a);
-    border-top-color: var(--theme-color-1);
-    border-left-color: var(--theme-color-2a);
-    border-right-color: var(--theme-color-1);
-    transform-origin: top right;
-    transform: scale(1);
-    opacity: 1;
-    transition: transform .25s ease, opacity .25s ease;
-  }
-  .card:hover {
-    bottom: 6px;
-  }
-  .card:hover::before {
-    transform: scale(0);
-    opacity: 0;
-  }
-  .header {
-    margin-bottom: 1rem;
-    padding-bottom: .5rem;
-    border-bottom: 5px solid var(--background-color);
-  }
-  .title {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 30px);
-  }
-  .subheader {
-    margin-top: .5rem;
-    font-weight: normal;
-    font-size: 12px;
-    font-style: italic;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: .25rem;
-  }
-  .material-symbols-outlined {
-    font-family: 'Material Symbols Outlined';
-    font-size: 1rem;
-  }
-  .link {
-    text-decoration: none;
-    display: flex;
-  }
-  .description {
-    flex: 1 1 100%;
-    font-size: 1rem;
-  }
-  .readon {
-    display: block;
-    font-weight: bold;
-    white-space: nowrap;
-  }
+	.card-link {
+		display: flex;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.card {
+		display: grid;
+		grid-template-rows: auto 1fr auto;
+		gap: 1rem;
+		width: 100%;
+		padding: 1.35rem;
+		border: 1px solid var(--color-line);
+		border-radius: var(--radius-md);
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.35)),
+			var(--color-panel);
+		box-shadow: 0 12px 30px rgba(35, 50, 42, 0.05);
+		transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+	}
+
+	.card-link:hover .card,
+	.card-link:focus-visible .card {
+		transform: translateY(-4px);
+		box-shadow: 0 18px 34px rgba(35, 50, 42, 0.1);
+		border-color: var(--color-line-strong);
+	}
+
+	.card-top,
+	.card-bottom {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.card-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem;
+		font-family: var(--font-sans);
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--color-text-soft);
+	}
+
+	.project-url {
+		text-transform: none;
+		letter-spacing: 0;
+	}
+
+	.card-title {
+		max-width: 15ch;
+	}
+
+	.card-description {
+		font-size: 1rem;
+		line-height: 1.65;
+		color: var(--color-text-soft);
+	}
+
+	.card-cta {
+		font-family: var(--font-sans);
+		font-size: 0.92rem;
+		font-weight: 700;
+		color: var(--color-accent);
+	}
 </style>

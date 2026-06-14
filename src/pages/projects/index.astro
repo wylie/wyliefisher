@@ -2,14 +2,20 @@
 import Layout from '../../layouts/Layout.astro';
 import DataGrid from '../../components/DataGrid.astro';
 
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content';
 
-const posts = (await getCollection("project")).sort(
-  (a, b) => a.data.order - b.data.order,
+const posts = (await getCollection('project')).sort(
+	(a, b) => a.data.order - b.data.order,
 );
 ---
-<Layout>
-  <h2>Work and Projects</h2>
-  <p>A collection of my recent work and personal projects, showcasing skills across various technologies.</p>
-  <DataGrid posts={posts} useNumberTitles={false} />
+<Layout pageTitle="Projects">
+	<section class="page-intro">
+		<p class="eyebrow">Projects</p>
+		<h2>Small products, experiments, and useful things made with care.</h2>
+		<p>
+			A mix of personal tools and client-style work across frontend development, product thinking, and
+			practical problem solving.
+		</p>
+	</section>
+	<DataGrid posts={posts} useNumberTitles={false} />
 </Layout>

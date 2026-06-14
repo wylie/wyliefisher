@@ -9,7 +9,7 @@ import { getImage } from 'astro:assets';
 import { ClientRouter } from 'astro:transitions';
 
 const { title, pubDate, heroImage, pageTitle, pageNumber, showBack = false } = Astro.props;
-const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, height: 650 }) : null;
+const heroImageData = heroImage ? await getImage({ src: heroImage, width: 1400, height: 900 }) : null;
 ---
 <!doctype html>
 <html lang="en" transition:name="root" transition:animate="none">
@@ -18,71 +18,74 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 		<ClientRouter />
 	</head>
 	<body>
-		<div class="layout">
-			<div>
+		<div class="page-shell">
+			<div class="page-frame">
 				<Header />
 				<Nav />
-			</div>
-			<main transition:animate="fade">
-						{typeof pageNumber === 'number' ? (
-							<article>
-								{showBack && <a href="javascript:history.back()" class="back">&larr; back</a>}
-								<slot name="aboveHero" />
-								<header>
-									{/* <h2 class="title">
-										#{pageNumber}
-									</h2> */}
-									{pubDate && (
-										<div class="date">
-											{pubDate.toLocaleDateString("en-us", {
-												year: "numeric",
-												month: "short",
-												day: "numeric",
+				<main id="main-content" transition:animate="fade">
+					{typeof pageNumber === 'number' ? (
+						<article class="entry">
+							{showBack && <a href="javascript:history.back()" class="back-link">&larr; Back</a>}
+							<slot name="aboveHero" />
+							<header class="entry-header">
+								<p class="entry-kicker">Weeknote #{pageNumber}</p>
+								{pubDate && (
+									<p class="entry-date">
+										<time datetime={pubDate.toISOString()}>
+											{pubDate.toLocaleDateString('en-us', {
+												year: 'numeric',
+												month: 'long',
+												day: 'numeric',
 											})}
-										</div>
-									)}
-								</header>
-								{heroImageData && (
-									<div class="hero-image">
-												<img src={heroImageData.src} alt="" />
-									</div>
+										</time>
+									</p>
 								)}
-								<div class="prose">
-									<slot />
+							</header>
+							{heroImageData && (
+								<div class="hero-image">
+									<img src={heroImageData.src} alt="" loading="eager" />
 								</div>
-							</article>
-						) : (
-							<>
-								{showBack && <a href="javascript:history.back()" class="back">&larr; back</a>}
-								<slot name="aboveHero" />
-								{heroImageData && (
-									<div class="hero-image">
-										<img src={heroImageData.src} alt="" />
-									</div>
-								)}
+							)}
+							<div class="prose">
 								<slot />
-							</>
-						)}
-			</main>
-			<Footer />
+							</div>
+						</article>
+					) : (
+						<>
+							{showBack && <a href="javascript:history.back()" class="back-link">&larr; Back</a>}
+							<slot name="aboveHero" />
+							{heroImageData && (
+								<div class="hero-image hero-image-wide">
+									<img src={heroImageData.src} alt="" loading="eager" />
+								</div>
+							)}
+							<slot />
+						</>
+					)}
+				</main>
+				<Footer />
+			</div>
 		</div>
 		<CookieConsent />
 		<script type="module">
-			const t=document.title;document.body.removeAttribute("nojs");document.addEventListener("visibilitychange",()=>{document.hidden?document.title="Wait... come back!":document.title=t});
+			const t = document.title;
+			document.body.removeAttribute('nojs');
+			document.addEventListener('visibilitychange', () => {
+				document.title = document.hidden ? 'Wait... come back!' : t;
+			});
 		</script>
 		<script type="module">
-			// Scroll depth tracking
 			let scrollDepths = [25, 50, 75, 100];
 			let trackedDepths = new Set();
 			const w = window;
-			
+
 			function trackScrollDepth() {
 				const windowHeight = window.innerHeight;
 				const documentHeight = document.documentElement.scrollHeight;
 				const scrollTop = window.scrollY;
 				const scrollPercent = Math.round((scrollTop / (documentHeight - windowHeight)) * 100);
-				
-				scrollDepths.forEach(depth => {
+
+				scrollDepths.forEach((depth) => {
 					if (scrollPercent >= depth && !trackedDepths.has(depth)) {
 						trackedDepths.add(depth);
 						if (typeof w.gtag !== 'undefined') {
@@ -94,15 +97,13 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 					}
 				});
 			}
-			
-			// Track outbound links (external links)
+
 			function trackOutboundLinks() {
-				document.querySelectorAll('a[href^="http"]').forEach(link => {
+				document.querySelectorAll('a[href^="http"]').forEach((link) => {
 					const url = link.href;
-					// Only track if it's not your own domain
 					if (!url.includes('wyliefisher.com') && !link.hasAttribute('data-tracked')) {
 						link.setAttribute('data-tracked', 'true');
-						link.addEventListener('click', (e) => {
+						link.addEventListener('click', () => {
 							if (typeof w.gtag !== 'undefined') {
 								w.gtag('event', 'outbound_click', {
 									link_url: url,
@@ -113,15 +114,13 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 					}
 				});
 			}
-			
-			// Initialize on page load
+
 			document.addEventListener('astro:page-load', () => {
 				trackedDepths.clear();
 				window.addEventListener('scroll', trackScrollDepth, { passive: true });
 				trackOutboundLinks();
 			});
-			
-			// Initial setup
+
 			window.addEventListener('scroll', trackScrollDepth, { passive: true });
 			trackOutboundLinks();
 		</script>
@@ -130,176 +129,366 @@ const heroImageData = heroImage ? await getImage({ src: heroImage, width: 650, h
 
 <style is:global>
 	:root {
-		--theme-color-1: #EED595;
-		--theme-color-2: #F6B179;
-		--theme-color-2a: #f3a25f;
-		--theme-color-3: #264653;
-		
-		--background-color: var(--theme-color-1);
-		--background-contrast-color: var(--theme-color-2);
-		--border-color: var(--theme-color-2);
-		--text-color: var(--theme-color-3);
-		--text-color-link: var(--theme-color-3);
-		--text-color-link-hover: var(--theme-color-3);
-		--fill-color: var(--theme-color-3);
-		
-		--fontSize-h1: 3rem;
-		--fontSize-h2: 1.5rem;
-		--fontSize-h3: 1.25rem;
-		--fontSize-h4: 1rem;
+		--color-bg: #f6f1e8;
+		--color-panel: #fbf7f1;
+		--color-panel-strong: #efe4d3;
+		--color-line: #c7b49a;
+		--color-line-strong: #9f8668;
+		--color-text: #23322a;
+		--color-text-soft: #5b675e;
+		--color-accent: #3f5a47;
+		--color-accent-soft: #dce5d8;
+		--color-warm: #825d3f;
+		--shadow-soft: 0 18px 42px rgba(35, 50, 42, 0.08);
+		--radius-sm: 0.75rem;
+		--radius-md: 1.2rem;
+		--radius-lg: 1.75rem;
+		--space-1: 0.5rem;
+		--space-2: 0.75rem;
+		--space-3: 1rem;
+		--space-4: 1.5rem;
+		--space-5: 2rem;
+		--space-6: 3rem;
+		--space-7: 4.5rem;
+		--max-page: 74rem;
+		--max-prose: 43rem;
+		--font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+		--font-sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+		--font-mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", monospace;
+		--fontSize-h1: clamp(2.6rem, 6vw, 4.9rem);
+		--fontSize-h2: clamp(1.8rem, 3vw, 2.5rem);
+		--fontSize-h3: clamp(1.25rem, 2.2vw, 1.7rem);
+		--fontSize-h4: 1.05rem;
 		--fontSize-primary: 1rem;
-		--fontSize-secondary: .875rem;
-		--fontSize-body: 1.25rem;
-		--gap: 2rem;
+		--fontSize-secondary: 0.92rem;
+		--fontSize-body: clamp(1.08rem, 1rem + 0.28vw, 1.22rem);
 	}
-	* {
+
+	*,
+	*::before,
+	*::after {
 		box-sizing: border-box;
-		font-size: 16px;
 	}
-	html,
+
+	html {
+		scroll-behavior: smooth;
+		background:
+			radial-gradient(circle at top left, rgba(220, 229, 216, 0.85), transparent 28rem),
+			linear-gradient(180deg, #f7f3ec 0%, var(--color-bg) 40%, #f3ede2 100%);
+	}
+
 	body {
 		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-	body {
-		display: grid;
-		background-color: var(--theme-color-1);
-		margin: 0;
-		font-family: Helvetica, sans-serif;
+		color: var(--color-text);
+		font-family: var(--font-serif);
+		font-size: var(--fontSize-primary);
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		color: var(--text-color);
-		font-size: var(--fontSize-primary);
 	}
-	h1, h2, h3, p {
+
+	img {
+		display: block;
+		max-width: 100%;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	p,
+	ul,
+	ol,
+	blockquote {
 		margin: 0;
 	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: var(--font-sans);
+		letter-spacing: -0.03em;
+		line-height: 1.05;
+		text-wrap: balance;
+	}
+
 	h1 {
 		font-size: var(--fontSize-h1);
-		white-space: nowrap;
 	}
+
 	h2 {
 		font-size: var(--fontSize-h2);
 	}
+
 	h3 {
 		font-size: var(--fontSize-h3);
 	}
+
 	h4 {
 		font-size: var(--fontSize-h4);
 	}
+
 	p,
-	li,
-	strong,
-	em {
+	li {
 		font-size: var(--fontSize-body);
-		line-height: 1.5;
-	}
-	h3 + ul,
-	p + ul {
-		margin-top: 1rem;
-		margin-left: 1.5rem;
-	}
-	ul {
-		margin: 0;
-		padding: 0;
-	}
-	a {
-		color: var(--text-color-link);
-		font-size: inherit;
-	}
-	a:hover {
-		color: var(--text-color-link-hoverhover);
-	}
-	html, body {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		overflow: auto;
-	}
-	main {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
+		line-height: 1.72;
+		color: var(--color-text);
 	}
 
-	/* CONTENT POSTS */
-	.back {
-		margin: -.5rem 0 0.5rem;
-		display: inline-block;
+	ul,
+	ol {
+		padding-left: 1.35rem;
+	}
+
+	a {
+		color: var(--color-accent);
+		text-decoration-thickness: 0.08em;
+		text-underline-offset: 0.16em;
+	}
+
+	a:hover {
+		color: var(--color-warm);
+	}
+
+	a:focus-visible,
+	button:focus-visible {
+		outline: 3px solid var(--color-warm);
+		outline-offset: 3px;
+		border-radius: 0.35rem;
+	}
+
+	code,
+	pre,
+	kbd {
+		font-family: var(--font-mono);
+	}
+
+	.page-shell {
+		padding: clamp(1rem, 2vw, 1.5rem);
+	}
+
+	.page-frame {
+		max-width: var(--max-page);
+		margin: 0 auto;
+		padding: clamp(1rem, 3vw, 2rem);
+		background: color-mix(in srgb, var(--color-panel) 92%, white 8%);
+		border: 1px solid color-mix(in srgb, var(--color-line) 65%, white 35%);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-soft);
+	}
+
+	main {
+		display: grid;
+		gap: var(--space-6);
+		padding-top: var(--space-5);
+	}
+
+	section {
+		display: grid;
+		gap: var(--space-4);
+	}
+
+	.page-intro {
+		max-width: 44rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid var(--color-line);
+	}
+
+	.page-intro p:last-child {
+		color: var(--color-text-soft);
+	}
+
+	.eyebrow {
+		font-family: var(--font-sans);
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--color-text-soft);
+	}
+
+	.back-link {
+		display: inline-flex;
+		width: fit-content;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.45rem 0.75rem;
+		background: var(--color-accent-soft);
+		border-radius: 999px;
+		font-family: var(--font-sans);
+		font-size: 0.92rem;
+		font-weight: 700;
 		text-decoration: none;
-		font-weight: bold;
 	}
-	.back:hover {
-		text-decoration: underline;
+
+	.entry {
+		display: grid;
+		gap: var(--space-4);
 	}
-	.prose h3 {
-		border-bottom: 1px solid var(--border-color);
-		margin-top: 1.5rem;
+
+	.entry-header {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid var(--color-line);
 	}
-	.prose p:not(:first-child) {
-		margin-top: 1.5rem;
+
+	.entry-kicker,
+	.entry-date {
+		font-family: var(--font-sans);
+		font-size: 0.9rem;
+		font-weight: 700;
+		color: var(--color-text-soft);
 	}
-	.hero-image img {
-		max-width: 650px;
-		border-radius: 10px;
-		margin-bottom: 1rem;
+
+	.hero-image {
+		overflow: hidden;
+		border-radius: var(--radius-md);
+		border: 1px solid color-mix(in srgb, var(--color-line) 60%, white 40%);
+		background: var(--color-panel-strong);
+		box-shadow: var(--shadow-soft);
 	}
-	.prose table {
-		border: 1px solid black;
-		padding: 0;
-		border-collapse: collapse;
-		margin-top: 1rem;
-	}
-	.prose td,
-	.prose th {
-		border: 1px solid black;
-		padding: .25rem .75rem;
-	}
-	.prose pre {
-		width: 90vw;
-    max-width: 650px;
-		padding: 1rem;
-    border-radius: 10px;
-	}
+
 	.hero-image img {
 		width: 100%;
+		height: auto;
+		object-fit: cover;
 	}
-</style>
-<style>
-	.layout {
+
+	.hero-image-wide {
+		max-width: 100%;
+	}
+
+	.prose {
+		max-width: var(--max-prose);
+	}
+
+	.prose > * + * {
+		margin-top: 1.25rem;
+	}
+
+	.prose h2,
+	.prose h3,
+	.prose h4 {
+		margin-top: 2.5rem;
+	}
+
+	.prose h2 {
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--color-line);
+	}
+
+	.prose ul,
+	.prose ol {
 		display: grid;
-		grid-template-rows: auto 1fr auto;
-		row-gap: var(--gap);
-		width: 75%;
-		min-height: 100vh;
-		max-width: 650px;
+		gap: 0.65rem;
+	}
+
+	.prose blockquote {
+		padding: 1rem 1.25rem;
+		border-left: 4px solid var(--color-line-strong);
+		background: color-mix(in srgb, var(--color-panel-strong) 60%, white 40%);
+		border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+	}
+
+	.prose table {
+		width: 100%;
+		border-collapse: collapse;
+		margin-top: 1rem;
+		font-size: 1rem;
+	}
+
+	.prose th,
+	.prose td {
+		padding: 0.7rem 0.85rem;
+		border: 1px solid var(--color-line);
+		text-align: left;
+	}
+
+	.prose pre {
+		max-width: 100%;
+		padding: 1rem;
+		overflow-x: auto;
+		background: #1c231f;
+		color: #f4efe5;
+		border-radius: var(--radius-sm);
+	}
+
+	.post-nav-row {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		gap: 1rem;
+		padding: 1rem 0;
+		border-top: 1px solid var(--color-line);
+		border-bottom: 1px solid var(--color-line);
+	}
+
+	.post-nav-row-bottom {
+		border-bottom: 0;
+	}
+
+	.post-nav-link {
+		font-family: var(--font-sans);
+		font-size: 0.92rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.post-nav-left {
+		justify-self: start;
+	}
+
+	.post-nav-center {
 		justify-self: center;
-		transition: width .2s;
 	}
-	@media (max-width: 600px) {
-		.layout {
-			width: 90%;
+
+	.post-nav-right {
+		justify-self: end;
+		text-align: right;
+	}
+
+	.post-nav-spacer {
+		min-height: 1em;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
 		}
 	}
-	article {
-		border-bottom: 3px dashed var(--border-color);
-	}
-	header {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		margin: 1rem 0;
-	}
-	header .date {
-		font-size: 24px;
-	}
-	@media screen and (min-width: 768px) {
-		header {
-			flex-direction: row;
+
+	@media (max-width: 780px) {
+		.page-frame {
+			padding: 1rem;
+			border-radius: 1.25rem;
 		}
-		header .date {
-			margin-top: 0;
+
+		main {
+			padding-top: 1.5rem;
+			gap: 2.5rem;
+		}
+
+		.entry-header,
+		.post-nav-row {
+			grid-template-columns: 1fr;
+		}
+
+		.post-nav-left,
+		.post-nav-center,
+		.post-nav-right {
+			justify-self: start;
+			text-align: left;
 		}
 	}
 </style>

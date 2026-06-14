@@ -4,46 +4,75 @@ import clones from '../assets/data/clones.js';
 
 const quotes = clones.clonesList;
 ---
-<footer>
-  <section class="connect">
-    <Connect url="mailto:wylie@wyliefisher.com" title="Email me!" icon="email" />
-    <Connect url="https://github.com/wylie" title="More work on GitHub!" icon="github" />
-    <Connect url="https://www.linkedin.com/in/wyliefisher/" title="Let's connect on Linkedin!" icon="linkedin" />
-    <Connect url="https://www.goodreads.com/wyliefisher" title="Read with me on Goodreads!" icon="goodreads" />
-  </section>
-  <p class="quote" id="footer-quote"></p>
+<footer class="site-footer">
+	<div class="footer-grid">
+		<section>
+			<p class="eyebrow">Elsewhere</p>
+			<div class="connect">
+				<Connect url="mailto:wylie@wyliefisher.com" title="Email me!" icon="email" label="Email" />
+				<Connect url="https://github.com/wylie" title="More work on GitHub!" icon="github" label="GitHub" />
+				<Connect url="https://www.linkedin.com/in/wyliefisher/" title="Let's connect on Linkedin!" icon="linkedin" label="LinkedIn" />
+				<Connect url="https://www.goodreads.com/wyliefisher" title="Read with me on Goodreads!" icon="goodreads" label="Goodreads" />
+			</div>
+		</section>
+		<section class="footer-meta">
+			<p class="eyebrow">Small print</p>
+			<p>&copy; 2026 Wylie Fisher. Some independent work is done through Argon Collaborative LLC.</p>
+			<p class="quote" id="footer-quote"></p>
+		</section>
+	</div>
 
-  <script define:vars={{ quotes }}>
-    function setRandomQuote() {
-      const el = document.getElementById("footer-quote");
-      if (el && Array.isArray(quotes) && quotes.length) {
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        el.textContent = quotes[randomIndex];
-      }
-    }
-    
-    // Run on initial load
-    setRandomQuote();
-    
-    // Run on every view transition navigation
-    document.addEventListener('astro:page-load', setRandomQuote);
-  </script>
+	<script define:vars={{ quotes }}>
+		function setRandomQuote() {
+			const el = document.getElementById('footer-quote');
+			if (el && Array.isArray(quotes) && quotes.length) {
+				const randomIndex = Math.floor(Math.random() * quotes.length);
+				el.textContent = quotes[randomIndex];
+			}
+		}
+
+		setRandomQuote();
+		document.addEventListener('astro:page-load', setRandomQuote);
+	</script>
 </footer>
 
 <style>
-  footer {
-    margin-top: 2rem;
-  }
-  .connect {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding-bottom: 1rem;
-  }
-  .quote {
-    padding: 1rem 0;
-    border-top: 3px solid var(--border-color);
-    font-size: var(--fontSize-secondary);
-    font-style: italic;
-  }
+	.site-footer {
+		margin-top: 4rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--color-line);
+	}
+
+	.footer-grid {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.connect {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.85rem;
+		margin-top: 0.85rem;
+	}
+
+	.footer-meta {
+		display: grid;
+		gap: 0.65rem;
+	}
+
+	.footer-meta p {
+		font-size: 1rem;
+		color: var(--color-text-soft);
+	}
+
+	.quote {
+		font-style: italic;
+	}
+
+	@media (min-width: 800px) {
+		.footer-grid {
+			grid-template-columns: 1.1fr 0.9fr;
+			align-items: start;
+		}
+	}
 </style>

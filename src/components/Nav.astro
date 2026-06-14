@@ -1,56 +1,87 @@
 ---
 const currentPath = Astro.url.pathname;
-const { title } = Astro.props;
+
+const links = [
+	{ href: '/', label: 'Ahoy', active: currentPath === '/' },
+	{ href: '/projects/', label: 'Projects', active: currentPath.startsWith('/projects/') },
+	{ href: '/blog/', label: 'Blog', active: currentPath.startsWith('/blog/') },
+	{ href: '/resume/', label: 'Resume', active: currentPath.startsWith('/resume/') },
+];
 ---
-<nav>
-  {currentPath === '/' ? (
-    <span class="link inactive">Ahoy</span>
-  ) : (
-    <a href="/" class="link active" rel="noopener noreferrer" title={title}>Ahoy</a>
-  )}
-  {currentPath.startsWith('/projects/') ? (
-    <span class="link inactive">Projects</span>
-  ) : (
-    <a href="/projects/" class="link active" rel="noopener noreferrer" title={title}>Projects</a>
-  )}
-  {currentPath.startsWith('/blog/') ? (
-    <span class="link inactive">Blog</span>
-  ) : (
-    <a href="/blog/" class="link active" rel="noopener noreferrer" title={title}>Blog</a>
-  )}
-  {currentPath.startsWith('/resume/') ? (
-    <span class="link inactive">Resume</span>
-  ) : (
-    <a href="/resume/" class="link active" rel="noopener noreferrer" title={title}>Resume</a>
-  )}
-  <a href="https://github.com/wylie" class="link active gh" target="_blank" rel="noopener noreferrer" title={title}>GitHub</a>
+<nav class="site-nav" aria-label="Primary navigation">
+	<div class="nav-links">
+		{links.map((link) => (
+			<a
+				href={link.href}
+				class:list={['nav-link', { 'is-active': link.active }]}
+				aria-current={link.active ? 'page' : undefined}
+			>
+				{link.label}
+			</a>
+		))}
+	</div>
+	<a href="https://github.com/wylie" class="nav-link nav-link-secondary" target="_blank" rel="noopener noreferrer">
+		GitHub
+	</a>
 </nav>
-  
+
 <style>
-  nav {
-    display: flex;
-    border-bottom: 3px solid var(--border-color);
-    align-items: center;
-    justify-content: space-between;
-  }
-  .link {
-    padding: .5rem .25rem;
-    cursor: default;
-    text-decoration: none;
-  }
-  .link.active {
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .link.active:hover {
-    text-decoration: underline;
-  }
-  @media (min-width: 450px) {
-    nav {
-      justify-content: left;
-    }
-    .link {
-      padding: .5rem;
-    }
-  }
+	.site-nav {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.85rem 1rem;
+		padding: 1rem 0 0;
+	}
+
+	.nav-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+	}
+
+	.nav-link {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.6rem;
+		padding: 0.55rem 0.9rem;
+		border: 1px solid transparent;
+		border-radius: 999px;
+		font-family: var(--font-sans);
+		font-size: 0.95rem;
+		font-weight: 700;
+		text-decoration: none;
+		color: var(--color-text);
+		background: transparent;
+	}
+
+	.nav-link:hover {
+		background: var(--color-accent-soft);
+		color: var(--color-text);
+	}
+
+	.nav-link.is-active {
+		background: var(--color-text);
+		color: var(--color-panel);
+	}
+
+	.nav-link-secondary {
+		border-color: var(--color-line);
+		background: color-mix(in srgb, var(--color-panel-strong) 65%, white 35%);
+	}
+
+	@media (max-width: 640px) {
+		.site-nav {
+			align-items: stretch;
+		}
+
+		.nav-links {
+			width: 100%;
+		}
+
+		.nav-link-secondary {
+			width: fit-content;
+		}
+	}
 </style>

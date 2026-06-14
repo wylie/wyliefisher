@@ -1,31 +1,57 @@
 ---
 ---
-<header>
-	<div>
-		<a href="/" aria-label="Home">
+<header class="site-header">
+	<div class="title-block">
+		<p class="eyebrow">Personal home base</p>
+		<a href="/" aria-label="Home" class="site-title-link">
 			<h1>Wylie Fisher</h1>
 		</a>
-		<h2>
-			Operations, Programs, and People
-		</h2>
+		<p class="site-subtitle">Operations, Programs, and People</p>
 	</div>
+	<p class="site-note">Thoughtful systems, practical work, and a little room for weird ideas.</p>
 </header>
 
 <style>
-	header {
-		border-bottom: 3px solid var(--border-color);
+	.site-header {
+		display: grid;
+		gap: 1rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid var(--color-line);
 	}
-	a {
+
+	.title-block {
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.site-title-link {
 		text-decoration: none;
+		color: inherit;
+		width: fit-content;
 	}
-	h2 {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: .5rem;
+
+	.site-title-link:hover {
+		color: inherit;
 	}
-  @media screen and (min-width: 768px) {
-		header {
-      flex-direction: initial;
-    }
-  }
+
+	.site-subtitle,
+	.site-note {
+		max-width: 38rem;
+		font-size: 1rem;
+		line-height: 1.5;
+		color: var(--color-text-soft);
+	}
+
+	@media (min-width: 900px) {
+		.site-header {
+			grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+			align-items: end;
+			gap: 2rem;
+		}
+
+		.site-note {
+			justify-self: end;
+			text-align: right;
+		}
+	}
 </style>

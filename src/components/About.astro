@@ -1,44 +1,306 @@
 ---
 import { Image } from 'astro:assets';
 import face from '../assets/images/portrait.png';
+
+const { featuredProjects = [], recentPosts = [] } = Astro.props;
 ---
 
-<section class="about">
-  <p>
-    <Image src={face} alt="portrait" width={100} class="portrait" />
-    Ahoy, I'm Wylie!
-  </p>
-  <p>I'm a dad and a partner. I love Lego, <a href="https://www.goodreads.com/wyliefisher" target="_blank" data-track-link="goodreads">books</a>, animals, and the kind of everyday creativity that shows up in gardens, campfires, board games, and building things with your hands. Our home is shared with two cats, a dog named Meatball, and a few other tiny lives, with chickens still high on the wish list.</p>
-  <p>These days, life looks a little different than it used to. I'm in a season of rebuilding, rethinking, and deciding what comes next. A lot of that energy is going into home, family, the garden, and small web projects that let me explore ideas at my own pace.</p>
-  <p>I still think like a front-end developer, even if my path has wandered a bit. I care about structure, clarity, accessibility, and making things that feel thoughtful and useful. Sometimes that shows up in code, sometimes in writing, and sometimes in the quieter work of creating a life that feels more honest and sustainable.</p>
-  <p>This site is a bit of a home base for all of that. It's where I share weekly reflections, track what I'm reading and watching, and make room for the projects, questions, and experiments that keep tugging at me. I like things that are practical, a little weird, and made with care.</p>
-  <p>At my core, I'm guided by curiosity, fairness, generosity, and honesty. Whether I'm tending a garden bed, building something on the web, or trying to make sense of a transition, I'm usually aiming for the same thing: leave it better than I found it.</p>
-  <p>If you're curious about what I'm building, or just want to say hello, <a href="mailto:wylie@wyliefisher.com" data-track-link="email-about">I'd love to connect</a>.</p>
+<section class="home-intro">
+	<div class="intro-copy">
+		<p class="eyebrow">Ahoy</p>
+		<h2>A thoughtful corner of the internet for work, writing, and rebuilding a life with care.</h2>
+		<p>
+			I'm Wylie: a dad, partner, longtime front-end developer, and systems-minded generalist who cares
+			about clarity, accessibility, useful tools, and the everyday creativity found in gardens,
+			campfires, books, and making things by hand.
+		</p>
+		<p>
+			These days I’m focused on home, family, small web projects, and figuring out what an honest next
+			chapter looks like. This site is my home base for that work.
+		</p>
+		<div class="intro-links">
+			<a href="/projects/" class="primary-link">See projects</a>
+			<a href="/blog/" class="secondary-link">Read the blog</a>
+		</div>
+	</div>
+	<div class="portrait-card">
+		<Image src={face} alt="Portrait illustration of Wylie Fisher" width={420} class="portrait" />
+		<p class="portrait-note">
+			Practical, curious, a little weird, and usually trying to leave things better than I found them.
+		</p>
+	</div>
+</section>
+
+<section class="home-section">
+	<div class="section-heading">
+		<p class="eyebrow">A little more about me</p>
+		<h2>Human first, builder second.</h2>
+	</div>
+	<div class="two-column-copy">
+		<div class="copy-card">
+			<p>
+				I love Lego, <a href="https://www.goodreads.com/wyliefisher" target="_blank" data-track-link="goodreads">books</a>,
+				animals, and the kind of creativity that shows up in kitchens, workshops, and backyards. Our
+				home is shared with two cats, a dog named Meatball, and a few other tiny lives, with chickens
+				still high on the wish list.
+			</p>
+			<p>
+				I still think like a front-end developer even when the work extends beyond code. I care about
+				structure, clear communication, documentation, fairness, and systems that make life easier for
+				the people using them.
+			</p>
+		</div>
+		<div class="copy-card">
+			<p>
+				Sometimes that shows up in software, sometimes in operations work, and sometimes in writing
+				through a season of transition. I like things that are practical, handcrafted, and just a little
+				unexpected.
+			</p>
+			<p>
+				If you're curious about what I’m building, reading, or thinking through, you’ll find it here.
+				If you just want to say hello, <a href="mailto:wylie@wyliefisher.com" data-track-link="email-about">I’d love to connect</a>.
+			</p>
+		</div>
+	</div>
+</section>
+
+<section class="home-section">
+	<div class="section-heading section-heading-inline">
+		<div>
+			<p class="eyebrow">What I’m working on</p>
+			<h2>Recent projects and ongoing tinkering.</h2>
+		</div>
+		<a href="/projects/" class="section-link">Browse all projects</a>
+	</div>
+	<div class="feature-grid">
+		{featuredProjects.map((project) => (
+			<a href={`/projects/${project.slug}/`} class="feature-card">
+				<p class="feature-meta">{project.data.tags.join(' · ')}</p>
+				<h3>{project.data.title}</h3>
+				<p>{project.data.snippet}</p>
+			</a>
+		))}
+	</div>
+</section>
+
+<section class="home-section">
+	<div class="section-heading section-heading-inline">
+		<div>
+			<p class="eyebrow">Recent writing</p>
+			<h2>Weekly notes, questions, and ordinary life.</h2>
+		</div>
+		<a href="/blog/" class="section-link">Visit the blog</a>
+	</div>
+	<div class="writing-list">
+		{recentPosts.map((post, index) => (
+			<a href={`/blog/${post.slug}/`} class="writing-item">
+				<div>
+					<p class="writing-number">#{recentPosts.length - index}</p>
+					<h3>{post.data.title ?? `Weeknote #${recentPosts.length - index}`}</h3>
+				</div>
+				<time datetime={post.data.pubDate.toISOString()}>
+					{post.data.pubDate.toLocaleDateString('en-us', {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric',
+					})}
+				</time>
+			</a>
+		))}
+	</div>
+</section>
+
+<section class="home-section elsewhere">
+	<div class="section-heading">
+		<p class="eyebrow">Elsewhere</p>
+		<h2>More places to find me.</h2>
+	</div>
+	<p>
+		GitHub is where the code lives, Goodreads is where the reading life leaks out, and email is still the
+		best place for a real hello.
+	</p>
+	<div class="intro-links">
+		<a href="https://github.com/wylie" target="_blank" rel="noopener noreferrer" class="primary-link">GitHub</a>
+		<a href="mailto:wylie@wyliefisher.com" class="secondary-link">Email</a>
+	</div>
 </section>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    document.querySelectorAll('[data-track-link]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const linkId = (e.currentTarget as HTMLElement).getAttribute('data-track-link');
-        const w = window as any;
-        if (typeof w.gtag !== 'undefined') {
-          w.gtag('event', 'link_click', {
-            link_id: linkId,
-            link_url: (e.currentTarget as HTMLAnchorElement).href
-          });
-        }
-      });
-    });
-  });
+	document.addEventListener('astro:page-load', () => {
+		document.querySelectorAll('[data-track-link]').forEach((link) => {
+			link.addEventListener('click', (e) => {
+				const linkId = (e.currentTarget as HTMLElement).getAttribute('data-track-link');
+				const w = window as any;
+				if (typeof w.gtag !== 'undefined') {
+					w.gtag('event', 'link_click', {
+						link_id: linkId,
+						link_url: (e.currentTarget as HTMLAnchorElement).href
+					});
+				}
+			});
+		});
+	});
 </script>
 
 <style>
-  .portrait {
-    float: left;
-    margin-right: 1rem;
-  }
-  p:not(:first-child) {
-    margin-top: 1rem;
-  }
+	.home-intro {
+		display: grid;
+		gap: 1.5rem;
+		align-items: center;
+	}
+
+	.intro-copy,
+	.portrait-card,
+	.copy-card,
+	.feature-card,
+	.writing-item,
+	.elsewhere {
+		border: 1px solid var(--color-line);
+		border-radius: var(--radius-md);
+		background: color-mix(in srgb, var(--color-panel) 88%, white 12%);
+	}
+
+	.intro-copy {
+		padding: clamp(1.5rem, 4vw, 2.5rem);
+		display: grid;
+		gap: 1rem;
+	}
+
+	.intro-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.primary-link,
+	.secondary-link,
+	.section-link {
+		display: inline-flex;
+		align-items: center;
+		width: fit-content;
+		padding: 0.7rem 1rem;
+		border-radius: 999px;
+		font-family: var(--font-sans);
+		font-size: 0.92rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.primary-link {
+		background: var(--color-text);
+		color: var(--color-panel);
+	}
+
+	.primary-link:hover {
+		color: var(--color-panel);
+		background: var(--color-accent);
+	}
+
+	.secondary-link,
+	.section-link {
+		border: 1px solid var(--color-line);
+		color: var(--color-text);
+	}
+
+	.portrait-card {
+		padding: 1.25rem;
+		background:
+			linear-gradient(180deg, rgba(220, 229, 216, 0.5), transparent 55%),
+			color-mix(in srgb, var(--color-panel-strong) 70%, white 30%);
+	}
+
+	.portrait {
+		width: min(100%, 22rem);
+		margin: 0 auto;
+	}
+
+	.portrait-note {
+		margin-top: 1rem;
+		font-size: 1rem;
+		color: var(--color-text-soft);
+		text-align: center;
+	}
+
+	.section-heading {
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.section-heading-inline {
+		gap: 1rem;
+	}
+
+	.two-column-copy,
+	.feature-grid,
+	.writing-list {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.copy-card,
+	.feature-card,
+	.writing-item,
+	.elsewhere {
+		padding: 1.25rem;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.copy-card p + p,
+	.feature-card p + p {
+		margin-top: 0.85rem;
+	}
+
+	.feature-card:hover,
+	.writing-item:hover {
+		border-color: var(--color-line-strong);
+	}
+
+	.feature-meta,
+	.writing-number {
+		font-family: var(--font-sans);
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: var(--color-text-soft);
+	}
+
+	.feature-card h3,
+	.writing-item h3 {
+		margin-top: 0.5rem;
+	}
+
+	.writing-item {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 1rem;
+		align-items: end;
+	}
+
+	.writing-item time {
+		font-family: var(--font-sans);
+		font-size: 0.92rem;
+		font-weight: 700;
+		color: var(--color-text-soft);
+	}
+
+	.elsewhere {
+		gap: 1rem;
+	}
+
+	@media (min-width: 860px) {
+		.home-intro,
+		.section-heading-inline,
+		.two-column-copy,
+		.feature-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.section-heading-inline > .section-link {
+			justify-self: end;
+			align-self: end;
+		}
+	}
 </style>
