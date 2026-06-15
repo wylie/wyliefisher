@@ -1,6 +1,6 @@
 ---
 title: "Santa Commands It!"
-order: 5
+order: 7
 heroImage: "/src/assets/images/projects/santa-commands-it.png"
 tags: ["HTML", "CSS", "JavaScript", "React"]
 url: "https://wylie.github.io/SantaCommandsIt/"

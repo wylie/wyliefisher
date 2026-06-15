@@ -1,6 +1,6 @@
 ---
 title: "Maze Game"
-order: 3
+order: 5
 heroImage: "/src/assets/images/projects/maze-game.png"
 tags: ["Lua", "Pico-8"]
 url: "https://wylie.github.io/pico-8/"

@@ -1,6 +1,6 @@
 ---
 title: "Spooktober"
-order: 6
+order: 8
 heroImage: "/src/assets/images/projects/spooktober.png"
 tags: ["Python"]
 url: "https://github.com/wylie/spooktober"

@@ -1,6 +1,6 @@
 ---
 title: "Nerds (Star Wars) Timeline"
-order: 2
+order: 4
 heroImage: "/src/assets/images/projects/nerds-star-wars-timeline.png"
 tags: ["HTML", "CSS", "JavaScript"]
 url: "https://nerdstimeline.com/"

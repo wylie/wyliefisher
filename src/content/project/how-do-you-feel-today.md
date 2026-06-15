@@ -1,6 +1,6 @@
 ---
 title: "How Do You Feel Today?"
-order: 4
+order: 6
 heroImage: "/src/assets/images/projects/how-do-you-feel-today.png"
 tags: ["HTML", "CSS", "JavaScript", "React"]
 url: "https://howdoyoufeelto.day/"
