@@ -3,7 +3,7 @@ title: "Cairn"
 order: 2
 heroImage: "/src/assets/images/projects/cairn.png"
 tags: ["Astro", "TypeScript", "PostgreSQL", "Tailwind CSS", "Chart.js", "Vercel"]
-url: "https://cairn.rocks/"
+url: "https://cairn-git-main-wylies-work.vercel.app"
 snippet: "An operations platform for recreation facilities that brings memberships, check-ins, households, programs, waivers, reporting, and customer self-service together in one system."
 ---
 Operations software inspired by the people who use it every day
