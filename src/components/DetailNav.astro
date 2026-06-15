@@ -19,7 +19,7 @@ const {
 >
 	{newer ? (
 		<a href={newer.href} class="detail-nav-link detail-nav-newer">
-			<span aria-hidden="true">&larr;</span> Newer
+			<span aria-hidden="true">&larr;</span> Previous
 		</a>
 	) : (
 		<span class="detail-nav-spacer detail-nav-newer" aria-hidden="true"></span>
@@ -27,7 +27,7 @@ const {
 	<a href={indexHref} class="detail-nav-link detail-nav-index">{indexLabel}</a>
 	{older ? (
 		<a href={older.href} class="detail-nav-link detail-nav-older">
-			Older <span aria-hidden="true">&rarr;</span>
+			Next <span aria-hidden="true">&rarr;</span>
 		</a>
 	) : (
 		<span class="detail-nav-spacer detail-nav-older" aria-hidden="true"></span>
