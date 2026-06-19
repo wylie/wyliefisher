@@ -3,7 +3,7 @@ title: "Mark S. Fisher"
 order: 3
 heroImage: "/src/assets/images/projects/mark-s-fisher.png"
 tags: ["Astro", "Responsive Design", "Portfolio", "Accessibility"]
-url: "https://www.marksfisher.com/"
+url: "https://marksfisher.com/"
 snippet: "A portfolio website showcasing the illustration work of Mark S. Fisher, bringing together decades of imaginative artwork in a clean, accessible, and modern online gallery."
 ---
 Bringing decades of illustration work to the web
@@ -23,10 +23,6 @@ What I worked on
 * Accessibility improvements
 * Performance optimization
 * Mobile-friendly navigation
-
-Technologies
-
-Astro · TypeScript · Responsive Design · Accessibility
 
 Why it matters
 
