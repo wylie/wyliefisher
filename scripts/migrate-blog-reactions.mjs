@@ -11,6 +11,13 @@ if (!databaseUrl) {
 const sql = neon(databaseUrl);
 const migration = await readFile(new URL('../db/migrations/001_blog_reactions.sql', import.meta.url), 'utf8');
 
-await sql(migration);
+const statements = migration
+	.split(';')
+	.map((statement) => statement.trim())
+	.filter(Boolean);
+
+for (const statement of statements) {
+	await sql.query(statement);
+}
 
 console.log('Blog reactions migration complete.');

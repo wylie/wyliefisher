@@ -14,7 +14,7 @@ export const isReactionType = (value: unknown): value is ReactionType =>
 	typeof value === 'string' && reactionTypes.has(value as ReactionType);
 
 const getSql = () => {
-	const databaseUrl = process.env.DATABASE_URL;
+	const databaseUrl = import.meta.env.DATABASE_URL ?? process.env.DATABASE_URL;
 
 	if (!databaseUrl) {
 		throw new Error('DATABASE_URL is required for blog reactions.');
