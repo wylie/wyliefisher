@@ -5,6 +5,8 @@ import DataGrid from '../../components/DataGrid.astro';
 import { getCollection } from 'astro:content';
 import { getPublishedPosts } from '../../lib/blog';
 
+export const prerender = true;
+
 const posts = getPublishedPosts(await getCollection('blog'));
 ---
 

@@ -4,6 +4,8 @@ import About from '../components/About.astro';
 import { getCollection } from 'astro:content';
 import { getPublishedPosts } from '../lib/blog';
 
+export const prerender = true;
+
 const projects = (await getCollection('project')).sort(
 	(a, b) => a.data.order - b.data.order,
 );

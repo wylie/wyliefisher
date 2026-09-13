@@ -2,7 +2,10 @@
 import { CollectionEntry, getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import DetailNav from '../../components/DetailNav.astro';
+import BlogReactions from '../../components/BlogReactions.astro';
 import { getPublishedPosts } from '../../lib/blog';
+
+export const prerender = true;
 
 export async function getStaticPaths() {
 	const posts = getPublishedPosts(await getCollection('blog'));
@@ -40,6 +43,8 @@ const olderPost = currentIndex !== -1 && currentIndex < allPosts.length - 1
 	/>
 
 	<Content />
+
+	<BlogReactions postId={post.slug} />
 
 	<DetailNav
 		newer={newerPost && { href: `/blog/${newerPost.slug}/` }}

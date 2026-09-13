@@ -45,6 +45,26 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Blog reactions
+
+Blog post reactions use a small Astro API route backed by PostgreSQL/Neon.
+
+Required environment variable:
+
+```sh
+DATABASE_URL="postgresql://..."
+```
+
+Before deploying reactions, run the database migration in:
+
+```text
+db/migrations/001_blog_reactions.sql
+```
+
+The reaction API stores one first-party anonymous visitor UUID cookie named
+`wf_blog_reaction_id`. Database credentials must only be configured as server
+environment variables and must not be exposed to client-side code.
+
 ## 👀 Want to learn more?
 
 Feel free to check [the documentation](https://docs.astro.build) or jump into the [Discord server](https://astro.build/chat).

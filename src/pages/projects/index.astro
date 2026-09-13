@@ -4,6 +4,8 @@ import DataGrid from '../../components/DataGrid.astro';
 
 import { getCollection } from 'astro:content';
 
+export const prerender = true;
+
 const posts = (await getCollection('project')).sort(
 	(a, b) => a.data.order - b.data.order,
 );

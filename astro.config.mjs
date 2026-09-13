@@ -3,10 +3,13 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import partytown from "@astrojs/partytown";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wyliefisher.com',
+  output: 'server',
+  adapter: vercel(),
   integrations: [mdx(), sitemap(), react({
     config: {
       forward: ["dataLayer.push"],

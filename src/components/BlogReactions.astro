@@ -1,0 +1,190 @@
+---
+const { postId } = Astro.props;
+---
+
+<section class="blog-reactions" data-blog-reactions data-post-id={postId} hidden>
+	<p class="blog-reactions-title">What did you think?</p>
+	<div class="blog-reactions-actions" aria-label="Blog post reactions">
+		<button type="button" class="reaction-button" data-reaction="like" aria-pressed="false">
+			<span aria-hidden="true">❤️</span>
+			<span data-count="like">0</span>
+		</button>
+		<button type="button" class="reaction-button" data-reaction="dislike" aria-pressed="false">
+			<span aria-hidden="true">💔</span>
+			<span data-count="dislike">0</span>
+		</button>
+	</div>
+	<p class="reaction-status" data-status role="status" aria-live="polite"></p>
+</section>
+
+<script is:inline>
+	(function () {
+		function asCount(value) {
+			return Number.isFinite(Number(value)) ? Number(value) : 0;
+		}
+
+		function setButtonState(button, state) {
+			var reaction = button.dataset.reaction;
+			var selected = state.currentReaction === reaction;
+			var countName = reaction === 'like' ? 'likeCount' : 'dislikeCount';
+			var count = asCount(state[countName]);
+			var countEl = button.querySelector('[data-count]');
+			var action = selected ? (reaction === 'like' ? 'Remove like' : 'Remove dislike') : (reaction === 'like' ? 'Like this post' : 'Dislike this post');
+			var noun = reaction === 'like' ? 'likes' : 'dislikes';
+
+			button.classList.toggle('is-selected', selected);
+			button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+			button.setAttribute('aria-label', action + '. ' + count + ' ' + noun + '.');
+
+			if (countEl) {
+				countEl.textContent = String(count);
+			}
+		}
+
+		function render(root, state) {
+			root.querySelectorAll('[data-reaction]').forEach(function (button) {
+				setButtonState(button, state);
+			});
+			root.hidden = false;
+		}
+
+		function setPending(root, pending) {
+			root.querySelectorAll('[data-reaction]').forEach(function (button) {
+				button.disabled = pending;
+			});
+		}
+
+		function setStatus(root, message) {
+			var status = root.querySelector('[data-status]');
+			if (status) {
+				status.textContent = message || '';
+			}
+		}
+
+		function setupReactionRoot(root) {
+			if (!root || root.dataset.bound === 'true') return;
+			root.dataset.bound = 'true';
+
+			var postId = root.dataset.postId;
+			var endpoint = '/api/blog-reactions?post=' + encodeURIComponent(postId);
+
+			fetch(endpoint, { headers: { accept: 'application/json' } })
+				.then(function (response) {
+					if (!response.ok) throw new Error('Unable to load reactions.');
+					return response.json();
+				})
+				.then(function (state) {
+					render(root, state);
+				})
+				.catch(function () {
+					root.hidden = true;
+				});
+
+			root.querySelectorAll('[data-reaction]').forEach(function (button) {
+				button.addEventListener('click', function () {
+					setPending(root, true);
+					setStatus(root, '');
+
+					fetch(endpoint, {
+						method: 'POST',
+						headers: {
+							accept: 'application/json',
+							'content-type': 'application/json',
+						},
+						body: JSON.stringify({ reaction: button.dataset.reaction }),
+					})
+						.then(function (response) {
+							if (!response.ok) throw new Error('Unable to save reaction.');
+							return response.json();
+						})
+						.then(function (state) {
+							render(root, state);
+						})
+						.catch(function () {
+							setStatus(root, 'Could not save that reaction. Please try again.');
+						})
+						.finally(function () {
+							setPending(root, false);
+						});
+				});
+			});
+		}
+
+		function setup() {
+			document.querySelectorAll('[data-blog-reactions]').forEach(setupReactionRoot);
+		}
+
+		document.addEventListener('astro:page-load', setup);
+		setup();
+	})();
+</script>
+
+<style>
+	.blog-reactions[hidden] {
+		display: none;
+	}
+
+	.blog-reactions {
+		display: grid;
+		gap: 0.75rem;
+		margin-top: 0.5rem;
+		padding: 1rem 0;
+		border-top: 1px solid var(--color-line);
+		border-bottom: 1px solid var(--color-line);
+	}
+
+	.blog-reactions-title {
+		font-family: var(--font-sans);
+		font-size: 0.92rem;
+		font-weight: 700;
+		color: var(--color-text-soft);
+	}
+
+	.blog-reactions-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+	}
+
+	.reaction-button {
+		appearance: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.45rem;
+		min-width: 4.75rem;
+		min-height: 2.75rem;
+		padding: 0.55rem 0.85rem;
+		border: 1px solid var(--color-line);
+		border-radius: 999px;
+		background: var(--color-panel);
+		color: var(--color-text);
+		font-family: var(--font-sans);
+		font-size: 0.98rem;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	.reaction-button:hover {
+		border-color: var(--color-line-strong);
+		background: color-mix(in srgb, var(--color-accent-soft) 55%, var(--color-panel) 45%);
+	}
+
+	.reaction-button.is-selected {
+		border-color: var(--color-accent);
+		background: var(--color-accent-soft);
+		box-shadow: inset 0 0 0 1px var(--color-accent);
+	}
+
+	.reaction-button:disabled {
+		cursor: progress;
+		opacity: 0.72;
+	}
+
+	.reaction-status {
+		min-height: 1.25rem;
+		font-family: var(--font-sans);
+		font-size: 0.85rem;
+		color: var(--color-warm);
+	}
+</style>
