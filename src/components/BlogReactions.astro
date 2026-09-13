@@ -2,7 +2,7 @@
 const { postId } = Astro.props;
 ---
 
-<section class="blog-reactions" data-blog-reactions data-post-id={postId} hidden>
+<section class="blog-reactions is-loading" data-blog-reactions data-post-id={postId} aria-busy="true">
 	<p class="blog-reactions-title">What did you think?</p>
 	<div class="blog-reactions-actions" aria-label="Blog post reactions">
 		<button type="button" class="reaction-button" data-reaction="like" aria-pressed="false">
@@ -45,7 +45,9 @@ const { postId } = Astro.props;
 			root.querySelectorAll('[data-reaction]').forEach(function (button) {
 				setButtonState(button, state);
 			});
-			root.hidden = false;
+			root.classList.remove('is-loading', 'is-unavailable');
+			root.removeAttribute('aria-busy');
+			setStatus(root, '');
 		}
 
 		function setPending(root, pending) {
@@ -59,6 +61,17 @@ const { postId } = Astro.props;
 			if (status) {
 				status.textContent = message || '';
 			}
+		}
+
+		function setUnavailable(root) {
+			root.classList.remove('is-loading');
+			root.classList.add('is-unavailable');
+			root.removeAttribute('aria-busy');
+			root.querySelectorAll('[data-reaction]').forEach(function (button) {
+				button.disabled = true;
+				setButtonState(button, { likeCount: 0, dislikeCount: 0, currentReaction: null });
+			});
+			setStatus(root, 'Reactions are unavailable right now.');
 		}
 
 		function setupReactionRoot(root) {
@@ -77,7 +90,7 @@ const { postId } = Astro.props;
 					render(root, state);
 				})
 				.catch(function () {
-					root.hidden = true;
+					setUnavailable(root);
 				});
 
 			root.querySelectorAll('[data-reaction]').forEach(function (button) {
@@ -120,10 +133,6 @@ const { postId } = Astro.props;
 </script>
 
 <style>
-	.blog-reactions[hidden] {
-		display: none;
-	}
-
 	.blog-reactions {
 		display: grid;
 		gap: 0.75rem;
@@ -177,8 +186,15 @@ const { postId } = Astro.props;
 	}
 
 	.reaction-button:disabled {
-		cursor: progress;
 		opacity: 0.72;
+	}
+
+	.blog-reactions.is-loading .reaction-button {
+		cursor: progress;
+	}
+
+	.blog-reactions.is-unavailable .reaction-button {
+		cursor: not-allowed;
 	}
 
 	.reaction-status {
