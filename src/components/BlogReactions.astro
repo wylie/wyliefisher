@@ -5,11 +5,11 @@ const { postId } = Astro.props;
 <section class="blog-reactions is-loading" data-blog-reactions data-post-id={postId} aria-busy="true">
 	<p class="blog-reactions-title">What did you think?</p>
 	<div class="blog-reactions-actions" aria-label="Blog post reactions">
-		<button type="button" class="reaction-button" data-reaction="like" aria-pressed="false">
+		<button type="button" class="reaction-button" data-reaction="like" aria-pressed="false" title="Like this post">
 			<span aria-hidden="true">❤️</span>
 			<span data-count="like">0</span>
 		</button>
-		<button type="button" class="reaction-button" data-reaction="dislike" aria-pressed="false">
+		<button type="button" class="reaction-button" data-reaction="dislike" aria-pressed="false" title="Dislike this post">
 			<span aria-hidden="true">💔</span>
 			<span data-count="dislike">0</span>
 		</button>
@@ -35,6 +35,7 @@ const { postId } = Astro.props;
 			button.classList.toggle('is-selected', selected);
 			button.setAttribute('aria-pressed', selected ? 'true' : 'false');
 			button.setAttribute('aria-label', action + '. ' + count + ' ' + noun + '.');
+			button.setAttribute('title', action);
 
 			if (countEl) {
 				countEl.textContent = String(count);
