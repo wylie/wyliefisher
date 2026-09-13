@@ -55,10 +55,10 @@ Required environment variable:
 DATABASE_URL="postgresql://..."
 ```
 
-Before deploying reactions, run the database migration in:
+Before deploying reactions, run the database migration:
 
-```text
-db/migrations/001_blog_reactions.sql
+```sh
+npm run db:migrate:blog-reactions
 ```
 
 The reaction API stores one first-party anonymous visitor UUID cookie named

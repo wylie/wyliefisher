@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "db:migrate:blog-reactions": "node --env-file=.env scripts/migrate-blog-reactions.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.6",
